@@ -1,0 +1,19 @@
+{
+  "name": "wisvch-drupal8-theme",
+  "version": "2.5.9",
+  "authors": [
+    "Sven van Hal <svenh@ch.tudelft.nl>"
+  ],
+  "description": "Drupal 8 template for W.I.S.V. 'Christiaan Huygens'.",
+  "homepage": "https://ch.tudelft.nl/",
+  "dependencies": {
+    "foundation-sites": "~6.2.0",
+    "motion-ui": "~1.2.2"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor"
+  ],
+  "private": true
+}

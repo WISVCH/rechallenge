@@ -1,0 +1,47 @@
+<?php
+// TODO: find a viable Twitter solution (now loading JS in theme file and code in custom block)
+
+// Load helper classes
+require_once("php/Rechallenge_Preprocess_Block.php");
+require_once("php/Rechallenge_Preprocess_Menu_Local_Task.php");
+require_once("php/Rechallenge_Preprocess_Node.php");
+require_once("php/Rechallenge_Preprocess_Page.php");
+
+
+/**
+ * Preprocess ReCHallenge page.
+ * @param $variables
+ */
+function rechallenge_preprocess_page(&$variables) {
+
+	// Merge user menu with main menu
+	Rechallenge_Preprocess_Page::mergeMainMenu($variables);
+
+	// Generate menu with subpages
+	Rechallenge_Preprocess_Page::generateSubpagesMenu($variables);
+
+}
+
+function rechallenge_preprocess_node(&$variables) {
+
+	// Add is_front variable to all templates
+	Rechallenge_Preprocess_Node::addIsFront($variables);
+
+	// Add content type specific variables
+	Rechallenge_Preprocess_Node::addContentTypeVars($variables);
+
+}
+
+function rechallenge_preprocess_block(&$variables) {
+
+	// Add slider_count variable to frontpage block twig.
+	Rechallenge_Preprocess_Block::addResultCountFrontpageSlider($variables);
+
+}
+
+function rechallenge_preprocess_menu_local_task(&$variables) {
+
+	// Fix local tasks
+	Rechallenge_Preprocess_Menu_Local_Task::fixLocalTasksMenu($variables);
+
+}
