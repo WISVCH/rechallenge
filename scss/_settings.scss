@@ -321,9 +321,9 @@ $flexvideo-ratio-widescreen: 16 by 9;
 // 19. Forms
 // ---------
 
-$fieldset-border: 1px solid $medium-gray;
-$fieldset-padding: rem-calc(20);
-$fieldset-margin: rem-calc(18 0);
+$fieldset-border: none;
+$fieldset-padding: 0;
+$fieldset-margin: 1rem 0;
 $legend-padding: rem-calc(0 3);
 $form-spacing: rem-calc(16);
 $helptext-color: $black;
@@ -338,21 +338,21 @@ $form-label-font-size: rem-calc(14);
 $form-label-font-weight: $global-weight-normal;
 $form-label-line-height: 1.8;
 $select-background: $white;
-$select-triangle-color: $dark-gray;
+$select-triangle-color: $primary-color;
 $select-radius: 0;
 $input-color: $black;
 $input-placeholder-color: $medium-gray;
 $input-font-family: inherit;
 $input-font-size: rem-calc(16);
-$input-background: $white;
-$input-background-focus: $white;
-$input-background-disabled: $light-gray;
-$input-border: 1px solid $medium-gray;
-$input-border-focus: 1px solid $dark-gray;
-$input-shadow: inset 0 1px 2px rgba($black, 0.1);
-$input-shadow-focus: 0 0 5px $medium-gray;
+$input-background: $light-gray;
+$input-background-focus: $light-gray;
+$input-background-disabled: $medium-gray;
+$input-border: none;
+$input-border-focus: none;
+$input-shadow: inset 0 1px 2px rgba($medium-gray, 0.25);
+$input-shadow-focus: inset 0 2px 3px rgba($medium-gray, 0.6);
 $input-cursor-disabled: default;
-$input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+$input-transition: box-shadow 0.15s linear;
 $input-number-spinners: true;
 $input-radius: 0;
 
@@ -452,10 +452,10 @@ $progress-radius: $global-radius;
 $reveal-background: $white;
 $reveal-width: 600px;
 $reveal-max-width: $global-width;
-$reveal-padding: $global-padding;
-$reveal-border: 1px solid $medium-gray;
+$reveal-padding: $global-padding * 2;
+$reveal-border: none;
 $reveal-radius: $global-radius;
-$reveal-zindex: 1005;
+$reveal-zindex: 1259;
 $reveal-overlay-background: rgba($black, 0.45);
 
 // 29. Slider

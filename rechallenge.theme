@@ -7,7 +7,6 @@ require_once("php/Rechallenge_Preprocess_Menu_Local_Task.php");
 require_once("php/Rechallenge_Preprocess_Node.php");
 require_once("php/Rechallenge_Preprocess_Page.php");
 
-
 /**
  * Preprocess ReCHallenge page.
  * @param $variables
@@ -19,6 +18,15 @@ function rechallenge_preprocess_page(&$variables) {
 
 	// Generate menu with subpages
 	Rechallenge_Preprocess_Page::generateSubpagesMenu($variables);
+
+	// Make login form available as variable
+	Rechallenge_Preprocess_Page::addLoginForm($variables);
+
+	// Add extra Twig variables
+	Rechallenge_Preprocess_Page::addVariables($variables);
+
+	// Logged in (uses is_logged_in to prevent conflicts on pages where logged_in already exists)
+	$variables['is_logged_in'] = !\Drupal::currentUser()->isAnonymous();
 
 }
 
@@ -34,7 +42,7 @@ function rechallenge_preprocess_node(&$variables) {
 
 function rechallenge_preprocess_block(&$variables) {
 
-	// Add slider_count variable to frontpage block twig.
+	// Add slider_count variable to frontpage block Twig.
 	Rechallenge_Preprocess_Block::addResultCountFrontpageSlider($variables);
 
 }

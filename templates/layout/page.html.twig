@@ -42,6 +42,13 @@
  * @see template_preprocess_page()
  * @see html.html.twig
  */
+
+Template divided in multiple block to improve code re-use in child templates:
+	- header
+	- page_title
+	- subpages
+	- content
+	- footer
 #}
 
 {# Prep #}
@@ -51,142 +58,186 @@
 <!-- Page header -->
 <header class="page-header">
 
-	<!-- Title Bar -->
-	<div class="title-bar hide-for-large" data-responsive-toggle="nav-menu" data-hide-for="large">
-		<div class="row collapse">
-			<div class="small-6 medium-5 bg-left column">
-				<a class="logo-small show-for-medium-down" href="index.html">
-					<img src="{{ base_path ~ directory }}/images/ch-logo-small@2x.png" alt="W.I.S.V. 'Christiaan Huygens'" class="logo-small">
-				</a>
-			</div>
-			<div class="small-6 medium-7 bg-right column">
-				<div class="float-right">
-					{% if logged_in %}
-						<a class="login-button account-button button alert" href="{{ url('user.page') }}">{{ "My Account"|t }}</a>
-					{% else %}
-						<a class="login-button button alert" href="{{ url('user.login') }}">{{ "Login"|t }}</a>
-					{% endif %}
-					<button class="wisv-menu-icon" type="button" data-toggle></button>
+	{% block header %}
+
+		<!-- Title Bar -->
+		<div class="title-bar hide-for-large" data-responsive-toggle="nav-menu" data-hide-for="large">
+			<div class="row collapse">
+				<div class="small-6 medium-5 bg-left column">
+					<a class="logo-small show-for-medium-down" href="{{ url('<front>') }}">
+						<img src="{{ base_path ~ directory }}/images/ch-logo-small@2x.png" alt="{{ site_name }}" class="logo-small">
+					</a>
 				</div>
+				<div class="small-6 medium-7 bg-right column">
+					<div class="float-right">
+						{% if logged_in %}
+							<a class="login-button account-button button alert" href="{{ url('user.page') }}">{{ "My Account"|t }}</a>
+						{% else %}
+							<a class="login-button button alert" href="{{ url('user.login') }}">{{ "Login"|t }}</a>
+						{% endif %}
+						<button class="wisv-menu-icon" type="button" data-toggle></button>
+					</div>
+				</div>
+
 			</div>
-
 		</div>
-	</div>
 
-	<!-- Top Bar -->
-	<div class="wisv-header left">
+		<!-- Top Bar -->
+		<div class="wisv-header left">
 
-		<div class="wisv-header right">
-			<div class="center row">
+			<div class="wisv-header right">
+				<div class="center row">
 
-				<nav class="top-bar" id="nav-menu">
-					<div class="top-bar-left show-for-large">
-						<div class="logo-wrapper">
-							<div class="logo">
-								{{ page.logo }}
+					<nav class="top-bar" id="nav-menu">
+						<div class="top-bar-left show-for-large">
+							<div class="logo-wrapper">
+								<div class="logo">
+									{{ page.logo }}
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="top-bar-right">
-						{{ page.main_navigation }}
-					</div>
-				</nav>
+						<div class="top-bar-right">
+							{{ page.main_navigation }}
+						</div>
+					</nav>
 
-			</div>
-		</div>
-
-	</div>
-
-	{% set page_title_classes = [
-	'page-title',
-	not has_subpages ? 'dotted-border',
-	cover_image.value ? 'has-featured-image'
-	] %}
-
-	<!-- Page title -->
-	<div class="{{ page_title_classes|join(" ") }}" style="{{ cover_image_css }}">
-
-		{% if cover_image.value or not has_subpages %}
-			<div class="row">
-				<div class="column">
-					{{ page.header }}
 				</div>
 			</div>
-		{% endif %}
 
-	</div>
+		</div>
+
+	{% endblock %}
+
+	{% block page_title %}
+
+		{% set page_title_classes = [
+		'page-title',
+		not has_subpages ? 'dotted-border',
+		cover_image.value ? 'has-featured-image'
+		] %}
+
+		<!-- Page title -->
+		<div class="{{ page_title_classes|join(" ") }}" style="{{ cover_image_css }}">
+
+			{% if cover_image.value or not has_subpages %}
+				<div class="row">
+					<div class="column">
+						{{ page.header }}
+					</div>
+				</div>
+			{% endif %}
+
+		</div>
+
+	{% endblock %}
 
 </header>
 
-{% if has_subpages %}
-	<nav class="sub-nav">
-		{{ page.subpage_navigation }}
-	</nav>
-{% endif %}
+{% block subpages %}
 
-<!-- Main -->
-<section>
+	{% if has_subpages %}
+		<nav class="sub-nav">
+			{{ page.subpage_navigation }}
+		</nav>
+	{% endif %}
 
-	<aside class="row">
-		<div class="column">
-			{{ page.breadcrumb }}
-		</div>
-	</aside>
+{% endblock %}
 
-	<div class="row">
-		<div class="column">
+{% block content %}
 
-			{{ page.highlighted }}
+	<!-- Main -->
+	<section>
 
-			{{ page.help }}
+		<aside class="row">
+			<div class="column">
+				{{ page.breadcrumb }}
+			</div>
+		</aside>
 
-			{{ page.content }}
-
-		</div>
-	</div>
-
-</section>
-
-<!-- Page footer -->
-<footer class="page-footer">
-
-	<!-- Partners -->
-	<div class="row">
-		<div class="column">
-
-			{{ page.partners }}
-
-		</div>
-	</div>
-
-	<div class="footer-top dotted-border">
-		<div class="row">
-
-			<!-- Twitter -->
-			<section class="small-12 large-push-6 large-6 columns">
-
-				{{ page.footer_right }}
-
-			</section>
-
-			<section class="small-12 large-pull-6 large-6 columns">
-				<div class="row">
-					{{ page.footer_left }}
-				</div>
-			</section>
-
-		</div>
-	</div>
-
-	<div class="footer-bottom">
 		<div class="row">
 			<div class="column">
-				<p class="text-center">Copyright &copy; W.I.S.V. 'Christiaan Huygens' {{ "now"|date("Y") }}</p>
+
+				{{ page.highlighted }}
+
+				{{ page.help }}
+
+				{{ title_prefix }}
+				<h1{{ title_attributes }}>{{ label }}</h1>
+				{{ title_suffix }}
+				{{ page.content }}
+
 			</div>
 		</div>
-	</div>
 
-</footer>
+	</section>
+
+{% endblock %}
+
+{% block footer %}
+
+	<!-- Page footer -->
+	<footer class="page-footer">
+
+		<!-- Partners -->
+		<div class="row">
+			<div class="column">
+
+				{{ page.partners }}
+
+			</div>
+		</div>
+
+		<div class="footer-top dotted-border">
+			<div class="row">
+
+				<!-- Twitter -->
+				<section class="small-12 large-push-6 large-6 columns">
+
+					{{ page.footer_right }}
+
+				</section>
+
+				<section class="small-12 large-pull-6 large-6 columns">
+					<div class="row">
+						{{ page.footer_left }}
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="row">
+				<div class="column">
+					<p class="text-center">Copyright &copy; {{ site_name }} {{ "now"|date("Y") }}</p>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+{% endblock %}
+
+{% block login_modal %}
+
+	{% if not logged_in %}
+
+		<aside class="reveal" id="login-form-modal" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
+
+			<div class="row">
+				<div class="small-12 column">
+					<button class="close-button show-for-small-only" data-close aria-label="Close modal" type="button">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h1>{{ 'Log in'|t }}</h1>
+				</div>
+			</div>
+			{{ login_form }}
+		</aside>
+
+	{% endif %}
+
+{% endblock %}
 
 </body>
 </html>

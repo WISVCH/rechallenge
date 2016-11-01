@@ -98,4 +98,32 @@ class Rechallenge_Preprocess_Page {
 
 	}
 
+	/**
+	 * Adds login form variable to page.
+	 * @param $variables preprocess_page variables
+	 */
+	public static function addLoginForm(&$variables) {
+
+		$variables['login_form'] = FALSE;
+
+		// Only for anonymous users
+		if (!\Drupal::currentUser()->id()) {
+			$form = Drupal::formBuilder()->getForm(Drupal\user\Form\UserLoginForm::class);
+			$form['#attributes']['class'][] = "user-login-modal";
+			$render = Drupal::service('renderer');
+			$variables['login_form'] = $render->renderPlain($form);
+		}
+
+	}
+
+	/**
+	 * Make site name available in page.html.twig template.
+	 * @param $variables preprocess_page variables
+	 */
+	public static function addVariables(&$variables) {
+
+		// Site name
+		$variables['site_name'] = \Drupal::config('system.site')->get('name');
+	}
+
 }

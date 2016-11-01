@@ -7,6 +7,6 @@ global-styling:
     vendor/what-input/what-input.js: {}
     vendor/foundation-sites/dist/foundation.js: {}
     js/app.js: {}
-    //platform.twitter.com/widgets.js: { type: external, minified: true, attributes: { async: true, charset: utf-8 } }
+#    //platform.twitter.com/widgets.js: { type: external, minified: true, attributes: { async: true, charset: utf-8 } }
   dependencies:
     - core/jquery
