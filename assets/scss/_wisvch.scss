@@ -1,0 +1,1597 @@
+/*
+W.I.S.V. 'Christiaan Huygens'
+'Hulde ende Bravo'
+
+@TODO: Split 'chapters' into separate files.
+*/
+
+/* **********
+X. Mix-ins
+********** */
+@mixin inverted-anchor() {
+	color: $primary-color;
+	&:hover, &:focus {
+		color: $alert-color;
+	}
+}
+
+/* **********
+0. Global
+********** */
+h1, h2, h3, h4, h5, h6 {
+	a {
+		@include inverted-anchor();
+	}
+}
+
+h1, h2 {
+	text-transform: uppercase;
+}
+
+// Create h.small classes (small heading size on medium up displays)
+@each $header, $header-settings in map-get($header-styles, 'small') {
+	@include breakpoint(medium) {
+		#{$header}.small {
+			font-size: rem-calc(map-get($header-settings, 'font-size'));
+		}
+	}
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+a {
+	transition: color .2s;
+}
+
+// Fix element widths on medium up
+@include breakpoint(medium) {
+	article p {
+		padding-right: 20%;
+	}
+
+	blockquote {
+		width: 80%;
+		p {
+			padding-right: 0;
+		}
+	}
+
+	.share {
+		width: 80%;
+	}
+}
+
+address {
+	font-style: normal;
+}
+
+blockquote {
+	background: $light-gray;
+	margin: $paragraph-margin-bottom 0;
+	padding: 1.5rem 2rem;
+
+	h1 {
+		font-size: rem-calc(22);
+		text-transform: none;
+	}
+
+	@include breakpoint(medium down) {
+		padding: 1rem;
+
+		h1 {
+			font-size: rem-calc(18);
+		}
+	}
+
+	p {
+		padding-left: 3rem;
+		font-size: rem-calc(16);
+		color: $black;
+		width: 100%;
+
+		&:before {
+			content: "\201C";
+			font: bold italic 50px / 1 "Noto Sans";
+
+			position: absolute;
+			margin-left: -2.8rem;
+			margin-top: -2px;
+			color: $primary-color;
+		}
+	}
+
+	h1 + p {
+		margin-top: 1rem;
+	}
+}
+
+// Change text selection color
+::selection {
+	background: $secondary-color;
+	color: $white;
+}
+
+/* **********
+0.X Breadcrumbs
+********** */
+#breadcrumbs {
+	margin: $breadcrumbs-margin;
+	padding: 0;
+	font-size: $breadcrumbs-item-font-size;
+	color: $breadcrumbs-item-color;
+
+	a {
+		color: $breadcrumbs-item-color;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+
+	.sep {
+		margin: 0 $breadcrumbs-item-margin;
+		color: $medium-gray;
+	}
+}
+
+/* **********
+0.X Buttons
+********** */
+$wisv-button-height-small: 3.5rem;
+$wisv-button-border-small: .25rem;
+$wisv-button-padding-small: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-small: rem-calc(16);
+
+$wisv-button-height-medium: 3.75rem;
+$wisv-button-border-medium: .25rem;
+$wisv-button-padding-medium: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-medium: rem-calc(18);
+
+$wisv-button-height-large: 4.375rem;
+$wisv-button-border-large: .25rem;
+$wisv-button-padding-large: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-large: rem-calc(20);
+
+$wisv-button-lineheight-small: $wisv-button-height-small - 2 * $wisv-button-border-small;
+$wisv-button-lineheight-medium: $wisv-button-height-medium - 2 * $wisv-button-border-medium;
+$wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-border-large;
+
+// @TODO rewrite using new button styles, should result in much less code
+.wisv-button {
+	display: block;
+	position: relative;
+
+	height: $wisv-button-height-small;
+	line-height: $wisv-button-lineheight-small;
+	padding: 0 1.5rem 0 5rem;
+
+	color: $white;
+	font-size: $wisv-button-fontsize-small;
+	font-weight: $global-weight-bold;
+	font-family: $header-font-family;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: right;
+	border: $wisv-button-border-small solid transparent;
+
+	&, &:before {
+		transition: all .2s;
+	}
+
+	// Hover / focus
+	&:hover, &:focus {
+		background-color: $white !important;
+	}
+
+	// Colors
+	&.red {
+		background-color: $alert-color;
+		&:hover, &:focus {
+			&, &:before {
+				color: $alert-color;
+				border-color: $alert-color;
+			}
+		}
+	}
+
+	&.blue {
+		background-color: $secondary-color;
+		&:hover, &:focus {
+			&, &:before {
+				color: $secondary-color;
+				border-color: $secondary-color;
+			}
+		}
+	}
+
+	&.last {
+		@include breakpoint(small only) {
+			margin-top: $global-margin;
+		}
+
+		@include breakpoint(large only) {
+			margin-top: $global-margin;
+		}
+	}
+
+	// Icons
+	&:before {
+		position: absolute;
+		display: block;
+
+		top: 0;
+		left: .5rem;
+
+		width: $wisv-button-height-small;
+		height: $wisv-button-height-small;
+
+		text-align: center;
+		line-height: $wisv-button-lineheight-small;
+		font-size: 222%;
+
+		color: $white;
+
+	}
+
+	// Responsive
+	@include breakpoint(medium) {
+		font-size: $wisv-button-fontsize-medium;
+		height: $wisv-button-height-medium;
+		line-height: $wisv-button-lineheight-medium;
+		padding: $wisv-button-padding-medium;
+		border-width: $wisv-button-border-medium;
+		&:before {
+			width: $wisv-button-height-medium;
+			height: $wisv-button-height-medium;
+			line-height: $wisv-button-lineheight-medium;
+		}
+	}
+
+	@include breakpoint(large) {
+		font-size: $wisv-button-fontsize-large;
+		height: $wisv-button-height-large;
+		line-height: $wisv-button-lineheight-large;
+		padding: $wisv-button-padding-large;
+		border-width: $wisv-button-border-large;
+		&:before {
+			width: $wisv-button-height-large;
+			height: $wisv-button-height-large;
+			line-height: $wisv-button-lineheight-large;
+		}
+	}
+
+	@include breakpoint(xlarge) {
+		&.last {
+			margin-top: 10.625rem - 2 * $wisv-button-height-large;
+		}
+	}
+}
+
+/* **********
+0.X Panels
+********** */
+.wisv-panel {
+	border: 3px solid $light-gray;
+
+	& + .wisv-panel {
+		margin-top: $global-margin;
+	}
+
+	.wisv-panel-heading {
+		background: $primary-color;
+
+		padding: 0 1rem;
+
+		height: 4rem;
+
+		text-transform: uppercase;
+		font-family: $header-font-family;
+		font-size: rem-calc(24);
+		font-weight: $global-weight-bold;
+
+		h1 {
+			color: $white;
+			margin: 0;
+			line-height: 4rem;
+			overflow: hidden;
+		}
+
+		a {
+			color: $white;
+			&:hover, &:focus {
+				color: $alert-color;
+			}
+		}
+
+		small {
+			float: right;
+			line-height: 4rem;
+		}
+
+		i[class^="ch-"]:before,
+		i[class*=" ch-"]:before {
+			padding-left: .25em;
+		}
+	}
+
+	.wisv-panel-content {
+		padding: 1rem;
+
+		& > ul {
+			list-style: none;
+			margin: 0;
+		}
+
+		p {
+			padding-right: 0;
+		}
+
+	}
+
+}
+
+/* **********
+0.X Row with thumbnail
+********** */
+.icon-row {
+	display: table;
+
+	.icon-cell {
+		display: table-cell;
+		width: 5rem; // sensible default
+	}
+
+	.text-cell {
+		display: table-cell;
+		width: auto;
+		vertical-align: middle;
+		padding-left: 1rem;
+	}
+}
+
+/* **********
+1. Header
+********** */
+
+.page-header {
+	z-index: 1;
+}
+
+/* **********
+1.1 Logo
+********** */
+
+.logo-wrapper {
+	position: relative;
+
+	.logo {
+		@include breakpoint(large) {
+
+		}
+
+		@include breakpoint(xlarge) {
+			margin-top: 0;
+			img {
+				height: 110px;
+			}
+		}
+
+		@include breakpoint(xxlarge) {
+			margin-left: -85px; // 100px for left side - 15px global margin
+		}
+	}
+}
+
+/* **********
+1.2 Top bar (large up)
+********** */
+
+$topbar-height: rem-calc(90);
+
+// Crazy background solution
+@include breakpoint($topbar-unstack-breakpoint) {
+	.wisv-header {
+
+		height: $topbar-height;
+
+		&.left {
+			@include clearfix;
+			width: 100%;
+			background: url(../images/top-bar-bg.png) 52px -180px repeat-x;
+			position: relative;
+			z-index: 3; // put above page title section
+		}
+
+		&.right {
+			width: 50%;
+			float: right;
+			background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+
+			.center {
+				margin-left: $grid-row-width / -2;
+				@include breakpoint(large down) {
+					margin-left: -100%;
+				}
+			}
+		}
+
+	}
+}
+
+.top-bar {
+	font-family: $header-font-family;
+	position: relative;
+	z-index: 10;
+
+	.top-bar-right {
+		background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
+		@include breakpoint($topbar-unstack-breakpoint) {
+			padding-left: 40px;
+			padding-right: .25rem;
+		}
+	}
+
+	.menu {
+		background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+
+		> li {
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			@include breakpoint($topbar-unstack-breakpoint) {
+				padding: 0 .9rem;
+				vertical-align: middle;
+				height: $topbar-height;
+
+				&:last-child {
+					padding-right: 0;
+				}
+			}
+
+			// TODO: combine with above, IES NOT POSSIBLE GHGHGHHHH
+			@include breakpoint(xlarge only) {
+
+				// Hide 'home' button
+				&:first-child {
+					display: none;
+				}
+
+				// Remove left padding from leftmost menu item
+				&:nth-child(2) {
+					padding-left: 0;
+				}
+			}
+
+			a {
+				@include inverted-anchor();
+				text-transform: uppercase;
+				font-weight: $global-weight-bold;
+				letter-spacing: 1px;
+
+				@include breakpoint($topbar-unstack-breakpoint) {
+					border-bottom: 3px solid transparent; // compensate for active menu item border
+					border-top: 3px solid transparent; // compensate for line-height
+					padding-left: .2rem;
+					padding-right: .2rem;
+
+					// Drupal active menu item
+					&.active {
+						border-bottom-color: $primary-color;
+					}
+
+					&.login-button {
+						color: $white;
+						font-size: 1rem;
+						padding: .3rem 1.75rem;
+						border-bottom-color: $button-background; // fixes animation quirk
+						border-top-color: $button-background; // fixes animation quirk
+						&.account-button {
+							padding-left: 1rem;
+							padding-right: 1rem;
+						}
+						&:hover, &:focus {
+							color: $alert-color;
+						}
+					}
+				}
+
+			}
+
+			@include breakpoint(medium down) {
+
+				a, .login-button {
+					background: $primary-color;
+					color: $white;
+					border: none;
+					border-bottom: 1px solid $light-gray;
+					padding-top: 1rem;
+					padding-bottom: 1rem;
+					letter-spacing: 0;
+					font-size: 1rem;
+					text-align: left;
+
+					&:hover, &:focus {
+						color: $primary-color;
+						background: $white;
+					}
+				}
+			}
+
+			// Create more breathing room for the menu
+			@include breakpoint($topbar-unstack-breakpoint only) {
+
+				padding-left: .4rem;
+				padding-right: .4rem;
+
+				a {
+					font-size: rem-calc(15);
+
+					&.login-button {
+						font-size: rem-calc(15);
+						padding-left: .5rem;
+						padding-right: .5rem;
+						&.account-button {
+							padding-left: .5rem;
+							padding-right: .5rem;
+						}
+					}
+				}
+
+				// Hide 'home' button
+				&:first-child {
+					display: none;
+				}
+
+				// Remove left padding from leftmost menu item
+				&:nth-child(2) {
+					padding-left: 0;
+				}
+			}
+
+		}
+	}
+
+}
+
+/* **********
+1.3 Title bar (medium down)
+********** */
+$titlebar-height: 59px;
+
+.title-bar {
+	font-family: $header-font-family;
+	z-index: 2;
+	position: relative;
+
+	background: url(../images/top-bar-bg.png) 0 -115px repeat-x;
+	background-size: 124px auto;
+
+	.column {
+		height: $titlebar-height;
+	}
+
+	a.logo-small {
+		float: left;
+		position: relative;
+
+		height: $titlebar-height;
+
+		padding: 4px 0 0;
+		margin-left: map-get($grid-column-gutter, small);
+		z-index: 10;
+
+		img {
+			// original size: 329 x 110, 50% == 165 x 55
+			height: 55px;
+			width: 165px;
+			min-width: 165px;
+			z-index: 10;
+
+			// Slightly larger logo for medium screens
+			@include breakpoint(medium only) {
+				width: auto;
+				height: 76px;
+			}
+
+		}
+
+	}
+
+	a.login-button {
+		display: none;
+		font-size: 1rem;
+		color: $white;
+		font-size: 1rem;
+		padding: .3rem 1.75rem;
+		text-transform: uppercase;
+		font-weight: $global-weight-bold;
+		margin: rem-calc(14) 1.5rem 0 0;
+	}
+
+	.bg-left {
+		z-index: 2;
+		background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+		background-position: right -57px;
+		background-repeat: no-repeat;
+		background-size: 124px auto;
+	}
+
+	.bg-right {
+		background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+		background-size: 124px auto;
+		z-index: 1;
+	}
+
+}
+
+.wisv-menu-icon {
+	@include hamburger($titlebar-icon-color, $titlebar-icon-color-hover, 30px, 23px, 4px);
+	outline: 0 none;
+	margin: rem-calc(19) map-get($grid-column-gutter, small) 0 0;
+}
+
+// Show login button on medium
+@include breakpoint(medium only) {
+	.title-bar {
+		a.login-button {
+			display: block;
+			float: left;
+		}
+	}
+
+	.top-bar .login-button {
+		display: none;
+	}
+
+}
+
+/* **********
+2. Page title
+********** */
+
+.page-title {
+	position: relative;
+	z-index: 1;
+	background: $primary-color;
+	background-size: cover;
+	background-position: center;
+	margin-top: -22px;
+	padding: 6px 0 16px;
+
+	.column {
+		padding-top: 1rem;
+	}
+
+	@include breakpoint($topbar-unstack-breakpoint) {
+		margin-top: -35px;
+		padding: 35px 0 0;
+		.column {
+			padding-top: 0;
+			padding-bottom: 6px; // dotted border compensation (visually centered)
+			height: rem-calc(192px + 35px); // 12rem + padding-top
+		}
+	}
+
+	// Add dotted border if no subpages or no background image
+	&.dotted-border {
+		&::after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 6px;
+
+			position: absolute;
+			bottom: 0px;
+
+			background: url(../images/dotted-border.png) center top repeat-x;
+
+			@include breakpoint(retina) {
+				background-image: url(../images/dotted-border@2x.png);
+				background-size: 23px auto;
+			}
+		}
+	}
+
+	h1 {
+		font-weight: $global-weight-bold;
+		color: $white;
+		text-transform: uppercase;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+		text-align: center;
+		margin: 0;
+	}
+
+	@include breakpoint(medium) {
+
+		.column {
+			display: table;
+			height: 12rem;
+
+			h1 {
+				display: table-cell;
+				vertical-align: middle;
+				padding: 0 10rem; // Shorten line by 20rem
+			}
+		}
+
+	}
+}
+
+/* **********
+2. Sub-nav
+********** */
+
+.sub-nav {
+	background: $primary-color;
+
+	.menu {
+		text-align: center;
+		padding: 1.1rem 0;
+
+		& > li {
+			display: inline-block;
+
+			// Add separator
+			& + li:before {
+				content: " | ";
+				font: $global-weight-bold 14px / 1.2 $header-font-family;
+				color: $white;
+				vertical-align: text-top;
+			}
+
+			& > a {
+				display: inline;
+				padding: 0;
+				margin: 0 .5rem;
+
+				color: $white;
+				font: bold 14px / 1.2 $header-font-family;
+				text-transform: uppercase;
+				letter-spacing: .2px;
+				vertical-align: text-top;
+
+				&:hover,
+				&:focus,
+				&.active {
+					border-bottom: 2px solid $white;
+				}
+			}
+		}
+	}
+}
+
+/* **********
+3. Page styles
+********** */
+
+ul.share {
+	list-style: none;
+	padding: 1rem 0;
+	margin: 1.5rem 0 0;
+
+	border-top: 3px solid $light-gray;
+	border-bottom: 3px solid $light-gray;
+
+	li {
+		display: inline;
+		padding-right: .5rem;
+		font-size: 1rem;
+
+		a {
+			vertical-align: middle;
+			color: $secondary-color;
+			&:hover, &:focus {
+				color: $alert-color;
+			}
+		}
+
+		&.text {
+			font: $global-weight-bold 14px / 1.5 $header-font-family;
+			color: $primary-color;
+			text-transform: uppercase;
+		}
+	}
+}
+
+/* **********
+3.1 Company overview
+********** */
+
+/* Company page */
+.wisv-panel .wisv-panel-content > ul.company-details {
+	margin: 0 0 1rem 2rem;
+
+	a {
+		@include inverted-anchor();
+	}
+
+	i {
+		color: $secondary-color;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.company-logo {
+	text-align: center;
+}
+
+/* **********
+3.2 User login form
+********** */
+
+.user-login-form {
+	.row {
+		margin-bottom: 1rem;
+	}
+
+	&:not(.user-login-modal) {
+		margin: 4rem auto;
+
+		@include breakpoint(medium up) {
+			width: 50%;
+		}
+	}
+}
+
+#login-form-modal {
+	.close-button {
+		top: .5rem;
+		right: .5rem;
+	}
+}
+
+/* **********
+4. Front Page
+********** */
+.front-page {
+
+	.section-even, .section-odd {
+		padding: 2rem 0;
+
+		@include breakpoint(large) {
+			padding: 3rem 0;
+		}
+	}
+
+	.section-odd {
+		background: $light-gray;
+	}
+
+	// Remove extra padding for adjacent sections
+	.section-even + .section-even {
+		padding-top: 0;
+	}
+	.section-odd + .section-odd {
+		padding-top: 0;
+	}
+
+	// Less padding below news/calendar
+	.calendar-news {
+		padding-bottom: map-get($grid-column-gutter, 'small');
+		@include breakpoint(medium) {
+			padding-bottom: map-get($grid-column-gutter, 'medium');
+		}
+	}
+
+}
+
+/* **********
+4.1 Slider
+********** */
+
+.orbit, .orbit-container, .orbit-slide, .page-title.slider {
+	padding: 0;
+	width: 100%;
+	height: 22rem !important; // GRRRR
+	max-height: none !important;
+}
+
+.orbit-container {
+	position: relative;
+	top: -22px;
+	@include breakpoint($topbar-unstack-breakpoint) {
+		top: -35px;
+	}
+}
+
+.orbit-slide {
+	background-size: cover;
+	background-position: center;
+}
+
+.orbit-caption {
+	position: absolute;
+	top: 0;
+	bottom: auto;
+
+	height: 100%;
+	width: 100%;
+
+	display: table;
+	vertical-align: middle;
+
+	h1 {
+		font-size: rem-calc(30);
+		text-transform: none;
+
+		a {
+			color: $white;
+		}
+	}
+
+	p {
+		text-align: center;
+		color: $white;
+		font-size: rem-calc(16);
+		line-height: 1.35;
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+	}
+
+	.button {
+		text-shadow: none;
+		font-size: rem-calc(14);
+	}
+
+	.align-middle {
+		display: table-cell;
+		height: 100%;
+		vertical-align: middle;
+		padding: 35px map-get($grid-column-gutter, 'small') 20px;
+
+		p.button-par {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.orbit-bullets {
+	position: absolute;
+	bottom: .5rem;
+	width: 100%;
+	text-align: center;
+
+	button {
+		height: .8rem;
+		width: .8rem;
+		margin: 0 .25rem;
+		padding: 0;
+	}
+}
+
+// Responsive rules
+@include breakpoint(medium) {
+
+	.orbit, .orbit-container, .orbit-slide, .page-title.slider {
+		height: 24rem !important;
+	}
+
+	.orbit-caption {
+		h1 {
+			font-size: rem-calc(40);
+		}
+		p {
+			font-size: rem-calc(20);
+			margin: 1rem 0 2rem;
+		}
+		.button {
+			font-size: rem-calc(18);
+		}
+		.align-middle {
+			padding: 35px 10% 2rem;
+		}
+	}
+
+	.orbit-bullets {
+		bottom: 1rem;
+		button {
+			height: 1.1rem;
+			width: 1.1rem;
+		}
+	}
+}
+
+@include breakpoint(large) {
+
+	.orbit, .orbit-container, .orbit-slide, .page-title.slider {
+		height: 36rem !important;
+	}
+
+	.orbit-caption {
+		h1 {
+			font-size: rem-calc(60);
+		}
+		p {
+			font-size: rem-calc(24);
+		}
+		.button {
+			font-size: rem-calc(20);
+		}
+		.align-middle {
+			padding: 35px 15% 2rem;
+		}
+	}
+
+	.orbit-bullets {
+		bottom: 1.5rem;
+	}
+}
+
+/* **********
+4.2 Intro text
+********** */
+
+/* **********
+4.3 Calendar
+********** */
+.event {
+	margin-top: 1rem;
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+// calendar icon background
+.event-date-wrapper {
+	background: url(../images/calendar.png) center top no-repeat;
+	background-size: contain;
+
+	a.event-date {
+		display: block;
+		padding: 42% 3.125% 10%;
+		color: $secondary-color;
+		text-align: center;
+		line-height: 1;
+		font-size: rem-calc(12);
+		font-family: $header-font-family;
+
+		span {
+			display: block;
+			font-size: 166.66%;
+			font-weight: $global-weight-bold;
+			line-height: 1.1;
+		}
+	}
+}
+
+.event-desc {
+	padding-top: .5rem;
+
+	.event-desc-header {
+		font-size: 1rem;
+		text-transform: none;
+		margin: 0 0 .2rem;
+		word-break: break-all;
+	}
+
+	p {
+		line-height: 1.35;
+		font-size: rem-calc(14);
+		margin: .4rem 0 0;
+	}
+
+}
+
+.byline {
+	color: $medium-gray;
+	font-weight: $global-weight-bold;
+	font-family: $header-font-family;
+	font-size: rem-calc(14);
+	line-height: 1.2;
+	padding: 0;
+
+	// Separator
+	span + span:before {
+		content: "|";
+		padding: 0 .5em;
+	}
+
+	a {
+		color: $medium-gray;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+	}
+}
+
+/* **********
+4.4 News
+********** */
+
+// Featured item
+.news-featured {
+	header {
+
+		img {
+			margin-bottom: 1rem;
+		}
+
+		h1 {
+			text-transform: none;
+			margin: 0;
+		}
+
+		.byline {
+			color: $medium-gray;
+			line-height: 1.35;
+			margin: 0;
+		}
+	}
+
+	p {
+		margin-top: 1rem;
+		padding: 0;
+	}
+}
+
+// News list
+ul.news {
+
+	li {
+		margin: 0 0 1rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		@include breakpoint(medium down) {
+			margin-top: 2rem;
+		}
+	}
+
+	h2 {
+		text-transform: none;
+		margin: 0 0 .25rem;
+	}
+
+}
+
+/* **********
+4.5 Banner Bar
+********** */
+.banner-bar {
+	.banner-container {
+		display: block;
+		height: auto;
+
+		img {
+			display: block;
+			width: 100%; // explicit 100% in case width attribute on img in html
+			height: auto;
+			@include breakpoint(xlarge) {
+				height: 10.625rem;
+			}
+		}
+	}
+
+	.wisv-buttons {
+
+		@include breakpoint(medium down) {
+			margin-top: $global-margin;
+		}
+
+		i[class^="ch-"]:before,
+		i[class*=" ch-"]:before {
+			padding-left: .35em;
+		}
+
+	}
+
+}
+
+/* **********
+4.6 Gallery
+********** */
+.gallery {
+	background: url(../images/alt-bg-overlay.png) 0 -15px repeat !important;
+
+	.gallery-title {
+		margin-bottom: 2rem;
+		font-size: rem-calc(24);
+		line-height: 1;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.gallery-item-wrapper {
+		&:hover, &:focus {
+			.caption {
+				background: $alert-color;
+			}
+		}
+	}
+
+	.caption {
+		width: 100%;
+		display: table;
+
+		background: $primary-color;
+		color: $white;
+		text-align: center;
+
+		transition: background-color .2s;
+
+		.align-middle {
+			width: 100%;
+			display: table-cell;
+			height: 4rem;
+			vertical-align: middle;
+			color: $white;
+		}
+
+		h1 {
+			color: $white;
+			margin: 0;
+		}
+
+		p {
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	// Limit number of items on mobile devices
+	@include breakpoint(small down) {
+		.column:nth-child(n + 2) {
+			display: none;
+		}
+	}
+
+	@include breakpoint(medium only) {
+		.column:nth-child(n + 3) {
+			display: none;
+		}
+	}
+
+}
+
+/* **********
+X. Footer
+********** */
+.page-footer {
+	margin-top: 2rem;
+}
+
+/* **********
+X.1 Partners
+********** */
+$partner-height: 60px;
+$partner-border-size: 4px;
+$partner-padding-vertical: 10px;
+$partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner-padding-vertical;
+
+.partners {
+	margin-top: 1.5rem;
+
+	.column {
+		position: relative;
+
+		&:hover {
+			.partner {
+				border-color: $medium-gray;
+			}
+
+			.partner-excerpt {
+				display: block;
+				opacity: 1;
+			}
+
+		}
+	}
+
+	.partner {
+		display: block;
+		border: $partner-border-size solid #d9dee5;
+		padding: $partner-padding-vertical 0;
+		margin: 0 0 1rem;
+		text-align: center;
+		height: $partner-height;
+		transition: border-color .3s;
+
+		img {
+			width: auto;
+			max-height: $partner-inner-height;
+		}
+	}
+
+	.partner-excerpt {
+		opacity: 0;
+		transition: opacity 300ms;
+
+		padding: inherit;
+		padding-left: 0;
+		position: absolute;
+		z-index: 1;
+		top: $partner-height;
+
+		.positioner {
+			display: block;
+			background: #d9dee5;
+			font-size: rem-calc(14);
+			color: $black;
+			padding: .5rem 1rem;
+		}
+
+		.button {
+			font-size: $global-font-size;
+			letter-spacing: 0;
+			text-transform: none;
+			margin: .5rem 0 .25rem;
+
+			.fa {
+				vertical-align: middle;
+			}
+		}
+
+	}
+}
+
+/* **********
+X.2 Footer Top
+********** */
+.footer-top {
+
+	position: relative;
+	background: $light-gray;
+	margin-top: 2rem;
+	padding: 3rem 0 2rem;
+
+	&.dotted-border {
+		&::after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 6px;
+
+			position: absolute;
+			top: -6px;
+
+			background: url(../images/dotted-border.png) 0 -10px repeat-x;
+
+			@include breakpoint(retina) {
+				background-image: url(../images/dotted-border@2x.png);
+				background-size: 23px auto;
+			}
+		}
+	}
+
+	h1 {
+		margin-bottom: 1rem;
+	}
+
+	.fa-ul i {
+		color: $secondary-color;
+	}
+
+	a {
+		color: $secondary-color;
+		&:hover, &:focus {
+			color: $alert-color;
+		}
+	}
+}
+
+/* **********
+X.2.1 Twitter
+********** */
+ul.twitter {
+	list-style: none;
+	margin: 0 0 1rem;
+
+	@include breakpoint(large) {
+		margin-bottom: 0;
+	}
+
+	li {
+		margin: 2rem 0 0;
+		padding: 0;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	h4 {
+		text-transform: uppercase;
+		margin: 0;
+		font-size: rem-calc(16px);
+		a {
+			@include inverted-anchor();
+		}
+	}
+
+	.twitter-subtitle {
+		@extend .subheader;
+		color: $medium-gray;
+		font-weight: bold;
+		font-size: rem-calc(14px);
+		a {
+			color: $medium-gray;
+			&:hover, &:focus {
+				color: $alert-color;
+			}
+		}
+	}
+
+	.twitter-tweet {
+		font-size: 14px;
+	}
+
+}
+
+/* **********
+X.3 Footer Bottom
+********** */
+.footer-bottom {
+	background: $primary-color;
+	padding: 1.1rem 0;
+
+	p {
+		color: $white;
+		font-size: rem-calc(14);
+		font-family: $header-font-family;
+	}
+}
+
+/* **********
+X. Foundation overrides
+********** */
+
+// Use lists as columns
+ul.column {
+	margin: 0;
+	list-style: none;
+}
+
+// thumbnail border hover
+.thumbnail {
+	margin-bottom: 0;
+	&:hover, &:focus {
+		border-color: $dark-gray;
+	}
+}
+
+/* **********
+X.1 Tabs
+********** */
+.tabs, .tabs-content {
+	border-width: 4px;
+}
+
+.tabs-title {
+	margin-right: 4px;
+
+	a {
+		text-transform: uppercase;
+		@include inverted-anchor();
+		font-weight: $global-weight-bold;
+		font-family: $header-font-family;
+	}
+}
+
+/* **********
+X.2 Callouts
+********** */
+.callout {
+	box-shadow: 1px 1px 2px darken($light-gray, 12%);
+}
+
+.close-button {
+	background: $primary-color;
+	border-radius: 1rem;
+
+	width: 1.7rem;
+	height: 1.7rem;
+
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: $global-weight-bold;
+
+	box-shadow: 1px 1px 2px darken($light-gray, 12%);
+
+	&:hover,
+	&:focus {
+		background-color: $secondary-color;
+	}
+}
+
+/* **********
+X.3 Buttons
+********** */
+$button-border-width: 3px;
+
+.button {
+	font-family: $header-font-family;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 0;
+	border: $button-border-width solid $button-background;
+
+	// Default
+	&:hover, &:focus {
+		background: $button-background-hover;
+		color: $button-background;
+		border-color: $button-background;
+	}
+
+	// Colors
+	@each $name, $color in $foundation-palette {
+
+		&.#{$name} {
+			&:hover, &:focus {
+				background: $button-background-hover;
+				color: $color;
+				border-color: $color;
+			}
+
+			&.hollow {
+				border: $button-border-width solid $color;
+				&:hover, &:focus {
+					border-color: $color;
+					background: $color;
+					color: $button-color;
+					&.alt { // y'all got any more of them edge cases? ...
+						background: none;
+						color: $primary-color;
+					}
+				}
+			}
+		}
+	}
+
+	&.alt {
+		background: none;
+		border: none !important;
+		color: $alert-color;
+		font-weight: bold;
+		font-size: $global-font-size;
+		padding: 0;
+
+		&:hover, &:focus {
+			color: $primary-color;
+		}
+	}
+
+}
+
+/* **********
+X.3 FontAwesome helpers
+********** */
+
+$fa-li-width: 2.2rem;
+
+.fa-ul {
+	padding-left: 0;
+	margin-left: $fa-li-width;
+	list-style-type: none;
+
+	& > li {
+		position: relative;
+	}
+
+	i {
+		margin-top: 3px;
+	}
+}
+
+.fa-li {
+	position: absolute;
+	left: -$fa-li-width;
+	width: $fa-li-width;
+	top: 0;
+	text-align: center;
+}
+
+.fa-fw {
+	width: (18em / 14);
+	text-align: center;
+}

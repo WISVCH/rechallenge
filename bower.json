@@ -1,19 +1,19 @@
 {
-  "name": "wisvch-drupal8-theme",
-  "version": "2.5.9",
+  "name": "wisvch-wordpress-theme",
+  "version": "2.59",
   "authors": [
-    "Sven van Hal <svenh@ch.tudelft.nl>"
+    "W3Cie <w3cie@ch.tudelft.nl>"
   ],
-  "description": "Drupal 8 template for W.I.S.V. 'Christiaan Huygens'.",
+  "description": "WordPress template for W.I.S.V. 'Christiaan Huygens'.",
   "homepage": "https://ch.tudelft.nl/",
   "dependencies": {
-    "foundation-sites": "~6.2.0",
+    "foundation-sites": "~6.3.0",
     "motion-ui": "~1.2.2"
   },
   "ignore": [
     "**/.*",
     "node_modules",
-    "vendor"
+    "assets/components"
   ],
   "private": true
 }
