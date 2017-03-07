@@ -1,6 +1,6 @@
 .DS_Store
-vendor
+assets/components
 node_modules
 npm-debug.log
 .idea
-images/test/**/*
+_drupal
