@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "wisvch";
+  src:url("wisvch.eot");
+  src:url("wisvch.eot?#iefix") format("embedded-opentype"),
+    url("wisvch.woff") format("woff"),
+    url("wisvch.ttf") format("truetype"),
+    url("wisvch.svg#wisvch") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "wisvch" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="ch-"]:before,
+[class*=" ch-"]:before {
+  font-family: "wisvch" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ch-facebook:before {
+	content: "\61";
+}
+.ch-whatsapp:before {
+	content: "\62";
+}
+.ch-linkedin:before {
+	content: "\63";
+}
+.ch-envelope:before {
+	content: "\64";
+}
+.ch-phone:before {
+	content: "\65";
+}
+.ch-map-marker:before {
+	content: "\66";
+}
+.ch-clock-o:before {
+	content: "\67";
+}
+.ch-arrow-right:before {
+	content: "\68";
+}
+.ch-times-circle:before {
+	content: "\69";
+}
+.ch-times:before {
+	content: "\6a";
+}
+.ch-arrow-down:before {
+	content: "\6b";
+}
+.ch-check:before {
+	content: "\6c";
+}
+.ch-circle:before {
+	content: "\6d";
+}
+.ch-ban:before {
+	content: "\6e";
+}
+.ch-star:before {
+	content: "\6f";
+}
+.ch-star-half:before {
+	content: "\70";
+}
+.ch-star-half-o:before {
+	content: "\71";
+}
+.ch-star-o:before {
+	content: "\72";
+}
+.ch-quote-left:before {
+	content: "\73";
+}
+.ch-git:before {
+	content: "\74";
+}
+.ch-code-fork:before {
+	content: "\75";
+}
+.ch-github:before {
+	content: "\76";
+}
+.ch-slack:before {
+	content: "\77";
+}
+.ch-instagram:before {
+	content: "\78";
+}
+.ch-heart:before {
+	content: "\79";
+}
+.ch-heart-o:before {
+	content: "\7a";
+}
+.ch-sf-calendar:before {
+	content: "\41";
+}
+.ch-sf-news:before {
+	content: "\42";
+}
+.ch-sf-star:before {
+	content: "\43";
+}
+.ch-sf-career:before {
+	content: "\44";
+}
+.ch-sf-education:before {
+	content: "\45";
+}
+.ch-sf-profile:before {
+	content: "\46";
+}
+.ch-sf-search:before {
+	content: "\47";
+}
+.ch-twitter:before {
+	content: "\48";
+}
+.ch-globe:before {
+	content: "\49";
+}
+.ch-eur:before {
+	content: "\4a";
+}
+.ch-home:before {
+	content: "\4b";
+}
+.ch-plus:before {
+	content: "\4c";
+}
+.ch-plus-circle:before {
+	content: "\4d";
+}
+.ch-minus:before {
+	content: "\4e";
+}
+.ch-minus-circle:before {
+	content: "\4f";
+}
+.ch-graduation-cap:before {
+	content: "\50";
+}
+.ch-briefcase:before {
+	content: "\51";
+}

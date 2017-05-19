@@ -15,7 +15,7 @@ gulp.task('sass', function () {
 		})
 		.on('error', $.sass.logError))
 		.pipe($.autoprefixer({
-			browsers: ['last 2 versions', 'ie >= 9']
+			browsers: ['last 2 versions', 'ie >= 11']
 		}))
 		.pipe(gulp.dest('assets/css'));
 });
@@ -27,14 +27,12 @@ gulp.task('browsersync', function () {
 		'./css/*.css',
 		'./js/*.js',
 		'**/*.html',
-		'assets/images/**/*.{png,jpg,gif,svg,webp}',
+		'**/*.php',
+		'assets/images/**/*.{png,jpg,jpeg,gif,svg,webp}',
 	];
 
 	browserSync.init(files, {
-		server: {
-			baseDir: "./"
-		},
-		tunnel: "wisvch"
+		proxy: "wisvch.dev"
 	});
 
 	gulp.watch(['scss/**/*.scss'], ['sass']);

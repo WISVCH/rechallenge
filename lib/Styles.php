@@ -1,29 +1,36 @@
 <?php
+
 namespace ReCHallenge;
 
 /**
  * Loads theme stylesheets.
+ *
  * @package ReCHallenge
  */
-class Styles {
+class Styles
+{
+    /**
+     * Hook into WordPress.
+     */
+    static function register_hooks()
+    {
 
-	/**
-	 * Hook into WordPress.
-	 */
-	static function register_hooks() {
+        add_action('wp_enqueue_scripts', [__CLASS__, 'load_stylesheets']);
+    }
 
-		add_action('wp_enqueue_scripts', array(__CLASS__, 'load_stylesheets'));
+    /**
+     * Enqueue stylesheets.
+     */
+    static function load_stylesheets()
+    {
 
-	}
+        // Custom fonts
+        wp_register_style('custom-fonts', "https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans:700");
 
-	/**
-	 * Enqueue stylesheets.
-	 */
-	static function load_stylesheets() {
+        // Core CSS
+        wp_register_style('rechallenge', get_stylesheet_directory_uri()."/assets/css/app.css", ["custom-fonts"]);
 
-		// Primary stylesheet
-		wp_enqueue_style('rechallenge', get_stylesheet_directory_uri() . "/assets/css/app.css");
-
-	}
-
+        // Let's go!
+        wp_enqueue_style('rechallenge');
+    }
 }

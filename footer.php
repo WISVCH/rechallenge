@@ -35,7 +35,7 @@
 
 <?php
 // Login form
-get_template_part("parts/misc/login-form");
+get_template_part("parts/misc/login-form-modal");
 
 // WordPress footer hooks
 wp_footer();

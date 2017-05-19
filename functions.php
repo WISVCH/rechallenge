@@ -6,6 +6,7 @@ require_once("lib/Branding.php");
 require_once("lib/Cleanup.php");
 require_once("lib/Foundation.php");
 require_once("lib/Menu.php");
+require_once("lib/Redirect.php");
 require_once("lib/Scripts.php");
 require_once("lib/Setup.php");
 require_once("lib/Sidebars.php");
@@ -16,6 +17,9 @@ Cleanup::register_hooks();
 
 // Setup theme
 Setup::register_hooks();
+
+// Register redirections
+Redirect::register_hooks();
 
 // Register menus
 Menu::register_hooks();

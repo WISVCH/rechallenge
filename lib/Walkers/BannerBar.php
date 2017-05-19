@@ -99,7 +99,7 @@ class BannerBar extends \Walker_Nav_Menu {
 			}
 		}
 
-		/** This filter is documented in wp-includes/post-template.php */
+		/** This filter is documented in wp-src/post-template.php */
 		$title = apply_filters('the_title', $item->title, $item->ID);
 
 		/**
@@ -123,7 +123,7 @@ class BannerBar extends \Walker_Nav_Menu {
 		/**
 		 * Filters a menu item's starting output.
 		 *
-		 * The menu item's starting output only includes `$args->before`, the opening `<a>`,
+		 * The menu item's starting output only src `$args->before`, the opening `<a>`,
 		 * the menu item's title, the closing `</a>`, and `$args->after`. Currently, there is
 		 * no filter for modifying the opening and closing `<li>` for a menu item.
 		 *
