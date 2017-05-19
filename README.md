@@ -11,7 +11,7 @@ WordPress template for W.I.S.V. 'Christiaan Huygens', carefully crafted by the W
 
 ## Usage
 
-To fully enjoy this template, install [the accompanying W3Cie plug-ins (todo)](#).
+To fully enjoy this template, install [the accompanying plug-in](https://github.com/WISVCH/wisvch-wordpress-plugin).
 
 ## Contributing
 
