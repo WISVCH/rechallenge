@@ -2,6 +2,7 @@
 namespace ReCHallenge;
 
 // Load required classes
+require_once("lib/Ajax.php");
 require_once("lib/Branding.php");
 require_once("lib/Cleanup.php");
 require_once("lib/Foundation.php");
@@ -15,11 +16,14 @@ require_once("lib/Styles.php");
 // Clean up WordPress
 Cleanup::register_hooks();
 
-// Setup theme
-Setup::register_hooks();
-
 // Register redirections
 Redirect::register_hooks();
+
+// Handle AJAX requests
+Ajax::register_hooks();
+
+// Setup theme
+Setup::register_hooks();
 
 // Register menus
 Menu::register_hooks();

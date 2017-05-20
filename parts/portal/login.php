@@ -1,6 +1,6 @@
 <?php
 
-use WISVCH\Portal\Portal;
+use WISVCH\Portal\Init;
 
 // Display content based on user login status
 if (is_user_logged_in()) {
@@ -16,7 +16,7 @@ if (is_user_logged_in()) {
     </aside>
 
     <h1>Log In</h1>
-    <p><a href="<?php echo esc_url(Portal::getUrl()); ?>">Click here</a> to go to your account page.</p>
+    <p><a href="<?php echo esc_url(Init::getUrl()); ?>">Click here</a> to go to your account page.</p>
 
     <?php
 } else {

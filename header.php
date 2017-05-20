@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+$loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WISVCH\Portal\Init::getUrl() : site_url('portal');
+?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
@@ -24,7 +26,9 @@
             </div>
             <div class="small-6 medium-7 bg-right column">
                 <div class="float-right">
-                    <a class="login-button button alert" href="#">Login</a>
+                    <a class="login-button button alert" href="<?php echo esc_url($loginurl); ?>">
+                        <?php echo is_user_logged_in() ? "Account" : "Login"; ?>
+                    </a>
                     <button class="wisv-menu-icon" type="button" data-toggle></button>
                 </div>
             </div>
@@ -92,14 +96,14 @@
             // Get subpages
             $children = get_pages([
                 'child_of' => $page->post_parent,
-                'sort_column'  => 'menu_order,post_title',
+                'sort_column' => 'menu_order,post_title',
             ]);
         } elseif (is_page()) { // Regular page
 
             // Get subpages
             $children = get_pages([
                 'child_of' => $post->post_parent !== 0 ? $post->post_parent : $post->ID,
-                'sort_column'  => 'menu_order,post_title',
+                'sort_column' => 'menu_order,post_title',
             ]);
         } elseif (is_post_type_archive()) { // Custom post type archive
 
@@ -110,7 +114,7 @@
             // Get subpages
             $children = get_pages([
                 'child_of' => $post_parent !== 0 ? $post_parent : $id,
-                'sort_column'  => 'menu_order,post_title',
+                'sort_column' => 'menu_order,post_title',
             ]);
         }
 

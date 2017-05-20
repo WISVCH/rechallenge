@@ -18,7 +18,7 @@ use WISVCH\Portal\Shortcodes\Profile;
         // @TODO linken werkt niet, je logt dan gewoon in met een (ander) CH account. Is misschien ook niet zo erg.
 
         // Check if CH connected
-        if ($ch_connect === false) { ?>
+        if ($ch_member === false) { ?>
 
             <h2>Link Profile</h2>
             <p>Your account has not been linked to a CH Connect profile (yet). Please link your account using the following button:</p>
@@ -30,6 +30,8 @@ use WISVCH\Portal\Shortcodes\Profile;
             <p>This is your personal information as currently known by the study association. Please update where necessary.</p>
 
             <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" class="edit-profile-form">
+
+                <?php wp_nonce_field('wisvch_portal_edit-profile'); ?>
 
                 <!-- Full Name -->
                 <div class="row">

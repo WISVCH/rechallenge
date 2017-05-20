@@ -13,7 +13,7 @@ jQuery(function ($) {
 
 
     // Add readonly attribute to profile fields on load
-    $("form.edit-profile-form :input:not(:submit)").prop('readonly', true);
+    $("form.edit-profile-form :input:not(:submit):not(:hidden)").prop('readonly', true);
 
     // Add listeners
     $("form.edit-profile-form").on('focus', 'input[readonly]', function () {
