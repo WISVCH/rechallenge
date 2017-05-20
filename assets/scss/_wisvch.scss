@@ -18,6 +18,19 @@ X. Mix-ins
 /* **********
 0. Global
 ********** */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  flex: 1 0 auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
   a {
     @include inverted-anchor();
@@ -356,6 +369,11 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
 
 .page-header {
   z-index: 1;
+  background-color: #fff;
+
+  body.menu-open & {
+    background-color: $primary-color;
+  }
 }
 
 /* **********
@@ -365,10 +383,15 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
 .logo-wrapper {
   position: relative;
 
-  .logo {
-    @include breakpoint(large) {
+  @include breakpoint(large) {
+    padding-left: map-get($grid-column-gutter, medium) / 2;
+  }
 
-    }
+  @include breakpoint(xxlarge) {
+    padding-left: 0;
+  }
+
+  .logo {
 
     @include breakpoint(xlarge) {
       margin-top: 0;
@@ -380,6 +403,7 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
     @include breakpoint(xxlarge) {
       margin-left: -85px; // 100px for left side - 15px global margin
     }
+
   }
 }
 
@@ -427,7 +451,7 @@ $topbar-height: rem-calc(90);
   .top-bar-right {
     background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
     @include breakpoint($topbar-unstack-breakpoint) {
-      padding-left: 40px;
+      padding-left: 65px;
       padding-right: .25rem;
     }
   }
@@ -451,7 +475,6 @@ $topbar-height: rem-calc(90);
         }
       }
 
-      // TODO: combine with above, IES NOT POSSIBLE GHGHGHHHH
       @include breakpoint(xlarge only) {
 
         // Hide 'home' button
@@ -528,6 +551,8 @@ $topbar-height: rem-calc(90);
 
         a {
           font-size: rem-calc(15);
+          padding-left: .75rem;
+          padding-right: .75rem;
 
           &.login-button {
             font-size: rem-calc(15);
@@ -580,12 +605,14 @@ $titlebar-height: 59px;
     height: $titlebar-height;
 
     padding: 4px 0 0;
-    margin-left: map-get($grid-column-gutter, small);
+    margin-left: map-get($grid-column-gutter, small) / 2;
     z-index: 10;
 
+    @include breakpoint(medium) {
+      margin-left: map-get($grid-column-gutter, medium) / 2;
+    }
+
     img {
-      // original size: 329 x 110, 50% == 165 x 55
-      height: 55px;
       width: 165px;
       min-width: 165px;
       z-index: 10;
@@ -613,16 +640,17 @@ $titlebar-height: 59px;
 
   .bg-left {
     z-index: 2;
-    background: url(../images/top-bar-bg.png) 0 0 repeat-x;
-    background-position: right -57px;
-    background-repeat: no-repeat;
-    background-size: 124px auto;
+    background: url(../images/top-bar-bg.png) 0 0 no-repeat;
+    background-position: right -59px;
   }
 
   .bg-right {
     background: url(../images/top-bar-bg.png) 0 0 repeat-x;
-    background-size: 124px auto;
     z-index: 1;
+  }
+
+  .bg-left, .bg-right {
+    background-size: 124px auto;
   }
 
 }
@@ -983,7 +1011,7 @@ ul.share {
       font-size: rem-calc(18);
     }
     .align-middle {
-      padding: 35px 10% 2rem;
+      padding: (rem-calc(35px) + 1rem) 10% 1rem;
     }
   }
 
@@ -1013,7 +1041,7 @@ ul.share {
       font-size: rem-calc(20);
     }
     .align-middle {
-      padding: 35px 15% 2rem;
+      padding: (rem-calc(35px) + 1rem) 15% 1rem;
     }
   }
 

@@ -25,8 +25,7 @@ class Scripts
     {
 
         // Register scripts
-        wp_register_script('foundation', get_stylesheet_directory_uri().'/assets/components/foundation-sites/dist/js/foundation.js', ['jquery'], null, true);
-        wp_register_script('rechallenge', get_stylesheet_directory_uri().'/assets/js/app.js', ['jquery', 'foundation'], null, true);
+        wp_register_script('rechallenge', get_stylesheet_directory_uri().'/assets/js/scripts.min.js', ['jquery'], null, true);
 
         // Load combined and compressed theme JS and dependencies
         wp_enqueue_script('rechallenge');

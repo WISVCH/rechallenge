@@ -44,16 +44,16 @@ class Ajax
             // Get album meta from latest albums
             $albums = self::_flitcie_album_meta($latest);
 
-            // Output response
-            wp_send_json($albums);
+
         } else {
 
             // Get from db
-            $data = get_option("_rechallenge_flitcie_cache");
+            $albums = get_option("_rechallenge_flitcie_cache");
 
-            // Output response
-            wp_send_json($data);
         }
+
+        // Output response
+        wp_send_json($albums);
 
         wp_die();
     }
@@ -121,13 +121,13 @@ class Ajax
 
         foreach ($data as $album) {
 
-            // Make sure we have a URL and entity data
-            if (empty($album->url) || empty($album->entity)) {
+            // Make sure we have entity data
+            if (empty($album->entity)) {
                 return;
             }
 
             $albums[] = [
-                'url' => $album->url,
+                'url' => $album->entity->web_url,
                 'title' => $album->entity->title,
                 'cover' => $album->entity->thumb_url_public,
             ];

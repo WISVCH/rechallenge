@@ -1,6 +1,8 @@
 <?php
 namespace ReCHallenge;
 
+define("RECHALLENGE_URI", get_stylesheet_directory_uri());
+
 // Load required classes
 require_once("lib/Ajax.php");
 require_once("lib/Branding.php");
