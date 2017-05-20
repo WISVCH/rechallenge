@@ -4,6 +4,10 @@ if (! is_user_logged_in()) {
 
     <section class="tiny reveal" id="login-form" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
 
+        <button class="close-button" data-close type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
         <h1 class="text-center">Login</h1>
 
         <?php

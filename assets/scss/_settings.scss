@@ -243,7 +243,7 @@ $button-padding: 0.6em 1.25em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $alert-color;
-$button-background-hover: $white;
+$button-background-hover: rgba(255,255,255,.75);
 $button-color: $white;
 $button-color-alt: $white;
 $button-radius: 0;

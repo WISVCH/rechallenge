@@ -25,6 +25,10 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+
+  &.is-reveal-open {
+    overflow: visible; // Prevent scrollbar flickering
+  }
 }
 
 .page-container {
@@ -584,7 +588,7 @@ $topbar-height: rem-calc(90);
 /* **********
 1.3 Title bar (medium down)
 ********** */
-$titlebar-height: 59px;
+$titlebar-height: 55px;
 
 .title-bar {
   font-family: $header-font-family;
@@ -592,7 +596,6 @@ $titlebar-height: 59px;
   position: relative;
 
   background: url(../images/top-bar-bg.png) 0 -115px repeat-x;
-  background-size: 124px auto;
 
   .column {
     height: $titlebar-height;
@@ -602,9 +605,7 @@ $titlebar-height: 59px;
     float: left;
     position: relative;
 
-    height: $titlebar-height;
-
-    padding: 4px 0 0;
+    padding: 4px 0;
     margin-left: map-get($grid-column-gutter, small) / 2;
     z-index: 10;
 
@@ -613,14 +614,14 @@ $titlebar-height: 59px;
     }
 
     img {
-      width: 165px;
-      min-width: 165px;
+      width: 150px;
+      max-width: none;
       z-index: 10;
 
       // Slightly larger logo for medium screens
       @include breakpoint(medium only) {
         width: auto;
-        height: 76px;
+        max-height:70px;
       }
 
     }
@@ -635,7 +636,7 @@ $titlebar-height: 59px;
     padding: .3rem 1.75rem;
     text-transform: uppercase;
     font-weight: $global-weight-bold;
-    margin: rem-calc(14) 1.5rem 0 0;
+    margin: rem-calc(11) 1.5rem 0 0;
   }
 
   .bg-left {
@@ -649,8 +650,9 @@ $titlebar-height: 59px;
     z-index: 1;
   }
 
+  background-size: 121px auto;
   .bg-left, .bg-right {
-    background-size: 124px auto;
+    background-size: 121px auto;
   }
 
 }
@@ -658,7 +660,7 @@ $titlebar-height: 59px;
 .wisv-menu-icon {
   @include hamburger($titlebar-icon-color, $titlebar-icon-color-hover, 30px, 23px, 4px);
   outline: 0 none;
-  margin: rem-calc(19) map-get($grid-column-gutter, small) 0 0;
+  margin: rem-calc(17) map-get($grid-column-gutter, small) 0 0;
 }
 
 // Show login button on medium
@@ -1251,9 +1253,10 @@ ul.news {
     .align-middle {
       width: 100%;
       display: table-cell;
-      height: 4rem;
+      height: 4.5rem;
       vertical-align: middle;
       color: $white;
+      padding:0 1rem;
     }
 
     h1 {
