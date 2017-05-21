@@ -16,6 +16,10 @@ function encode_email($e)
     return $output;
 }
 
+/**
+ * @TODO Might not be necessary when using Yoast SEO.
+ * @return string Page title.
+ */
 function rechallenge_get_title()
 {
 
@@ -31,6 +35,8 @@ function rechallenge_get_title()
         $title = "Honorary Members";
     } elseif (is_post_type_archive("job_opening")) {
         $title = "Job Openings";
+    } elseif (is_post_type_archive("event")) {
+        $title = "Events";
     } elseif (is_404()) {
         $title = "404 &ndash; Page not found";
     } else {
@@ -40,10 +46,34 @@ function rechallenge_get_title()
     return $title;
 }
 
+function rechallenge_get_cover_image()
+{
+    if (is_singular("event")) {
+        // @TODO: check if Yoast SEO enabled
+        $cat = new WPSEO_Primary_Term('event-category', get_the_ID());
+        $cat = $cat->get_primary_term();
+
+        $terms = get_the_terms(get_the_ID(), 'event-category');
+
+        if ($terms !== false) {
+
+            foreach ($terms as $item) {
+                if ($item->term_id === $cat) {
+                    $cover_image = $item->description;
+                }
+            }
+        }
+    } else {
+        $cover_image = get_the_post_thumbnail_url(rechallenge_get_aux_page_id(), 'cover');
+    }
+
+    return $cover_image ?? '';
+}
+
 /**
  * Returns the ID of the page associated with a custom post type archive. (if a post type archive page)
  *
- * @return int|false Auxilliary page ID.
+ * @return int|false Auxiliary page ID.
  */
 function rechallenge_get_aux_page_id()
 {
@@ -59,6 +89,8 @@ function rechallenge_get_aux_page_id()
         $id = get_page_by_path("association/honorary-members/");
     } elseif (is_post_type_archive("job_opening")) {
         $id = get_page_by_path("career/job-openings");
+    } elseif (is_post_type_archive("event")) {
+        $id = get_page_by_path("activities/overview");
     }
 
     // Singular custom post type
@@ -68,6 +100,7 @@ function rechallenge_get_aux_page_id()
         "company",
         "honorary-member",
         "job-opening",
+        "event",
     ])) {
 
         switch (get_post_type()) {

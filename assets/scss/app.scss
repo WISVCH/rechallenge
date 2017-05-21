@@ -35,7 +35,7 @@
 //@include foundation-slider;
 //@include foundation-sticky;
 @include foundation-reveal;
-@include foundation-switch;
+//@include foundation-switch;
 @include foundation-table;
 @include foundation-tabs;
 @include foundation-thumbnail;
@@ -53,4 +53,5 @@
 @include motion-ui-animations;
 
 // 'Vo 59
+@import 'calendar';
 @import 'wisvch';

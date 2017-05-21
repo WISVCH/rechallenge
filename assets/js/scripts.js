@@ -1029,6 +1029,28 @@ jQuery(function ($) {
 
     });
 
+    /* EVENTS */
+    if ($.fullCalendar) {
+        $('#calendar').fullCalendar({
+            firstDay: 1,
+            height: "auto",
+            events: '/wp-json/w3cie-events/events',
+
+            header: {
+                left: 'title',
+                center: '',
+                right: 'month, basicWeek today prev, next'
+            },
+
+            eventRender: function (event, element) {
+                if (false === event.allDay) {
+                    $(element).find(".fc-content").append("<p class='fc-timestamp'>" + event.timestamp + "</p>");
+                }
+            }
+        });
+    }
+
+
     /* PORTAL */
 
     // Add readonly attribute to edit profile fields on load

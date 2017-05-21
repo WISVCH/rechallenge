@@ -24,10 +24,20 @@ class Scripts
     static function load_scripts()
     {
 
-        // Register scripts
-        wp_register_script('rechallenge', get_stylesheet_directory_uri().'/assets/js/scripts.min.js', ['jquery'], null, true);
+        $stylesheet_uri = get_stylesheet_directory_uri();
 
-        // Load combined and compressed theme JS and dependencies
+        // Register scripts
+        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
+
+        // Events scripts
+        wp_register_script('events-moment', $stylesheet_uri.'/assets/components/moment/min/moment.min.js', [], null, true);
+        wp_register_script('events-fullcalendar', $stylesheet_uri.'/assets/components/fullcalendar/dist/fullcalendar.min.js', ['jquery', 'events-moment'], null, true);
+
+        // Load scripts
         wp_enqueue_script('rechallenge');
+
+        if (is_page_template('template-event-calendar.php')) {
+            wp_enqueue_script('events-fullcalendar');
+        }
     }
 }

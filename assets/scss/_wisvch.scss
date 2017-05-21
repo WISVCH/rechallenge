@@ -621,7 +621,7 @@ $titlebar-height: 55px;
       // Slightly larger logo for medium screens
       @include breakpoint(medium only) {
         width: auto;
-        max-height:70px;
+        max-height: 70px;
       }
 
     }
@@ -685,7 +685,7 @@ $titlebar-height: 55px;
 .page-title {
   position: relative;
   z-index: 1;
-  background: $primary-color;
+  background-color: $primary-color;
   background-size: cover;
   background-position: center;
   margin-top: -22px;
@@ -1256,7 +1256,7 @@ ul.news {
       height: 4.5rem;
       vertical-align: middle;
       color: $white;
-      padding:0 1rem;
+      padding: 0 1rem;
     }
 
     h1 {
@@ -1325,6 +1325,21 @@ form.edit-profile-form {
 
   }
 
+}
+
+/* **********
+6. Events Archive
+********** */
+.wisv-event-table tbody {
+  tr {
+    th, td {
+      background: $light-gray;
+    }
+
+    th {
+      text-align: left;
+    }
+  }
 }
 
 /* **********
