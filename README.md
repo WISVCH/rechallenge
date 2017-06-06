@@ -1,4 +1,4 @@
-# ReCHallenge ![](https://www.versioneye.com/user/projects/5936ad08b6ed0f004220bce6/badge.svg)
+# ReCHallenge [![Dependency Status](https://www.versioneye.com/user/projects/5936ad08b6ed0f004220bce6/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5936ad08b6ed0f004220bce6)
 
 WordPress template for W.I.S.V. 'Christiaan Huygens', carefully crafted by the W3Cie.
 
