@@ -22,7 +22,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
         <div class="title-bar hide-for-large" data-responsive-toggle="nav-menu" data-hide-for="large">
             <div class="row collapse">
                 <div class="small-6 medium-5 bg-left column">
-                    <a class="logo-small show-for-medium-down" href="<?php echo esc_url(site_url('/')); ?>">
+                    <a class="logo-small hide-for-large" href="<?php echo esc_url(site_url('/')); ?>">
                         <img src="<?php echo RECHALLENGE_URI; ?>/assets/images/ch-logo.png" alt="<?php echo esc_attr(get_bloginfo('sitename')); ?>" class="logo-small">
                     </a>
                 </div>
@@ -31,7 +31,9 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                         <a class="login-button button alert" href="<?php echo esc_url($loginurl); ?>">
                             <?php echo is_user_logged_in() ? "Account" : "Login"; ?>
                         </a>
-                        <button class="wisv-menu-icon" type="button" data-toggle></button>
+                        <button class="wisv-menu-icon hamburger hamburger--collapse" type="button" data-toggle>
+                            <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+                        </button>
                     </div>
                 </div>
 

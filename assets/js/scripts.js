@@ -1019,35 +1019,51 @@ jQuery(function ($) {
 
     // Add class to body when menu open, for styling purposes
     $('[data-responsive-toggle]').on('toggled.zf.responsiveToggle', function (e, b, c) {
-        var body = $("body");
+        var body = $("body"), button = $('.wisv-menu-icon');
 
         if (body.hasClass("menu-open")) {
             body.removeClass("menu-open");
+            button.removeClass('is-active');
         } else {
             body.addClass("menu-open");
+            button.addClass('is-active');
         }
 
     });
 
     /* EVENTS */
     if ($.fullCalendar) {
-        $('#calendar').fullCalendar({
+
+        // Load large calendar
+        var cal = $('#calendar').fullCalendar({
             firstDay: 1,
             height: "auto",
-            events: '/wp-json/w3cie-events/events',
+
+            defaultView: Foundation.MediaQuery.atLeast('large') ? 'month' : 'listMonth',
 
             header: {
                 left: 'title',
                 center: '',
-                right: 'month, basicWeek today prev, next'
+                right: 'today prev, next'
             },
 
-            eventRender: function (event, element) {
-                if (false === event.allDay) {
-                    $(element).find(".fc-content").append("<p class='fc-timestamp'>" + event.timestamp + "</p>");
-                }
+            events: {
+                url: '/wp-json/wp/v2/events/fullcalendar'
+            },
+
+            timeFormat: 'H:mm',
+            handleWindowResize: false
+        });
+
+        // Change view on media query change
+        $(window).on('changed.zf.mediaquery', function () {
+            if (Foundation.MediaQuery.atLeast('large')) {
+                cal.fullCalendar('changeView', 'month');
+            } else {
+                alert("Loading small calendar..");
             }
         });
+
     }
 
 

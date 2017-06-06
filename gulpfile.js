@@ -73,6 +73,7 @@ gulp.task('site-js', ['foundation-js'], function () {
 
         // Grab your custom scripts
         './assets/js/foundation.js',
+        './assets/components/motion-ui/motion-ui.js',
         './assets/js/app.js',
 
     ])
@@ -95,10 +96,12 @@ gulp.task('browsersync', function () {
     ];
 
     browserSync.init(files, {
-        proxy: "wisvch.dev"
+        proxy: "wisvch.dev",
+        notify: false
     });
 
-    gulp.watch(['scss/**/*.scss'], ['sass']);
+    gulp.watch(['assets/scss/**/*.scss'], ['sass']);
+    gulp.watch(['assets/js/app.js'], ['site-js']);
 
 });
 

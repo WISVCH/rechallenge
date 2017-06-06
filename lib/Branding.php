@@ -31,10 +31,14 @@ class Branding
     {
         ?>
         <style type="text/css">
+            #login {
+                padding: 5% 0 0 !important;
+            }
+
             #login h1 a {
-                background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ch-logo@2x.png);
+                background-image: url(<?=RECHALLENGE_URI?>/assets/images/shield.png);
                 width: 100%;
-                height: 90px;
+                height: 150px;
                 background-size: contain;
             }
         </style>

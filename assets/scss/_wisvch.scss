@@ -134,10 +134,16 @@ blockquote {
 0.X Breadcrumbs
 ********** */
 #breadcrumbs {
-  margin: $breadcrumbs-margin;
+  margin: 1rem 0 ($global-margin * 2);
   padding: 0;
   font-size: $breadcrumbs-item-font-size;
   color: $breadcrumbs-item-color;
+  text-align: center;
+
+  @include breakpoint(medium) {
+    margin: $breadcrumbs-margin;
+    text-align: left;
+  }
 
   a {
     color: $breadcrumbs-item-color;
@@ -658,9 +664,7 @@ $titlebar-height: 55px;
 }
 
 .wisv-menu-icon {
-  @include hamburger($titlebar-icon-color, $titlebar-icon-color-hover, 30px, 23px, 4px);
   outline: 0 none;
-  margin: rem-calc(17) map-get($grid-column-gutter, small) 0 0;
 }
 
 // Show login button on medium
@@ -1497,9 +1501,11 @@ ul.twitter {
   }
 
   .twitter-subtitle {
-    @extend .subheader;
+    margin-top: $subheader-margin-top;
+    margin-bottom: $subheader-margin-bottom;
+    line-height: $subheader-lineheight;
     color: $medium-gray;
-    font-weight: bold;
+    font-weight: $global-weight-bold;
     font-size: rem-calc(14px);
     a {
       color: $medium-gray;
