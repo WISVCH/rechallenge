@@ -14,6 +14,7 @@ require_once("lib/Scripts.php");
 require_once("lib/Setup.php");
 require_once("lib/Sidebars.php");
 require_once("lib/Styles.php");
+require_once("lib/Yoast.php");
 
 // Clean up WordPress
 Cleanup::register_hooks();
@@ -44,6 +45,9 @@ Scripts::register_hooks();
 
 // Load W3Cie branding
 Branding::register_hooks();
+
+// Load Yoast SEO modifications
+Yoast::register_hooks();
 
 
 // Helper functions
