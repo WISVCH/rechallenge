@@ -1077,7 +1077,7 @@ ul.share {
 
   a.event-date {
     display: block;
-    padding: 42% 3.125% 10%;
+    padding: 45% 3.125% 10%;
     color: $secondary-color;
     text-align: center;
     line-height: 1;
@@ -1334,16 +1334,8 @@ form.edit-profile-form {
 /* **********
 6. Events Archive
 ********** */
-.wisv-event-table tbody {
-  tr {
-    th, td {
-      background: $light-gray;
-    }
-
-    th {
-      text-align: left;
-    }
-  }
+.events-backlink {
+  margin-top: $paragraph-margin-bottom;
 }
 
 /* **********

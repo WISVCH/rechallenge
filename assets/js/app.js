@@ -9,7 +9,7 @@ jQuery(function ($) {
     // Don't follow links with data-open attribute
     $("a[data-open]").on('click tap', function (e) {
         e.preventDefault();
-    })
+    });
 
     // Add class to body when menu open, for styling purposes
     $('[data-responsive-toggle]').on('toggled.zf.responsiveToggle', function (e, b, c) {
@@ -46,15 +46,25 @@ jQuery(function ($) {
             },
 
             timeFormat: 'H:mm',
-            handleWindowResize: false
+            displayEventEnd: true,
+
+            handleWindowResize: false,
+
+            // Fix multi-day event start and end times
+            eventAfterRender: function (event, $el) {
+                if (!event.start.isSame(event.end, 'day')) {
+                    $el.find('.fc-time').html(event.start.format("H:mm"));
+                }
+            }
+        }).on('click tap', '.fc-button', function (e) {
+            // Lose focus..
+            $(this).blur();
         });
 
         // Change view on media query change
         $(window).on('changed.zf.mediaquery', function () {
             if (Foundation.MediaQuery.atLeast('large')) {
                 cal.fullCalendar('changeView', 'month');
-            } else {
-                alert("Loading small calendar..");
             }
         });
 

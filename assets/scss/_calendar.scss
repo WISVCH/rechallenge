@@ -142,6 +142,25 @@
 
     }
 
+    .fc-event-container {
+      vertical-align: top;
+
+      // Reduce height off multi-day events
+      &[colspan] {
+        .fc-event {
+          text-align: left;
+        }
+
+        .fc-time, .fc-title {
+          display: inline;
+        }
+
+        .fc-time {
+          padding-right: .25rem;
+        }
+      }
+    }
+
   }
 
 }
@@ -162,11 +181,14 @@
 
   .fc-time {
     display: block;
+    font-size: .875rem;
   }
 
   .fc-title {
     display: block;
     font-weight: $global-weight-bold;
+    line-height: 1.2;
+    padding-bottom: .2rem;
   }
 }
 
