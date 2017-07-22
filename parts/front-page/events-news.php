@@ -2,14 +2,14 @@
 <div class="section-even calendar-news">
 
     <div class="row" data-equalizer data-equalize-on="large" id="equalize-columns">
-        <div class="column medium-5 large-4">
+        <div class="column wisv-column-block medium-5 large-4">
 
             <!-- Calendar -->
             <section class="wisv-panel" data-equalizer-watch>
                 <header class="wisv-panel-heading">
                     <h1 class="small">Calendar
                         <small>
-                            <a href="<?php echo get_post_type_archive_link('event'); ?>">
+                            <a href="<?php echo site_url('/activities') ?>">
                                 Overview <i class="fa ch-arrow-right"></i>
                             </a>
                         </small>
@@ -17,27 +17,44 @@
                 </header>
 
                 <div class="wisv-panel-content">
-                    <ul>
-                        <?php
-                        $events = new WP_Query([
-                            'post_type' => 'event',
-                            'posts_per_page' => 5,
-                            'orderby' => 'date',
-                            'order' => 'DESC',
-                        ]);
 
-                        while ($events->have_posts()) {
-                            $events->the_post();
-                            ?>
-                            <li class="row event">
-                                <?php get_template_part('parts/post-type/excerpt', 'event'); ?>
-                            </li>
-                            <?php
-                        }
+                    <?php
+                    $events = new WP_Query([
+                        'post_type' => 'event',
+                        'posts_per_page' => 5,
+                        'meta_query' => [
+                            'event_clause' => [
+                                'key' => '_event_start_date',
+                                'type' => 'DATE',
+                                'value' => date('Y-m-d H:i'),
+                                'compare' => '>',
+                            ],
+                        ],
+                        'orderby' => 'event_clause',
+                    ]);
 
-                        wp_reset_postdata();
+                    if ($events->have_posts()) {
                         ?>
-                    </ul>
+
+                        <ul>
+                            <?php
+
+                            while ($events->have_posts()) {
+                                $events->the_post();
+                                ?>
+                                <li class="row event">
+                                    <?php get_template_part('parts/post-type/excerpt', 'event'); ?>
+                                </li>
+                                <?php
+                            }
+
+                            wp_reset_postdata();
+                            ?>
+                        </ul>
+
+                    <?php } else { ?>
+                        <p>There are no events planned in the near future.</p>
+                    <?php } ?>
                 </div>
             </section>
 

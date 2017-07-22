@@ -56,7 +56,7 @@
 
 @mixin wisvch-foundation-everything($flex: false) {
   @if $flex {
-    $global-flexbox: true !global;
+    $global-flexbox: true !global; // 'Vo 59
   }
 
   @include foundation-global-styles;
@@ -119,6 +119,11 @@
 // Hamburgers
 @import '../components/css-hamburgers/_sass/hamburgers/hamburgers';
 
-// 'Vo 59
+// Magnific Popup
+@import 'magnific_popup';
+
+// Calendar
 @import 'calendar';
+
+// W.I.S.V. 'Christiaan Huygens'
 @import 'wisvch';

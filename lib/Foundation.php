@@ -23,6 +23,9 @@ class Foundation
 
         // Add active class to menu
         add_filter('nav_menu_link_attributes', [__CLASS__, 'active_nav_class'], 20, 2);
+
+        // Fix WP gallery
+        add_filter('post_gallery', [__CLASS__, 'blockgrid_gallery'], 10, 3);
     }
 
     /**
@@ -60,5 +63,82 @@ class Foundation
         }
 
         return $args;
+    }
+
+    /**
+     * Restructure WordPress gallery output to use block grid.
+     * Credits: https://federicojacobi.com/foundation-6-block-grid-wordpress-gallery/
+     *
+     * @param $output
+     * @param $atts
+     * @param $instance
+     * @return string
+     */
+    static function blockgrid_gallery($output, $atts, $instance)
+    {
+        $atts = shortcode_atts([
+            'order' => 'ASC',
+            'orderby' => 'menu_order ID',
+            'id' => get_the_ID(),
+            'columns' => 3,
+            'size' => 'thumbnail',
+            'include' => '',
+            'exclude' => '',
+        ], $atts);
+
+        if (! empty($atts['include'])) {
+            $_attachments = get_posts([
+                'include' => $atts['include'],
+                'post_status' => 'inherit',
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image',
+                'order' => $atts['order'],
+                'orderby' => $atts['orderby'],
+            ]);
+
+            $attachments = [];
+            foreach ($_attachments as $key => $val) {
+                $attachments[$val->ID] = $_attachments[$key];
+            }
+        } elseif (! empty($atts['exclude'])) {
+            $attachments = get_children([
+                'post_parent' => intval($atts['id']),
+                'exclude' => $atts['exclude'],
+                'post_status' => 'inherit',
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image',
+                'order' => $atts['order'],
+                'orderby' => $atts['orderby'],
+            ]);
+        } else {
+            $attachments = get_children([
+                'post_parent' => intval($atts['id']),
+                'post_status' => 'inherit',
+                'post_type' => 'attachment',
+                'post_mime_type' => 'image',
+                'order' => $atts['order'],
+                'orderby' => $atts['orderby'],
+            ]);
+        }
+
+        if (empty($attachments)) {
+            return '';
+        }
+
+        $output = '<div class="row inline-gallery small-up-2 medium-up-'.intval($atts['columns']).'" >';
+
+        foreach ($attachments as $id => $attachment) {
+            $img = wp_get_attachment_image_url($id, $atts['size']);
+            $img_srcset = wp_get_attachment_image_srcset($id, $atts['size']);
+            $img_full = wp_get_attachment_image_url($id, 'full');
+
+            $caption = (! $attachment->post_excerpt) ? '' : ' data-caption="'.esc_attr($attachment->post_excerpt).'" ';
+
+            $output .= '<div class="column column-block">'.'<a href="'.esc_url($img_full).'" class="gallery-image">'.'<img src="'.esc_url($img).'" '.$caption.' class="th" alt="'.esc_attr($attachment->title).'"  srcset="'.esc_attr($img_srcset).'" sizes="(max-width: 50em) 87vw, 680px" />'.'</a></div>';
+        }
+
+        $output .= '</div>';
+
+        return $output;
     }
 }

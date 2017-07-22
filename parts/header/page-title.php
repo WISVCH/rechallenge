@@ -8,7 +8,6 @@ if (! isset($children)) {
 $dotted_border = count($children) === 0 ? ' dotted-border' : '';
 
 // Get cover image
-//$cover_image = get_the_post_thumbnail_url(rechallenge_get_aux_page_id(), 'cover');
 $cover_image = rechallenge_get_cover_image();
 $cover_image_html = $cover_image !== false ? ' style="background-image:url('.esc_url($cover_image).')"' : '';
 

@@ -74,6 +74,7 @@ gulp.task('site-js', ['foundation-js'], function () {
         // Grab your custom scripts
         './assets/js/foundation.js',
         './assets/components/motion-ui/motion-ui.js',
+        './assets/components/magnific-popup/dist/jquery.magnific-popup.js',
         './assets/js/app.js',
 
     ])

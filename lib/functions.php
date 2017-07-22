@@ -48,7 +48,11 @@ function rechallenge_get_title()
 
 function rechallenge_get_cover_image()
 {
-    if (is_singular("event")) {
+
+    // News
+    if (is_singular('post') || is_home()) {
+        $cover_image = get_the_post_thumbnail_url(get_option('page_for_posts'), 'cover');
+    } elseif (is_singular("event")) {
         // @TODO: check if Yoast SEO enabled
         $cat = new WPSEO_Primary_Term('event-category', get_the_ID());
         $cat = $cat->get_primary_term();
@@ -57,6 +61,7 @@ function rechallenge_get_cover_image()
 
         if ($terms !== false) {
 
+            // @TODO fix this, maybe no cover image for specific events but use the calendar cover image instead.
             foreach ($terms as $item) {
                 if ($item->term_id === $cat) {
                     $cover_image = $item->description;

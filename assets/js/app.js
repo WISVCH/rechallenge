@@ -1,10 +1,8 @@
-;
+;jQuery(function ($) {
 
-Foundation.Orbit.defaults.navButtons = false;
-jQuery(document).foundation();
-
-
-jQuery(function ($) {
+    // Init Foundation JS
+    Foundation.Orbit.defaults.navButtons = false;
+    $(document).foundation();
 
     // Don't follow links with data-open attribute
     $("a[data-open]").on('click tap', function (e) {
@@ -23,6 +21,17 @@ jQuery(function ($) {
             button.addClass('is-active');
         }
 
+    });
+
+    /* IMAGE GALLERIES */
+    $('.inline-gallery').each(function () {
+        $(this).magnificPopup({
+            delegate: 'a.gallery-image',
+            type: 'image',
+            gallery: {
+                enabled: true
+            }
+        });
     });
 
     /* EVENTS */
@@ -65,6 +74,8 @@ jQuery(function ($) {
         $(window).on('changed.zf.mediaquery', function () {
             if (Foundation.MediaQuery.atLeast('large')) {
                 cal.fullCalendar('changeView', 'month');
+            } else {
+                cal.fullCalendar('changeView', 'listMonth');
             }
         });
 

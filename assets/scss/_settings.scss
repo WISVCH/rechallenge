@@ -122,7 +122,7 @@ $header-styles: (
         medium: (
                 'h1': ('font-size': 30),
                 'h2': ('font-size': 24),
-                'h3': ('font-size': 22),
+                'h3': ('font-size': 20),
                 'h4': ('font-size': 20),
                 'h5': ('font-size': 20),
                 'h6': ('font-size': 20),
@@ -151,7 +151,7 @@ $list-lineheight: $paragraph-lineheight;
 $list-margin-bottom: $paragraph-margin-bottom;
 $list-style-type: square;
 $list-style-position: outside;
-$list-side-margin: 1.25rem;
+$list-side-margin: 2rem;
 $list-nested-side-margin: 1.25rem;
 $defnlist-margin-bottom: 1rem;
 $defnlist-term-weight: $global-weight-bold;
@@ -624,12 +624,57 @@ $hamburger-types: (
 ) !default;
 
 $hamburger-padding-x: 10px !default;
-$hamburger-padding-y: 15px !default;
-$hamburger-layer-width: 40px !default;
+$hamburger-padding-y: 17px !default;
+$hamburger-layer-width: 32px !default;
 $hamburger-layer-height: 4px !default;
-$hamburger-layer-spacing: 6px !default;
+$hamburger-layer-spacing: 5px !default;
 $hamburger-layer-color: $primary-color;
 $hamburger-layer-border-radius: 4px !default;
 $hamburger-hover-opacity: 1;
 $hamburger-hover-transition-duration: 0.15s !default;
 $hamburger-hover-transition-timing-function: cubic-bezier(.3, 0, 1, 1);
+
+////////////////////////
+//   Magnific Popup   //
+////////////////////////
+
+// overlay
+$mfp-overlay-color:                   #0b0b0b !default;                    // Color of overlay screen
+$mfp-overlay-opacity:                 0.8 !default;                        // Opacity of overlay screen
+$mfp-shadow:                          0 0 8px rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
+
+// spacing
+$mfp-popup-padding-left:              8px !default;                        // Padding from left and from right side
+$mfp-popup-padding-left-mobile:       6px !default;                        // Same as above, but is applied when width of window is less than 800px
+
+$mfp-z-index-base:                    1040 !default;                       // Base z-index of popup
+
+// controls
+$mfp-include-arrows:                  true !default;                       // Include styles for nav arrows
+$mfp-controls-opacity:                0.65 !default;                       // Opacity of controls
+$mfp-controls-color:                  #FFF !default;                       // Color of controls
+$mfp-controls-border-color:           #3F3F3F !default; 	                 // Border color of controls
+$mfp-inner-close-icon-color:          #333 !default;                       // Color of close button when inside
+$mfp-controls-text-color:             #CCC !default;                       // Color of preloader and "1 of X" indicator
+$mfp-controls-text-color-hover:       #FFF !default;                       // Hover color of preloader and "1 of X" indicator
+
+// Iframe-type options
+$mfp-include-iframe-type:             true !default;                       // Enable Iframe-type popups
+$mfp-iframe-padding-top:              40px !default;                       // Iframe padding top
+$mfp-iframe-background:               #000 !default;                       // Background color of iframes
+$mfp-iframe-max-width:                900px !default;                      // Maximum width of iframes
+$mfp-iframe-ratio:                    9/16 !default;                       // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
+
+// Image-type options
+$mfp-include-image-type:              true !default;                       // Enable Image-type popups
+$mfp-image-background:                #444 !default;
+$mfp-image-padding-top:               40px !default;                       // Image padding top
+$mfp-image-padding-bottom:            40px !default;                       // Image padding bottom
+$mfp-include-mobile-layout-for-image: true !default;                       // Removes paddings from top and bottom
+
+// Image caption options
+$mfp-caption-title-color:             #F3F3F3 !default;                    // Caption title color
+$mfp-caption-subtitle-color:          #BDBDBD !default;                    // Caption subtitle color
+
+// A11y
+$mfp-use-visuallyhidden:              false !default;                      // Hide content from browsers, but make it available for screen readers

@@ -7,7 +7,6 @@ get_template_part("parts/navigation/breadcrumb");
 
     <div class="row column">
         <?php
-        the_title('<h1>', '</h1>');
         the_content();
         ?>
     </div>
@@ -15,27 +14,58 @@ get_template_part("parts/navigation/breadcrumb");
     <!-- Calendar / News -->
     <div class="section-even calendar-news">
 
-    <div class="row" data-equalizer data-equalize-on="large" id="equalize-columns">
+    <div class="row">
         <div class="column medium-5 large-4">
 
             <!-- Calendar -->
-            <section class="wisv-panel" data-equalizer-watch>
+            <section class="wisv-panel">
                 <header class="wisv-panel-heading">
                     <h1 class="small">Career Events</h1>
                 </header>
 
                 <div class="wisv-panel-content">
-                    <ul>
-                        <?php
-                        for ($x = 0; $x < 4; $x++) {
-                            ?>
-                            <li class="row event">
-                                <?php get_template_part('parts/post-type/excerpt', 'event'); ?>
-                            </li>
-                            <?php
-                        }
+
+                    <?php
+                    $events = new WP_Query([
+                        'post_type' => 'event',
+                        'posts_per_page' => 5,
+                        'meta_query' => [
+                            'event_clause' => [
+                                'key' => '_event_start_date',
+                                'type' => 'DATE',
+                                'value' => date('Y-m-d H:i'),
+                                'compare' => '>'
+                            ],
+                        ],
+                        'orderby' => 'event_clause',
+                    ]);
+
+                    if ($events->have_posts()) {
+
                         ?>
-                    </ul>
+                        <ul>
+                            <?php
+
+                            while ($events->have_posts()) {
+                                $events->the_post();
+                                ?>
+                                <li class="row event">
+                                    <?php get_template_part('parts/post-type/excerpt', 'event'); ?></li>
+                                <?php
+                            }
+
+                            wp_reset_postdata();
+
+                            ?>
+                        </ul>
+                        <?php
+                    } else {
+                        ?>
+                        <p>There are no career events planned in the near future.</p>
+                        <?php
+                    }
+
+                    ?>
                 </div>
 
             </section>
@@ -43,7 +73,7 @@ get_template_part("parts/navigation/breadcrumb");
         </div>
         <div class="column medium-7 large-8">
 
-            <section class="wisv-panel" data-equalizer-watch>
+            <section class="wisv-panel">
                 <div class="wisv-panel-heading">
                     <h1 class="small">Latest Job Openings
                         <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View more <i class="fa ch-arrow-right"></i></a></small>

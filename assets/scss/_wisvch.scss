@@ -36,6 +36,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  transition: color .2s;
   a {
     @include inverted-anchor();
   }
@@ -43,6 +44,13 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   text-transform: uppercase;
+}
+
+h3 {
+  font-family: $body-font-family;
+  font-weight: $global-weight-normal;
+  margin-bottom: 0;
+  margin-top: $header-margin-bottom;
 }
 
 // Create h.small classes (small heading size on medium up displays)
@@ -64,19 +72,12 @@ a {
 
 // Fix element widths on medium up
 @include breakpoint(medium) {
-  article p {
-    padding-right: 20%;
-  }
-
   blockquote {
     width: 80%;
-    p {
-      padding-right: 0;
-    }
   }
 
   .share {
-    width: 80%;
+    width: 60%;
   }
 }
 
@@ -462,7 +463,7 @@ $topbar-height: rem-calc(90);
     background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
     @include breakpoint($topbar-unstack-breakpoint) {
       padding-left: 65px;
-      padding-right: .25rem;
+      padding-right: map-get($grid-column-gutter, medium) / 2;
     }
   }
 
@@ -485,15 +486,9 @@ $topbar-height: rem-calc(90);
         }
       }
 
+      // Remove left padding from leftmost menu item
       @include breakpoint(xlarge only) {
-
-        // Hide 'home' button
         &:first-child {
-          display: none;
-        }
-
-        // Remove left padding from leftmost menu item
-        &:nth-child(2) {
           padding-left: 0;
         }
       }
@@ -665,6 +660,7 @@ $titlebar-height: 55px;
 
 .wisv-menu-icon {
   outline: 0 none;
+  height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2 + $hamburger-padding-y * 2;
 }
 
 // Show login button on medium
@@ -803,15 +799,15 @@ $titlebar-height: 55px;
 
 ul.share {
   list-style: none;
-  padding: 1rem 0;
-  margin: 1.5rem 0 0;
+  padding: .5rem .5rem .4rem;
+  margin: 2rem 0 0;
 
   border-top: 3px solid $light-gray;
   border-bottom: 3px solid $light-gray;
 
   li {
     display: inline;
-    padding-right: .5rem;
+    padding-right: 1rem;
     font-size: 1rem;
 
     a {
@@ -917,6 +913,12 @@ ul.share {
     padding-bottom: map-get($grid-column-gutter, 'small');
     @include breakpoint(medium) {
       padding-bottom: map-get($grid-column-gutter, 'medium');
+    }
+
+    @include breakpoint(medium down) {
+      .wisv-column-block {
+        @include grid-column-margin();
+      }
     }
   }
 
@@ -1040,7 +1042,7 @@ ul.share {
 @include breakpoint(large) {
 
   .orbit, .orbit-container, .orbit-slide, .page-title.slider {
-    height: 36rem !important;
+    height: 32rem !important;
   }
 
   .orbit-caption {
@@ -1167,6 +1169,15 @@ ul.share {
   p {
     margin-top: 1rem;
     padding: 0;
+  }
+
+  a {
+    color: $body-font-color;
+    &:hover {
+      h1 {
+        color: $alert-color;
+      }
+    }
   }
 }
 
@@ -1349,7 +1360,7 @@ form.edit-profile-form {
 X. Footer
 ********** */
 .page-footer {
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 /* **********

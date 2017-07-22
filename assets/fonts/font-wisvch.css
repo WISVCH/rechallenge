@@ -3,7 +3,7 @@
 @font-face {
     font-family: "wisvch";
     src: url("wisvch.eot");
-    src: url("wisvch.eot?#iefix") format("embedded-opentype"),
+    src: url("wisvch.eot?#wisvch") format("embedded-opentype"),
     url("wisvch.woff") format("woff"),
     url("wisvch.ttf") format("truetype"),
     url("wisvch.svg#wisvch") format("svg");
@@ -217,6 +217,11 @@
 .ch-pencil:before {
     content: "\53";
 }
+
 .ch-tag:before {
     content: "\54";
+}
+
+.ch-search:before {
+  content: "\55";
 }
