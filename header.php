@@ -90,10 +90,10 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
 
             global $post;
 
-            /**
+            /*
              * Load data for page title and subpage menu.
              */
-            if (is_home()) { // News archive
+            if (is_home() || is_singular('post')) { // News archive
 
                 $page = get_post(get_option("page_for_posts"));
 

@@ -6,6 +6,7 @@ $start = ! isset($meta['_event_start_date']) || empty($meta['_event_start_date']
 $end = ! isset($meta['_event_end_date']) ? 'Unknown' : date("F j, Y, G:i", strtotime($meta['_event_end_date'][0]));
 
 // Cost
+// @TODO rewrite
 if (! isset($meta['_event_cost']) || ! is_numeric($meta['_event_cost'][0])) {
     $cost = '<em>Unknown</em>';
 } else {
@@ -15,7 +16,7 @@ if (! isset($meta['_event_cost']) || ! is_numeric($meta['_event_cost'][0])) {
     }
 }
 
-$category_list = get_the_term_list(get_the_ID(), 'event-category', '', ', ', '');
+$category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '');
 ?>
 
 <article>
@@ -29,7 +30,11 @@ $category_list = get_the_term_list(get_the_ID(), 'event-category', '', ', ', '')
             the_content();
             ?>
 
-            <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/overview/');?>">&lsaquo; Back to calendar</a></p>
+            <footer>
+                <?php get_template_part("parts/misc/share"); ?>
+            </footer>
+
+            <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/calendar/');?>">&lsaquo; Back to calendar</a></p>
 
         </div>
 

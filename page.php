@@ -3,7 +3,7 @@ get_header();
 ?>
 
     <!-- Main -->
-    <section>
+    <main class="shrink">
 
         <?php
         get_template_part("parts/navigation/breadcrumb");
@@ -12,7 +12,7 @@ get_header();
 
         get_template_part('parts/post-type/single-page');
         ?>
-    </section>
+    </main>
 
 <?php
 get_footer();

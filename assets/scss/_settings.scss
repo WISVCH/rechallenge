@@ -81,7 +81,7 @@ $print-transparent-backgrounds: true;
 $breakpoints: (
         small: 0,
         medium: 640px,
-        large: 1100px,
+        large: 1180px,
         xlarge: 1300px,
         xxlarge: 1500px
 );
@@ -639,9 +639,9 @@ $hamburger-hover-transition-timing-function: cubic-bezier(.3, 0, 1, 1);
 ////////////////////////
 
 // overlay
-$mfp-overlay-color:                   #0b0b0b !default;                    // Color of overlay screen
-$mfp-overlay-opacity:                 0.8 !default;                        // Opacity of overlay screen
-$mfp-shadow:                          0 0 8px rgba(0, 0, 0, 0.6) !default; // Shadow on image or iframe
+$mfp-overlay-color:                   #fff !default;                    // Color of overlay screen
+$mfp-overlay-opacity:                 0.15 !default;                        // Opacity of overlay screen
+$mfp-shadow:                          0 0 6px rgba(0, 0, 0, 0.4) !default; // Shadow on image or iframe
 
 // spacing
 $mfp-popup-padding-left:              8px !default;                        // Padding from left and from right side

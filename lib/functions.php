@@ -25,6 +25,8 @@ function rechallenge_get_title()
 
     if (is_home()) {
         $title = get_the_title(get_option("page_for_posts"));
+    } elseif (is_singular('post')) {
+        $title = "News";
     } elseif (is_post_type_archive("board")) {
         $title = "Current and previous boards";
     } elseif (is_post_type_archive("committee")) {
@@ -54,10 +56,10 @@ function rechallenge_get_cover_image()
         $cover_image = get_the_post_thumbnail_url(get_option('page_for_posts'), 'cover');
     } elseif (is_singular("event")) {
         // @TODO: check if Yoast SEO enabled
-        $cat = new WPSEO_Primary_Term('event-category', get_the_ID());
+        $cat = new WPSEO_Primary_Term('event_category', get_the_ID());
         $cat = $cat->get_primary_term();
 
-        $terms = get_the_terms(get_the_ID(), 'event-category');
+        $terms = get_the_terms(get_the_ID(), 'event_category');
 
         if ($terms !== false) {
 

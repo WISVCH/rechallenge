@@ -2,7 +2,7 @@
 get_header();
 ?>
 	<!-- Main -->
-	<section>
+	<main <?php echo is_post_type_archive('company') || is_post_type_archive('job_opening') ? 'class="shrink"' : ''; ?>>
 		<?php
 		get_template_part("parts/navigation/breadcrumb");
 
@@ -12,7 +12,7 @@ get_header();
 			get_template_part('parts/post-type/archive', 'empty');
 		}
 		?>
-	</section>
+	</main>
 
 <?php
 get_footer();

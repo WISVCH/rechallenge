@@ -27,7 +27,7 @@ $end = strtotime($meta['_event_end_date'][0]);
         </header>
 
         <?php
-        $categories = get_the_terms($eventID, 'event-category');
+        $categories = get_the_terms($eventID, 'event_category');
 
         // Only display byline if category and/or start time is available
         if ($categories !== false || $start !== false) {

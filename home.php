@@ -3,12 +3,12 @@ get_header();
 ?>
 
     <!-- Main -->
-    <section>
+    <main>
         <?php
         get_template_part("parts/navigation/breadcrumb");
         get_template_part('parts/post-type/archive', 'post');
         ?>
-    </section>
+    </main>
 
 <?php
 get_footer();

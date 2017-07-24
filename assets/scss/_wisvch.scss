@@ -75,10 +75,6 @@ a {
   blockquote {
     width: 80%;
   }
-
-  .share {
-    width: 60%;
-  }
 }
 
 address {
@@ -157,6 +153,7 @@ blockquote {
     margin: 0 $breadcrumbs-item-margin;
     color: $medium-gray;
   }
+
 }
 
 /* **********
@@ -412,7 +409,7 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
     }
 
     @include breakpoint(xxlarge) {
-      margin-left: -85px; // 100px for left side - 15px global margin
+      //margin-left: -85px; // 100px for left side - 15px global margin
     }
 
   }
@@ -464,6 +461,10 @@ $topbar-height: rem-calc(90);
     @include breakpoint($topbar-unstack-breakpoint) {
       padding-left: 65px;
       padding-right: map-get($grid-column-gutter, medium) / 2;
+    }
+
+    @include breakpoint(large only) {
+      padding-left: 30px;
     }
   }
 
@@ -568,11 +569,6 @@ $topbar-height: rem-calc(90);
               padding-right: .5rem;
             }
           }
-        }
-
-        // Hide 'home' button
-        &:first-child {
-          display: none;
         }
 
         // Remove left padding from leftmost menu item
@@ -797,6 +793,31 @@ $titlebar-height: 55px;
 3. Page styles
 ********** */
 
+main.shrink {
+
+  @include breakpoint(large) {
+    & > .row {
+      padding-left: rem-calc(184); // based on logo
+      padding-right: rem-calc(184);
+    }
+  }
+
+  @include breakpoint(xlarge) {
+    & > .row {
+      padding-left: rem-calc(184); // based on logo
+      padding-right: rem-calc(184);
+    }
+  }
+
+  @include breakpoint(xxlarge) {
+    & > .row {
+      padding-left: rem-calc(169); // based on logo
+      padding-right: rem-calc(169);
+    }
+  }
+
+}
+
 ul.share {
   list-style: none;
   padding: .5rem .5rem .4rem;
@@ -856,6 +877,32 @@ ul.share {
     width: auto;
     max-height: 10rem;
   }
+}
+
+/* **********
+3.2 Job Opening
+********** */
+.exerpt-job-opening {
+
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .thumbnail {
+    padding: 1rem;
+    margin: .25rem 0 0; // Adjacent text line-height compensation
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    margin: .75rem 0 1rem;
+  }
+
 }
 
 /* **********
@@ -1129,6 +1176,10 @@ ul.share {
   padding: 0;
 
   // Separator
+  span {
+    display: inline-block;
+  }
+
   span + span:before {
     content: "|";
     padding: 0 .5em;

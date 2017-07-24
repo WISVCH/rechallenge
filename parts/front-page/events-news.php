@@ -24,7 +24,7 @@
                         'posts_per_page' => 5,
                         'meta_query' => [
                             'event_clause' => [
-                                'key' => '_event_start_date',
+                                'key' => '_event_end_date',
                                 'type' => 'DATE',
                                 'value' => date('Y-m-d H:i'),
                                 'compare' => '>',

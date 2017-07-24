@@ -3,7 +3,7 @@ get_header();
 ?>
 
     <!-- Main -->
-    <section>
+    <main>
 
         <?php
         get_template_part("parts/navigation/breadcrumb");
@@ -39,7 +39,7 @@ get_header();
 
         </div>
 
-    </section>
+    </main>
 
 <?php
 get_footer();
