@@ -105,8 +105,8 @@ function rechallenge_get_aux_page_id()
         "board",
         "committee",
         "company",
-        "honorary-member",
-        "job-opening",
+        "honorary_member",
+        "job_opening",
         "event",
     ])) {
 
@@ -116,6 +116,9 @@ function rechallenge_get_aux_page_id()
                 break;
             case "company":
                 $id = get_page_by_path("career/companies");
+                break;
+            case "job_opening":
+                $id = get_page_by_path("career/job-openings/");
                 break;
         }
     }

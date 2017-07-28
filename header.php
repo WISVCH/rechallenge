@@ -109,7 +109,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                     'child_of' => $post->post_parent !== 0 ? $post->post_parent : $post->ID,
                     'sort_column' => 'menu_order,post_title',
                 ]);
-            } elseif (is_post_type_archive()) { // Custom post type archive
+            } elseif (is_post_type_archive() || is_singular('company') || is_singular('job_opening')) { // Custom post type archive
 
                 // Get aux page ID
                 $id = rechallenge_get_aux_page_id();
