@@ -12,7 +12,7 @@ use WISVCH\Portal\Shortcodes\Profile;
 ?>
 
 <div class="row collapse">
-    <div class="small-12 medium-9 medium-push-3 column">
+    <div class="small-12 column">
 
         <?php
         // @TODO linken werkt niet, je logt dan gewoon in met een (ander) CH account. Is misschien ook niet zo erg.
@@ -22,7 +22,10 @@ use WISVCH\Portal\Shortcodes\Profile;
 
             <h2>Link Profile</h2>
             <p>Your account has not been linked to a CH Connect profile (yet). Please link your account using the following button:</p>
-            <p><?php echo do_shortcode("[openid_connect_generic_login_button]"); ?></p>
+
+            <div class="openid-button-left">
+                <?php echo do_shortcode("[openid_connect_generic_login_button]"); ?>
+            </div>
 
         <?php } else { ?>
 

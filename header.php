@@ -28,9 +28,14 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                 </div>
                 <div class="small-6 medium-7 bg-right column">
                     <div class="float-right">
-                        <a class="login-button button alert" href="<?php echo esc_url($loginurl); ?>">
-                            <?php echo is_user_logged_in() ? "Account" : "Login"; ?>
-                        </a>
+                        <?php
+                        // @TODO: make link to portal dynamic. see: lib/Menu.php
+                        if (is_user_logged_in()) {
+                            echo '<a class="login-button button alert account-button" href="'.site_url('portal').'">Account</a>';
+                        } else {
+                            echo '<a class="login-button button alert" href="'.site_url('portal').'" data-open="login-form">Login</a>';
+                        }
+                        ?>
                         <button class="wisv-menu-icon hamburger hamburger--collapse" type="button" data-toggle>
                             <span class="hamburger-box"><span class="hamburger-inner"></span></span>
                         </button>

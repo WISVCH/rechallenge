@@ -1,6 +1,6 @@
 <div class="row collapse">
 
-    <div class="small-12 medium-9 medium-push-3 column">
+    <div class="small-12 column">
         <h2><?php echo esc_html($greeting).', '.esc_html(! empty($meta['first_name'][0]) ? $meta['first_name'][0] : $user->display_name); ?></h2>
 
         <?php

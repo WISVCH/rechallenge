@@ -10,7 +10,7 @@ get_header();
 
         the_post();
 
-        get_template_part('parts/post-type/single-page');
+        get_template_part('parts/post-type/single');
         ?>
     </main>
 

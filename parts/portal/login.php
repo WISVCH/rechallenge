@@ -24,17 +24,30 @@ if (is_user_logged_in()) {
     ?>
 
     <h1>Log In</h1>
-    <?php
-    wp_login_form([
-        'redirect' => site_url('portal'),
-        'form_id' => 'wisv-login-form',
-        'label_username' => "Username",
-        'label_password' => "Password",
-        'label_remember' => "Remember me?",
-        'label_log_in' => "Login",
-        'remember' => true,
-    ]);
-    ?>
+    <?php if (class_exists("OpenID_Connect_Generic_Login_Form")) { ?>
 
-    <?php
+        <p>Login with your CH account or TU Delft NetID.</p>
+
+        <div class="openid-button-left">
+            <?php echo do_shortcode("[openid_connect_generic_login_button]"); ?>
+        </div>
+
+        <p>
+            <small>Having trouble logging in? <a href="<?php echo wp_login_url(site_url('portal')); ?>">Click here</a></small>
+        </p>
+
+        <?php
+    } else {
+
+        // Default WP login form
+        wp_login_form([
+            'redirect' => site_url('portal'),
+            'form_id' => 'wisv-login-form',
+            'label_username' => "Username",
+            'label_password' => "Password",
+            'label_remember' => "Remember me?",
+            'label_log_in' => "Login",
+            'remember' => true,
+        ]);
+    }
 }

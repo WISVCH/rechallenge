@@ -25,6 +25,8 @@ function rechallenge_get_title()
 
     if (is_home()) {
         $title = get_the_title(get_option("page_for_posts"));
+    } elseif(is_archive()) {
+        $title = get_the_archive_title();
     } elseif (is_singular('post')) {
         $title = "News";
     } elseif (is_post_type_archive("board")) {
@@ -128,4 +130,79 @@ function rechallenge_get_aux_page_id()
     }
 
     return get_the_ID();
+}
+
+/**
+ * Format two event timestamps.
+ *
+ * @param $start_ts
+ * @param $end_ts
+ * @return array Formatted start date at index 0, formatted end date (if any) at index 1.
+ */
+function format_event_date($start_ts, $end_ts)
+{
+
+    // Check the start date
+    if ($start_ts < 0) {
+        return ['Unknown'];
+    }
+
+    // Prepare DateTime object
+    $start = new DateTime();
+    $start->setTimestamp($start_ts);
+
+    // Check the end date
+    if ($end_ts < 0) {
+        $date_str = [$start->format('F j, Y, G:i')];
+    } else { // Both start and end date set
+        $end = new DateTime();
+        $end->setTimestamp($end_ts);
+
+        // Calculate date difference
+        $diff = $start->diff($end);
+
+        // Same day
+        if ($diff->d === 0) {
+            $date_str = [
+                $start->format('F j, Y, G:i').' &ndash; '.$end->format("G:i"),
+            ];
+        } else { // Different day
+            $date_str = [
+                $start->format('F j, Y, G:i'),
+                $end->format('F j, Y, G:i'),
+            ];
+        }
+    }
+
+    return $date_str;
+}
+
+/**
+ * Money format event cost.
+ *
+ * @param $cost_str Raw price string from database.
+ * @return string Formatted price string.
+ */
+function format_event_cost($cost_str)
+{
+
+    // Check if cost is set, numeric and not negative
+    if (! isset($cost_str) || ! is_numeric($cost_str) || $cost_str < 0) {
+        $formatted_cost = 'Unknown';
+    } else {
+
+        // Check if price is free
+        if ($cost_str > 0) {
+            $formatted_cost = number_format($cost_str, 2, ',', '.');
+
+            // Substitute the leading zeroes for a dash
+            if (substr($formatted_cost, -3) === ',00') {
+                $formatted_cost = substr($formatted_cost, 0, -3).",&minus;";
+            }
+        } else {
+            $formatted_cost = '0,&minus;';
+        }
+    }
+
+    return $formatted_cost;
 }

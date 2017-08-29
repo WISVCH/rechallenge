@@ -17,6 +17,10 @@ class Redirect
 
         // Redirect parents
         add_action('pre_get_posts', [__CLASS__, 'redirect_parents']);
+
+        // Disable taxonomy archives
+        // TODO: temporary fix until event categories are properly implemented in the calendar.
+        add_action('pre_get_posts', [__CLASS__, 'kill_taxonomy_archives']);
     }
 
     /**
@@ -54,6 +58,24 @@ class Redirect
                     exit;
                 }
             }
+        }
+    }
+
+    /**
+     * Completely disable term archives for taxonomy.
+     *
+     * @param  string $taxonomy WordPress taxnomy name
+     * @link https://wordpress.stackexchange.com/q/140351
+     */
+    static function kill_taxonomy_archives($query)
+    {
+
+        if (is_admin()) {
+            return;
+        }
+
+        if (is_tax(['event_category'])) {
+            $query->set_404();
         }
     }
 }

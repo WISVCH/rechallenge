@@ -1,21 +1,18 @@
 <?php
+// Get post meta
 $meta = get_post_custom(get_the_ID());
-
 $location = ! isset($meta['_event_location']) ? 'Unknown' : $meta['_event_location'][0];
-$start = ! isset($meta['_event_start_date']) || empty($meta['_event_start_date'][0]) ? 'Unknown' : date("F j, Y, G:i", strtotime($meta['_event_start_date'][0]));
-$end = ! isset($meta['_event_end_date']) ? 'Unknown' : date("F j, Y, G:i", strtotime($meta['_event_end_date'][0]));
+$start_ts = ! isset($meta['_event_start_date']) || empty($meta['_event_start_date'][0]) ? -1 : strtotime($meta['_event_start_date'][0]);
+$end_ts = ! isset($meta['_event_end_date']) ? -1 : strtotime($meta['_event_end_date'][0]);
+$cost_str = ! isset($meta['_event_cost']) ? -1 : $meta['_event_cost'][0];
+
+// Date
+$formatted_date = format_event_date($start_ts, $end_ts);
 
 // Cost
-// @TODO rewrite
-if (! isset($meta['_event_cost']) || ! is_numeric($meta['_event_cost'][0])) {
-    $cost = '<em>Unknown</em>';
-} else {
-    $cost = $meta['_event_cost'][0] > 0 ? number_format_i18n($meta['_event_cost'][0], 2) : 'Free!';
-    if (substr($cost, -3) === '.00') {
-        $cost = substr($cost, 0, -3).",&minus;";
-    }
-}
+$formatted_cost = format_event_cost($cost_str);
 
+// Categories
 $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '');
 ?>
 
@@ -34,7 +31,7 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
                 <?php get_template_part("parts/misc/share"); ?>
             </footer>
 
-            <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/calendar/');?>">&lsaquo; Back to calendar</a></p>
+            <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/');?>">&lsaquo; Back to calendar</a></p>
 
         </div>
 
@@ -48,11 +45,11 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
 
                 <div class="wisv-panel-content">
 
-                    <?php if ($start) { ?>
+                    <?php if ($formatted_date[0]) { ?>
                         <ul class="fa-ul company-details">
-                            <li><i class="fa-li fa ch-clock-o"></i><?=esc_attr($start)?></li>
-                            <?php if ($end) { ?>
-                                <li><?=esc_attr($end)?></li>
+                            <li><i class="fa-li fa ch-clock-o"></i><?=esc_attr($formatted_date[0])?></li>
+                            <?php if (! empty($formatted_date[1])) { ?>
+                                <li>till <?=esc_attr($formatted_date[1])?></li>
                             <?php } ?>
                         </ul>
                     <?php } ?>
@@ -64,7 +61,7 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
                     <?php } ?>
 
                     <ul class="fa-ul company-details">
-                        <li><i class="fa-li fa ch-eur"></i><?=$cost?></li>
+                        <li><i class="fa-li fa ch-eur"></i><?=$formatted_cost?></li>
                     </ul>
 
                     <?php if ($category_list) { ?>

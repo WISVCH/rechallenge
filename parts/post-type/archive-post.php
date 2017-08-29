@@ -1,26 +1,53 @@
-<div class="row small-up-2 medium-up-3 large-up-4">
+<?php
+/**
+ * Template for post archives (daily / monthly / yearly)
+ */
+?>
+<div class="row">
+
     <?php
-    $post_type = get_post_type();
-    if ($post_type !== false) {
+    the_archive_title('<h1>', '</h1>');
+    ?>
 
-        // Get large excerpt for posts
-        if ($post_type === 'post') {
-            $post_type = 'post-large';
-        }
+    <?php
+    if (have_posts()) {
+        ?>
 
-        while (have_posts()) {
-            the_post();
-            ?>
-            <div class="column column-block">
-                <a href="<?php the_permalink(); ?>"
-                   style="display:block;height:200px;padding-top:1px; background:url(<?=get_the_post_thumbnail_url(get_the_ID(), 'featured-image');?>) center no-repeat;background-size:cover;">
-                    <div style="background:rgba(0,0,0,.5);margin-top:149px;line-height:50px;color:#fff;padding-left:1rem;">
-                        <?php the_title(); ?>
-                    </div>
-                </a>
-            </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Title</th>
+            </tr>
+            </thead>
+
             <?php
-        }
+            while (have_posts()) {
+                the_post(); ?>
+
+
+                <tr>
+                    <td><?php the_time('F jS, Y'); ?></td>
+                    <td><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></td>
+                </tr>
+
+
+                <?php
+            }
+            ?>
+
+        </table>
+
+        <?php
+    } else {
+        ?>
+
+        <div class="column">
+            <h3>No content available</h3>
+            <p>There are currently no (recent) news items.</p>
+        </div>
+
+        <?php
     }
     ?>
 </div>

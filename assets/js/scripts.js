@@ -1108,7 +1108,7 @@ var MotionUI = {
   animateOut: function(element, animation, cb) {
     animate(false, element, animation, cb);
   }
-}
+};
 
 /*! Magnific Popup - v1.1.0 - 2016-02-20
 * http://dimsemenov.com/plugins/magnific-popup/

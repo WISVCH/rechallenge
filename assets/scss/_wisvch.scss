@@ -48,9 +48,11 @@ h1 {
 
 h3 {
   font-family: $body-font-family;
-  font-weight: $global-weight-normal;
+  font-weight: $global-weight-bold;
+  text-transform: uppercase;
   margin-bottom: 0;
   margin-top: $header-margin-bottom;
+  //color: $secondary-color;
 }
 
 // Create h.small classes (small heading size on medium up displays)
@@ -506,7 +508,6 @@ $topbar-height: rem-calc(90);
           padding-left: .2rem;
           padding-right: .2rem;
 
-          // Drupal active menu item
           &.active {
             border-bottom-color: $primary-color;
           }
@@ -906,7 +907,7 @@ ul.share {
 }
 
 /* **********
-3.2 User login form
+3.3 User login form
 ********** */
 
 .user-login-form {
@@ -923,10 +924,23 @@ ul.share {
   }
 }
 
-#login-form-modal {
-  .close-button {
-    top: .5rem;
-    right: .5rem;
+#login-form.reveal {
+
+  @include breakpoint(medium only) {
+    width: 60%;
+  }
+}
+
+.openid-button-left .openid-connect-login-button {
+  text-align: left !important;;
+}
+
+/* **********
+3.4 News overview
+********** */
+@include breakpoint(large) {
+  .news-overview > .column:first-child {
+    padding-left: 0;
   }
 }
 
@@ -1425,60 +1439,65 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
 .partners {
   margin-top: 1.5rem;
 
-  .column {
-    position: relative;
-
-    &:hover {
-      .partner {
-        border-color: $medium-gray;
-      }
-
-      .partner-excerpt {
-        display: block;
-        opacity: 1;
-      }
-
-    }
-  }
-
   .partner {
+    position: relative;
     display: block;
-    border: $partner-border-size solid #d9dee5;
-    padding: $partner-padding-vertical 0;
-    margin: 0 0 1rem;
-    text-align: center;
     height: $partner-height;
+
+    margin: 0 0 1rem;
+    padding: $partner-padding-vertical 0;
+
+    text-align: center;
+
+    border: $partner-border-size solid #d9dee5;
     transition: border-color .3s;
 
     img {
       width: auto;
       max-height: $partner-inner-height;
     }
+
+    &:hover {
+      border-color: $medium-gray;
+
+      .partner-excerpt {
+        visibility: visible;
+        opacity: 1;
+      }
+
+    }
   }
 
   .partner-excerpt {
-    opacity: 0;
-    transition: opacity 300ms;
 
-    padding: inherit;
-    padding-left: 0;
     position: absolute;
-    z-index: 1;
-    top: $partner-height;
+    top: $partner-height - $partner-border-size;
 
-    .positioner {
-      display: block;
-      background: #d9dee5;
-      font-size: rem-calc(14);
-      color: $black;
-      padding: .5rem 1rem;
-    }
+    left: -$partner-border-size;
+    right: -$partner-border-size;
+
+    visibility: hidden;
+    z-index: 1;
+
+    opacity: 0;
+    transition: visibility 0s, opacity 500ms; // visibility transition needed for opacity transition to work
+
+    background: #d9dee5;
+    font-size: rem-calc(14);
+    text-align: left;
+    color: $black;
+    padding: .5rem 1rem;
 
     .button {
       font-size: $global-font-size;
+      color: $primary-color;
       letter-spacing: 0;
       text-transform: none;
       margin: .5rem 0 .25rem;
+
+      &:hover {
+        color: $alert-color;
+      }
 
       .fa {
         vertical-align: middle;
