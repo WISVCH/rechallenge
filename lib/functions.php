@@ -25,8 +25,6 @@ function rechallenge_get_title()
 
     if (is_home()) {
         $title = get_the_title(get_option("page_for_posts"));
-    } elseif(is_archive()) {
-        $title = get_the_archive_title();
     } elseif (is_singular('post')) {
         $title = "News";
     } elseif (is_post_type_archive("board")) {
@@ -41,6 +39,8 @@ function rechallenge_get_title()
         $title = "Job Openings";
     } elseif (is_post_type_archive("event")) {
         $title = "Events";
+    } elseif (is_archive()) {
+        $title = get_the_archive_title();
     } elseif (is_404()) {
         $title = "404 &ndash; Page not found";
     } else {
@@ -116,11 +116,17 @@ function rechallenge_get_aux_page_id()
             case "board":
                 $id = get_page_by_path("association/boards");
                 break;
+            case "committee":
+                $id = get_page_by_path("association/committees");
+                break;
             case "company":
                 $id = get_page_by_path("career/companies");
                 break;
+            case "honorary_member":
+                $id = get_page_by_path("association/honorary-members");
+                break;
             case "job_opening":
-                $id = get_page_by_path("career/job-openings/");
+                $id = get_page_by_path("career/job-openings");
                 break;
         }
     }

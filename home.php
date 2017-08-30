@@ -47,7 +47,13 @@ get_header();
         </div>
 
         <div class="row column">
-            <p><a class="button small" href="<?=get_year_link('')?>">Browse news archives &rsaquo;</a></p>
+            <div class="next-prev-links">
+                <p><?php echo get_posts_nav_link([
+                        'sep' => '',
+                    ]); ?></p>
+            </div>
+
+            <p><a class="button small" href="<?=get_year_link('')?>">Browse full news archives &rsaquo;</a></p>
         </div>
 
     </main>

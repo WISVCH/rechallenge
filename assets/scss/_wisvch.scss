@@ -1210,6 +1210,17 @@ ul.share {
   .button {
     margin-top: 1rem;
   }
+
+  .next-prev-links {
+    margin: 1rem 0;
+
+    .button {
+      margin-top: 0;
+      &:last-child {
+        float: right;
+      }
+    }
+  }
 }
 
 .separator-block {
@@ -1452,6 +1463,44 @@ form.edit-profile-form {
 ********** */
 .events-backlink {
   margin-top: $paragraph-margin-bottom;
+}
+
+/* **********
+7.1 CPT Board
+********** */
+.excerpt-board {
+
+  .thumbnail {
+    margin-bottom: 1rem;
+  }
+
+  h2, p {
+    text-align: center;
+  }
+
+}
+
+/* **********
+7.2 CPT Honorary Members
+********** */
+.excerpt-honorary-member {
+
+  .thumbnail {
+    margin-bottom: 1rem;
+  }
+
+  img, .thumbnail {
+    width: 100%;
+  }
+
+  h2, p {
+    text-align: center;
+  }
+
+}
+
+.single-honorary_member .thumbnail {
+  margin: 0 0 1rem 1rem;
 }
 
 /* **********
@@ -1734,6 +1783,8 @@ $button-border-width: 3px;
   @each $name, $color in $foundation-palette {
 
     &.#{$name} {
+      border-color: $color;
+
       &:hover, &:focus {
         background: $button-background-hover;
         color: $color;

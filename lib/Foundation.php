@@ -26,6 +26,10 @@ class Foundation
 
         // Fix WP gallery
         add_filter('post_gallery', [__CLASS__, 'blockgrid_gallery'], 10, 3);
+
+        // Prev / Next button attributes
+        add_filter('previous_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
+        add_filter('next_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
     }
 
     /**
@@ -140,5 +144,16 @@ class Foundation
         $output .= '</div>';
 
         return $output;
+    }
+
+    /**
+     * Add button class to prev and next links.
+     *
+     * @param $atts
+     * @return string
+     */
+    static function prev_next_attributes($atts)
+    {
+        return $atts.' class="button small secondary"';
     }
 }
