@@ -6,35 +6,33 @@ get_header();
 ?>
 
     <!-- Main -->
-    <main class="shrink">
+    <main class="shrink news-overview">
 
         <?php
         get_template_part("parts/navigation/breadcrumb");
         ?>
 
-        <div class="row news-overview">
+        <div class="row column">
+            <h1>News</h1>
+            <p>All the latest about W.I.S.V. 'Christiaan Huygens'.</p>
+        </div>
+
+        <div class="row">
             <?php
             if (have_posts()) {
-                ?>
-                <div class="row">
-                    <?php
-                    while (have_posts()) {
 
-                        // Render first post
-                        the_post();
-                        ?>
+                while (have_posts()) {
 
-                        <div class="column column-block">
-                            <?php get_template_part('parts/post-type/excerpt', 'post'); ?>
-                        </div>
-
-                        <?php
-                    }
+                    // Render first post
+                    the_post();
                     ?>
 
-                </div>
+                    <div class="column column-block separator-block news-block">
+                        <?php get_template_part('parts/post-type/excerpt', 'post-large'); ?>
+                    </div>
 
-                <?php
+                    <?php
+                }
             } else {
                 ?>
 

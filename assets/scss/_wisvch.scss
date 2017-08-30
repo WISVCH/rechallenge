@@ -938,11 +938,6 @@ ul.share {
 /* **********
 3.4 News overview
 ********** */
-@include breakpoint(large) {
-  .news-overview > .column:first-child {
-    padding-left: 0;
-  }
-}
 
 /* **********
 4. Front Page
@@ -1211,24 +1206,62 @@ ul.share {
 4.4 News
 ********** */
 
+.news-overview {
+  .button {
+    margin-top: 1rem;
+  }
+}
+
+.separator-block {
+
+  margin: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 3px dashed $light-gray;
+
+  @include breakpoint(medium) {
+    padding: 2rem 0;
+  }
+
+  &:first-child {
+    margin-top: 2rem;
+    border-top: 3px dashed $light-gray;
+  }
+
+}
+
+.news-block {
+  h1 {
+    margin-top: 0;
+  }
+
+  header {
+    img {
+      float: left;
+      max-height: 10rem;
+      width: 10rem;
+
+      margin: 0 1rem 0 0;
+    }
+  }
+}
+
 // Featured item
 .news-featured {
-  header {
 
-    img {
-      margin-bottom: 1rem;
-    }
+  img {
+    margin-bottom: 1rem;
+  }
 
-    h1 {
-      text-transform: none;
-      margin: 0;
-    }
+  h1 {
+    text-transform: none;
+    margin: 0;
+  }
 
-    .byline {
-      color: $medium-gray;
-      line-height: 1.35;
-      margin: 0;
-    }
+  .byline {
+    color: $medium-gray;
+    line-height: 1.35;
+    margin: 0;
   }
 
   p {

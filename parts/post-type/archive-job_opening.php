@@ -1,12 +1,21 @@
 <div class="row column">
-    <h2>Job Openings</h2>
+    <h1>Job Openings</h1>
+    <p>Kick start or continue your career with W.I.S.V. 'Christiaan Huygens'.</p>
+</div>
 
+<div class="row">
     <?php
     if (have_posts()) {
 
         while (have_posts()) {
             the_post();
-            get_template_part('parts/post-type/excerpt', 'job-opening');
+            ?>
+
+            <div class="column column-block separator-block">
+                <?php get_template_part('parts/post-type/excerpt', 'job-opening'); ?>
+            </div>
+
+            <?php
         }
     } else {
         ?>
