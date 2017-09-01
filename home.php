@@ -37,7 +37,7 @@ get_header();
                 ?>
 
                 <div class="column">
-                    <h3>No content available</h3>
+                    <h2>No content available</h2>
                     <p>There are currently no (recent) news items.</p>
                 </div>
 

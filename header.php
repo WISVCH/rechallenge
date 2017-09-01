@@ -83,21 +83,15 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
 
         </div>
 
-
         <?php
-
         // Load page title template part. Many corner cases (unfortunately), concerning the page children.
-
         if (is_front_page()) {
-
             get_template_part("parts/header/page-title", "front");
         } else {
 
             global $post;
 
-            /*
-             * Load data for page title and subpage menu.
-             */
+            // Prepare data for page title and subpage menu.
             if (is_home() || is_singular('post')) { // News archive
 
                 $page = get_post(get_option("page_for_posts"));
@@ -114,7 +108,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                     'child_of' => $post->post_parent !== 0 ? $post->post_parent : $post->ID,
                     'sort_column' => 'menu_order,post_title',
                 ]);
-            } elseif (is_post_type_archive() || is_singular('board') || is_singular('committee') || is_singular('company') || is_singular('honorary_member') || is_singular('job_opening')) { // Custom post type archive
+            } elseif (is_post_type_archive() || is_singular(['board', 'committee', 'company', 'honorary_member', 'job_opening'])) { // Custom post types
 
                 // Get aux page ID
                 $id = rechallenge_get_aux_page_id();

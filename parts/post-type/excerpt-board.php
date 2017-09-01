@@ -2,7 +2,7 @@
 $meta = get_post_custom(get_the_ID());
 $board_year = ! isset($meta['_board_year'][0]) ? '' : $meta['_board_year'][0];
 ?>
-<article class="excerpt-board">
+<article class="excerpt-blockgrid">
     <?php
     if (has_post_thumbnail()) {
         ?>

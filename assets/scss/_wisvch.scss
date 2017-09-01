@@ -763,7 +763,11 @@ $titlebar-height: 55px;
 
       // Add separator
       & + li:before {
-        content: " | ";
+        content: "\00a0\00a0";
+        @include breakpoint(medium) {
+          content: " | ";
+        }
+
         font: $global-weight-bold 14px / 1.2 $header-font-family;
         color: $white;
         vertical-align: text-top;
@@ -1466,16 +1470,24 @@ form.edit-profile-form {
 }
 
 /* **********
-7.1 CPT Board
+7. Custom Post Types
 ********** */
-.excerpt-board {
+.excerpt-blockgrid {
 
   .thumbnail {
+    width: 100%;
+    text-align: center;
     margin-bottom: 1rem;
   }
 
   h2, p {
     text-align: center;
+  }
+
+  @include breakpoint(medium) {
+    h2 {
+      font-size: 1.25rem;
+    }
   }
 
 }

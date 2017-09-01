@@ -4,7 +4,7 @@
 		<div class="icon-cell">
 			<a href="<?php the_permalink(); ?>">
 				<?php
-				$thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url() : get_stylesheet_directory_uri() . '/assets/images/placeholder.png';
+				$thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url() : RECHALLENGE_URI . '/assets/images/placeholder.png';
 				?>
 				<img class="thumbnail" src="<?php echo $thumb_url; ?>" alt="">
 			</a>
