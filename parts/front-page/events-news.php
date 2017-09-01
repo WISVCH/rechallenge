@@ -25,9 +25,9 @@
                         'meta_query' => [
                             'event_clause' => [
                                 'key' => '_event_end_date',
-                                'type' => 'DATE',
+                                'type' => 'DATETIME',
                                 'value' => date('Y-m-d H:i'),
-                                'compare' => '>',
+                                'compare' => '>=',
                             ],
                         ],
                         'orderby' => 'event_clause',

@@ -36,6 +36,8 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    top: 1px;
+    position: relative;
 }
 
 .ch-facebook:before {
@@ -223,5 +225,5 @@
 }
 
 .ch-search:before {
-  content: "\55";
+    content: "\55";
 }

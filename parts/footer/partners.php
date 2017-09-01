@@ -39,11 +39,15 @@ if ($partners->have_posts()) {
                         } else {
                             the_title();
                         }
-                        ?>
-                        <span class="partner-excerpt">
+
+                        $excerpt = get_the_excerpt();
+                        if (! empty($excerpt)) {
+                            ?>
+                            <span class="partner-excerpt">
                             <?php echo get_the_excerpt(); ?><br>
                             <span class="button alt" href="<?php echo esc_url($link_url); ?>"><?php echo $link_text; ?></span>
                         </span>
+                        <?php } ?>
                     </a>
                 </div>
             <?php } ?>

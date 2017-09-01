@@ -47,12 +47,8 @@ h1 {
 }
 
 h3 {
-  font-family: $body-font-family;
   font-weight: $global-weight-bold;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  margin-top: $header-margin-bottom;
-  //color: $secondary-color;
+  margin: $header-margin-bottom 0 0;
 }
 
 // Create h.small classes (small heading size on medium up displays)
@@ -302,21 +298,21 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
   }
 
   .wisv-panel-heading {
+
     background: $primary-color;
-
     padding: 0 1rem;
-
-    height: 4rem;
+    height: 3rem;
 
     text-transform: uppercase;
     font-family: $header-font-family;
-    font-size: rem-calc(24);
+    font-size: rem-calc(20);
     font-weight: $global-weight-bold;
 
     h1 {
+      font-size: rem-calc(20);
       color: $white;
       margin: 0;
-      line-height: 4rem;
+      line-height: 3rem;
       overflow: hidden;
     }
 
@@ -329,12 +325,29 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
 
     small {
       float: right;
-      line-height: 4rem;
+      line-height: 3rem;
+      font-size: rem-calc(14);
     }
 
     i[class^="ch-"]:before,
     i[class*=" ch-"]:before {
       padding-left: .25em;
+    }
+
+    // Make headings bigger on larger screens
+    @include breakpoint(medium) {
+      height: 4rem;
+      font-size: rem-calc(24);
+
+      h1 {
+        font-size: rem-calc(24);
+        line-height: 4rem;
+      }
+
+      small {
+        line-height: 4rem;
+        font-size: $small-font-size;
+      }
     }
   }
 
@@ -1487,6 +1500,53 @@ form.edit-profile-form {
   @include breakpoint(medium) {
     h2 {
       font-size: 1.25rem;
+    }
+  }
+
+}
+
+/* **********
+7.2 CPT Board
+********** */
+
+.board-wrapper {
+
+  .wp-post-image {
+    display: block;
+    width: 100%;
+    max-width: map-get($breakpoints, medium);
+    margin: 0 auto 2rem;
+  }
+
+  h1, p {
+    text-align: center;
+  }
+
+  table {
+    border: $table-border;
+
+    thead {
+      td {
+        text-align: center;
+        color: $white;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-family: $header-font-family;
+        line-height: 1;
+      }
+    }
+
+    tbody {
+      td {
+        width: 50%;
+        font-size: rem-calc(15);
+
+        &:first-child {
+          text-align: right;
+        }
+      }
     }
   }
 
