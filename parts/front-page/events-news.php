@@ -10,7 +10,7 @@
                     <h1 class="small">Calendar
                         <small>
                             <a href="<?php echo site_url('/activities') ?>">
-                                Overview <i class="fa ch-arrow-right"></i>
+                                More <i class="fa ch-arrow-right"></i>
                             </a>
                         </small>
                     </h1>
@@ -23,14 +23,19 @@
                         'post_type' => 'event',
                         'posts_per_page' => 5,
                         'meta_query' => [
-                            'event_clause' => [
+                            'event_selection' => [
                                 'key' => '_event_end_date',
                                 'type' => 'DATETIME',
                                 'value' => date('Y-m-d H:i'),
                                 'compare' => '>=',
                             ],
+                            'event_order' => [
+                                'key' => '_event_start_date',
+                                'type' => 'DATETIME',
+                            ],
                         ],
-                        'orderby' => 'event_clause',
+                        'orderby' => 'event_order',
+                        'order' => 'ASC',
                     ]);
 
                     if ($events->have_posts()) {

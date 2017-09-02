@@ -11,11 +11,15 @@
             'post_type' => 'event',
             'posts_per_page' => 5,
             'meta_query' => [
-                'event_clause' => [
+                'event_selection' => [
                     'key' => '_event_end_date',
                     'type' => 'DATETIME',
                     'value' => date('Y-m-d H:i'),
-                    'compare' => '>',
+                    'compare' => '>=',
+                ],
+                'event_order' => [
+                    'key' => '_event_start_date',
+                    'type' => 'DATETIME',
                 ],
             ],
             'tax_query' => [
@@ -25,35 +29,27 @@
                     'terms' => 'career',
                 ],
             ],
-            'orderby' => 'event_clause',
+            'orderby' => 'event_order',
         ]);
 
-        if ($events->have_posts()) {
+        if ($events->have_posts()) { ?>
 
-            ?>
             <ul>
                 <?php
-
                 while ($events->have_posts()) {
-                    $events->the_post();
-                    ?>
-                    <li class="row event">
-                        <?php get_template_part('parts/post-type/excerpt', 'event'); ?></li>
+                    $events->the_post(); ?>
+                    <li class="row event"><?php get_template_part('parts/post-type/excerpt', 'event'); ?></li>
                     <?php
                 }
-
                 wp_reset_postdata();
-
                 ?>
             </ul>
-            <?php
-        } else {
-            ?>
+
+        <?php } else { ?>
+
             <p>There are no career events planned in the near future.</p>
-            <?php
-        }
 
-        ?>
+        <?php } ?>
+
     </div>
-
 </section>

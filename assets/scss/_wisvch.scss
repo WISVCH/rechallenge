@@ -375,7 +375,8 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
 
   .icon-cell {
     display: table-cell;
-    width: 5rem; // sensible default
+    width: 5rem;
+    min-width: 5rem;
   }
 
   .text-cell {
@@ -1168,7 +1169,7 @@ ul.share {
     font-size: 1rem;
     text-transform: none;
     margin: 0 0 .2rem;
-    word-break: break-all;
+    word-wrap: break-word;
   }
 
   p {
@@ -1367,6 +1368,16 @@ ul.news {
   }
 
   .gallery-item-wrapper {
+
+    .image-wrapper {
+      display: block;
+      width: 100%;
+      padding-top: 56.25%; // 16:9
+
+      background-position: center;
+      background-size: cover;
+    }
+
     &:hover, &:focus {
       .caption {
         background: $alert-color;
@@ -1580,6 +1591,7 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     position: relative;
     display: block;
     height: $partner-height;
+    line-height: $partner-inner-height;
 
     margin: 0 0 1rem;
     padding: $partner-padding-vertical 0;
@@ -1589,9 +1601,24 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     border: $partner-border-size solid #d9dee5;
     transition: border-color .3s;
 
+    // Style text as fallback when no image is available
+    font-family: $header-font-family;
+    font-weight: $global-weight-bold;
+    color: $primary-color;
+    font-size: rem-calc(13);
+    overflow: hidden;
+    letter-spacing: -1px;
+
+    @include breakpoint(medium) {
+      font-size: rem-calc(18);
+      letter-spacing: 0;
+    }
+
     img {
       width: auto;
       max-height: $partner-inner-height;
+      display: block;
+      margin: 0 auto;
     }
 
     &:hover {

@@ -21,7 +21,7 @@
                 var el = $("[data-wisvch-gallery]");
                 el.removeClass("loading").find(".loading").remove();
                 $.each(data, function (k, v) {
-                    el.append('<article class="column"><a target="new" class="gallery-item-wrapper" href="' + v.url + '"><img src="' + v.cover + '"><div class="caption"><div class="align-middle"><h1 class="small">' + v.title + '</h1></div></div></a></article>');
+                    el.append('<article class="column"><a target="new" class="gallery-item-wrapper" href="' + v.url + '"><div class="image-wrapper" style="background-image:url(' + v.cover + ')"></div><div class="caption"><div class="align-middle"><h1 class="small">' + v.title + '</h1></div></div></a></article>');
                 });
             });
         });

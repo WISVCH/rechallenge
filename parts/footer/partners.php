@@ -20,11 +20,12 @@ if ($partners->have_posts()) {
                     <?php
                     $link_type = get_post_meta(get_the_ID(), "_link_to", true);
                     switch ($link_type) {
+                        default:
                         case "post":
                             $link_text = 'View profile <i class="fa ch-arrow-right"></i>';
                             $link_url = get_the_permalink();
                             break;
-                        default:
+                        case "url":
                             $link_text = 'Visit website <i class="fa ch-arrow-right"></i>';
                             $link_url = get_post_meta(get_the_ID(), "_company_website", true);
                             break;
