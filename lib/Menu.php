@@ -62,11 +62,11 @@ class Menu
     }
 
     /**
-     * Add active menu item classes when WordPress doesn't.
+     * Add active menu item class when WordPress doesn't.
      *
-     * @param $classes Menu item classes.
+     * @param $atts Link attributes.
      * @param $item Menu item object.
-     * @return mixed Modified menu item classes.
+     * @return mixed Modified link attributes.
      */
     static function fix_active_menu_items($atts, $item)
     {
