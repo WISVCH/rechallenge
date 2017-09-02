@@ -227,3 +227,23 @@
 .ch-search:before {
     content: "\55";
 }
+
+.ch-file-pdf-o:before {
+    content: "\56";
+}
+
+.ch-file-excel-o:before {
+    content: "\57";
+}
+
+.ch-file-o:before {
+    content: "\58";
+}
+
+.ch-file-archive-o:before {
+    content: "\59";
+}
+
+.ch-file-word-o:before {
+    content: "\5a";
+}

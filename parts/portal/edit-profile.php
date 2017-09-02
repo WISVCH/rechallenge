@@ -38,20 +38,20 @@ use WISVCH\Portal\Shortcodes\Profile;
 
                 <!-- Full Name -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_name" class="middle">Full Name</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" id="user_name" name="user_name" value="<?php Profile::ch('name', $ch_connect); ?>" placeholder="Full Name">
                     </div>
                 </div>
 
                 <!-- Given Name -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_given_name" class="middle">Given name</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" name="user_given_name" id="user_given_name" value="<?php Profile::ch('given_name', $ch_connect); ?>"
                                placeholder="Given Name">
                     </div>
@@ -59,10 +59,10 @@ use WISVCH\Portal\Shortcodes\Profile;
 
                 <!-- Gender -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="male">Gender</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <label for="male" class="inline"><input type="radio" name="user_gender" id="male" value="male"
                                                                 required <?php checked(Profile::ch('gender', $ch_connect, false), 'male'); ?>> Male</label>
                         <label for="female" class="inline"><input type="radio" name="user_gender" id="female"
@@ -72,31 +72,31 @@ use WISVCH\Portal\Shortcodes\Profile;
 
                 <!-- Birthdate -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_birthdate" class="middle">Birthdate</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" name="user_birthdate" id="user_birthdate"
                                value="<?php echo date_i18n("d - m - Y", strtotime(Profile::ch('birthdate', $ch_connect, false))); ?>" placeholder="DD - MM - YYYY">
                     </div>
                 </div>
 
-                <!-- Birthdate -->
+                <!-- Email Address -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_email" class="middle">Email Address</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" name="user_email" id="user_email" value="<?php Profile::ch('email', $ch_connect); ?>" placeholder="Email Address">
                     </div>
                 </div>
 
                 <!-- Phone Number -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_phone" class="middle">Phone Number</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" name="user_phone" id="user_phone" value="<?php Profile::ch('phone_number', $ch_connect); ?>"
                                placeholder="Phone Number">
                     </div>
@@ -104,10 +104,10 @@ use WISVCH\Portal\Shortcodes\Profile;
 
                 <!-- Address -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_street_address" class="middle">Address</label>
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input required type="text" name="user_street_address" id="user_street_address"
                                value="<?php Profile::ch(['address', 'street_address'], $ch_connect); ?>" placeholder="Street Name + Number">
                     </div>
@@ -115,35 +115,43 @@ use WISVCH\Portal\Shortcodes\Profile;
 
                 <!-- ZIP, City -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns show-for-medium">
+                    <div class="small-12 medium-3 columns show-for-medium">
                         &nbsp;
                     </div>
-                    <div class="small-4 medium-3 columns">
-                        <input required type="text" name="user_zip" id="user_zip" value="<?php Profile::ch(['address', 'postal_code'], $ch_connect); ?>"
-                               placeholder="Postal Code">
-                    </div>
-                    <div class="small-5 medium-6 columns">
-                        <input required type="text" name="user_city" id="user_city" value="<?php Profile::ch(['address', 'locality'], $ch_connect); ?>"
-                               placeholder="City">
-                    </div>
-                    <div class="small-3 medium-1 columns">
-                        <input required type="text" name="user_country" id="user_country" maxlength="2" value="<?php Profile::ch(['address', 'country'], $ch_connect); ?>"
-                               placeholder="Country">
+                    <div class="small-12 medium-9 columns">
+                        <div class="row">
+                            <div class="small-5 medium-3 columns">
+                                <input required type="text" name="user_zip" id="user_zip" value="<?php Profile::ch(['address', 'postal_code'], $ch_connect); ?>"
+                                       placeholder="Postal Code">
+                            </div>
+                            <div class="small-5 medium-7 columns">
+                                <input required type="text" name="user_city" id="user_city" value="<?php Profile::ch(['address', 'locality'], $ch_connect); ?>"
+                                       placeholder="City">
+                            </div>
+                            <div class="small-2 medium-2 columns">
+                                <input required type="text" name="user_country" id="user_country" maxlength="2" value="<?php Profile::ch(['address', 'country'], $ch_connect); ?>"
+                                       placeholder="Country">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Student Number, NetID -->
                 <div class="row">
-                    <div class="small-12 medium-2 columns">
+                    <div class="small-12 medium-3 columns">
                         <label for="user_studentno" class="middle">Student details</label>
                     </div>
-                    <div class="small-12 medium-5 columns">
-                        <input required type="text" name="user_studentno" id="user_studentno" value="<?php Profile::ch('student_number', $ch_connect); ?>"
-                               placeholder="Student Number">
-                    </div>
-                    <div class="small-12 medium-5 columns">
-                        <input required type="text" name="user_netid" id="user_netid" value="<?php Profile::ch('netid', $ch_connect); ?>"
-                               placeholder="NetID">
+                    <div class="small-12 medium-9 columns">
+                        <div class="row">
+                            <div class="small-6 columns">
+                                <input required type="text" name="user_studentno" id="user_studentno" value="<?php Profile::ch('student_number', $ch_connect); ?>"
+                                       placeholder="Student Number">
+                            </div>
+                            <div class="small-6 columns">
+                                <input required type="text" name="user_netid" id="user_netid" value="<?php Profile::ch('netid', $ch_connect); ?>"
+                                       placeholder="NetID">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -151,7 +159,7 @@ use WISVCH\Portal\Shortcodes\Profile;
                     <div class="small-12 medium-2 columns show-for-medium">
                         &nbsp;
                     </div>
-                    <div class="small-12 medium-10 columns">
+                    <div class="small-12 medium-9 columns">
                         <input type="submit" class="button small" name="user_editprofile_submit" value="Submit changes">
                     </div>
                 </div>

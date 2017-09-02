@@ -125,7 +125,7 @@
         text-align: left;
 
         &.fc-today {
-          background: $secondary-color;
+          background: $secondary-color !important;
           color: $white;
         }
 

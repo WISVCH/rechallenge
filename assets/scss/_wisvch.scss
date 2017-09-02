@@ -410,10 +410,6 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
     padding-left: map-get($grid-column-gutter, medium) / 2;
   }
 
-  @include breakpoint(xxlarge) {
-    padding-left: 0;
-  }
-
   .logo {
 
     @include breakpoint(xlarge) {
@@ -421,10 +417,6 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
       img {
         height: 110px;
       }
-    }
-
-    @include breakpoint(xxlarge) {
-      //margin-left: -85px; // 100px for left side - 15px global margin
     }
 
   }
@@ -545,6 +537,7 @@ $topbar-height: rem-calc(90);
 
       @include breakpoint(medium down) {
 
+        // Menu items
         a, .login-button {
           background: $primary-color;
           color: $white;
@@ -566,13 +559,10 @@ $topbar-height: rem-calc(90);
       // Create more breathing room for the menu
       @include breakpoint($topbar-unstack-breakpoint only) {
 
-        padding-left: .4rem;
-        padding-right: .4rem;
-
         a {
           font-size: rem-calc(15);
-          padding-left: .75rem;
-          padding-right: .75rem;
+          padding-left: .2rem;
+          padding-right: .2rem;
 
           &.login-button {
             font-size: rem-calc(15);
@@ -585,10 +575,6 @@ $topbar-height: rem-calc(90);
           }
         }
 
-        // Remove left padding from leftmost menu item
-        &:nth-child(2) {
-          padding-left: 0;
-        }
       }
 
     }
@@ -1523,8 +1509,6 @@ form.edit-profile-form {
   }
 
   table {
-    border: $table-border;
-
     thead {
       td {
         text-align: center;
@@ -1549,7 +1533,6 @@ form.edit-profile-form {
       }
     }
   }
-
 }
 
 /* **********
@@ -1766,6 +1749,61 @@ X.3 Footer Bottom
     color: $white;
     font-size: rem-calc(14);
     font-family: $header-font-family;
+  }
+}
+
+/* **********
+X. Shortcodes
+********** */
+.attachment-card {
+
+  max-width: map-get($breakpoints, medium);
+  width: 100%;
+
+  margin: $paragraph-margin-bottom 0;
+
+  display: flex;
+  flex-direction: row;
+
+  background: lighten($light-gray, 5%);
+  border: 2px solid $light-gray;
+  color: $dark-gray;
+
+  transition: .2s border-color;
+
+  &:before {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+
+    //content: "\6b";
+    font-family: wisvch;
+    font-size: 2.25rem;
+    text-align: center;
+    color: $medium-gray;
+
+    width: 5rem;
+
+    line-height: 1;
+
+    transition: .2s color;
+  }
+
+  &:hover {
+    border-color: $secondary-color;
+    color: $medium-gray;
+    &:before {
+      color: $secondary-color;
+    }
+  }
+
+  article {
+    width: 100%;
+    padding: .5rem 1rem .5rem 0;
+  }
+
+  h6 {
+    margin: 0;
   }
 }
 
