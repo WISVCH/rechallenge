@@ -377,6 +377,14 @@ $wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-bord
     display: table-cell;
     width: 5rem;
     min-width: 5rem;
+
+    a {
+      display: block;
+      width: 100%;
+      padding-top: 100%;
+      background-position: center;
+      background-size: cover;
+    }
   }
 
   .text-cell {
@@ -1266,6 +1274,7 @@ ul.share {
 
   img {
     margin-bottom: 1rem;
+    width: 100%;
   }
 
   h1 {
@@ -1282,6 +1291,7 @@ ul.share {
   p {
     margin-top: 1rem;
     padding: 0;
+    text-align: justify;
   }
 
   a {

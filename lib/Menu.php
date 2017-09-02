@@ -77,8 +77,20 @@ class Menu
             'career' => '24',
         ];
 
-        $association_clause = $item->object_id === $page_ids['association'] && is_post_type_archive(['board', 'committee', 'honorary_member']);
-        $career_clause = $item->object_id === $page_ids['career'] && is_post_type_archive(['company', 'job_opening']);
+        $cpt = [
+            'association' => [
+                'board',
+                'committee',
+                'honorary_member',
+            ],
+            'career' => [
+                'company',
+                'job_opening',
+            ],
+        ];
+
+        $association_clause = $item->object_id === $page_ids['association'] && (is_post_type_archive($cpt['association']) || is_singular($cpt['association']));
+        $career_clause = $item->object_id === $page_ids['career'] && (is_post_type_archive($cpt['career']) || is_singular($cpt['career']));
 
         if ($association_clause || $career_clause) {
             $atts['class'] = empty($atts['class']) ? 'active' : $atts['class'].' active';
