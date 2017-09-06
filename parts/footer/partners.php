@@ -3,10 +3,11 @@ $partners = new WP_Query([
     'post_type' => 'company',
     'orderby' => 'rand',
     'posts_per_page' => 10,
+    'meta_key' => '_company_partnerlink',
+    'meta_compare' => 'EXISTS',
 ]);
 
-if ($partners->have_posts()) {
-    ?>
+if ($partners->have_posts()) { ?>
 
     <!-- Partners -->
     <div class="row column">
@@ -14,8 +15,8 @@ if ($partners->have_posts()) {
         <div class="row partners small-up-2 medium-up-4 large-up-5">
             <?php
             while ($partners->have_posts()) {
-                $partners->the_post();
-                ?>
+                $partners->the_post(); ?>
+
                 <div class="column">
                     <?php
                     $link_type = get_post_meta(get_the_ID(), "_link_to", true);
@@ -23,7 +24,7 @@ if ($partners->have_posts()) {
                         default:
                         case "post":
                             $link_text = 'View profile <i class="fa ch-arrow-right"></i>';
-                            $link_url = get_the_permalink();
+                            $link_url = get_permalink();
                             break;
                         case "url":
                             $link_text = 'Visit website <i class="fa ch-arrow-right"></i>';
@@ -36,21 +37,22 @@ if ($partners->have_posts()) {
                         if (has_post_thumbnail()) {
                             ?>
                             <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>">
+                        <?php } else { ?>
+                            <span class="fallback-title"><?php the_title(); ?></span>
                             <?php
-                        } else {
-                            the_title();
                         }
 
                         $excerpt = get_the_excerpt();
                         if (! empty($excerpt)) {
                             ?>
                             <span class="partner-excerpt">
-                            <?php echo get_the_excerpt(); ?><br>
-                            <span class="button alt" href="<?php echo esc_url($link_url); ?>"><?php echo $link_text; ?></span>
-                        </span>
+                                <?=$excerpt?><br>
+                                <span class="button alt" href="<?php echo esc_url($link_url); ?>"><?php echo $link_text; ?></span>
+                            </span>
                         <?php } ?>
                     </a>
                 </div>
+
             <?php } ?>
         </div>
     </div>

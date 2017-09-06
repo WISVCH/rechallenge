@@ -48,7 +48,7 @@ get_template_part("parts/navigation/breadcrumb");
                                 wp_reset_postdata();
                             } else {
                                 ?>
-                                <div class="column">
+                                <div class="row column">
                                     <h3>No content available</h3>
                                     <p>There are no job openings available at the moment.</p>
                                 </div>

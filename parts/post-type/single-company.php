@@ -1,7 +1,6 @@
 <article>
 
     <div class="row">
-
         <div class="column medium-5 large-4">
 
             <div class="wisv-panel">
@@ -69,7 +68,9 @@
 
         <div class="column medium-7 large-8">
 
-            <?php the_content(); ?>
+            <div class="row column column-block">
+                <?php the_content(); ?>
+            </div>
 
             <?php
             // Get job openings for company
@@ -82,34 +83,34 @@
                 'meta_value' => get_the_ID(),
             ]);
 
-            if ($company_openings->have_posts()) {
-                ?>
-                <div class="wisv-panel">
+            if ($company_openings->have_posts()) { ?>
 
-                    <header class="wisv-panel-heading">
-                        <h1 class="small">
-                            Related Job Openings
-                            <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View all <i class="fa ch-arrow-right"></i></a></small>
-                        </h1>
-                    </header>
+                <div class="row column column-block">
+                    <div class="wisv-panel">
 
-                    <div class="wisv-panel-content">
-                        <?php
-                        while ($company_openings->have_posts()) {
-                            $company_openings->the_post();
-                            get_template_part('parts/post-type/excerpt', 'job-opening');
-                        }
-                        wp_reset_postdata();
-                        ?>
+                        <header class="wisv-panel-heading">
+                            <h1 class="small">
+                                Related Job Openings
+                                <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View all <i class="fa ch-arrow-right"></i></a></small>
+                            </h1>
+                        </header>
+
+                        <div class="wisv-panel-content">
+                            <?php
+                            while ($company_openings->have_posts()) {
+                                $company_openings->the_post();
+                                get_template_part('parts/post-type/excerpt', 'job-opening');
+                            }
+                            wp_reset_postdata();
+                            ?>
+                        </div>
+
                     </div>
-
                 </div>
-                <?php
-            }
-            ?>
+
+            <?php } ?>
 
         </div>
-
     </div>
 
 </article>

@@ -64,7 +64,7 @@ $location = ! isset($meta['_company_location'][0]) ? '' : $meta['_company_locati
                 }
             }
 
-            ?><span>Placed <?php echo human_time_diff(get_the_time('U')); ?> ago</span>
+            ?><span>Placed <?=human_time_diff(get_the_time('U'), current_time('timestamp'))?> ago</span>
         </footer>
     </div>
 

@@ -27,7 +27,7 @@
                 }
             }
             ?>
-            <time pubdate="pubdate"><?php the_date("F jS, Y"); ?></time>
+            <time pubdate="pubdate"><?php the_time("F jS, Y"); ?></time>
             <?php
             if ($term) {
                 echo ' | '.esc_html($term);

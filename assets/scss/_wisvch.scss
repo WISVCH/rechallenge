@@ -815,20 +815,6 @@ main.shrink {
     }
   }
 
-  @include breakpoint(xlarge) {
-    & > .row {
-      padding-left: rem-calc(184); // based on logo
-      padding-right: rem-calc(184);
-    }
-  }
-
-  @include breakpoint(xxlarge) {
-    & > .row {
-      padding-left: rem-calc(169); // based on logo
-      padding-right: rem-calc(169);
-    }
-  }
-
 }
 
 ul.share {
@@ -867,6 +853,7 @@ ul.share {
 /* Company page */
 .wisv-panel .wisv-panel-content > ul.company-details {
   margin: 0 0 1rem 2rem;
+  word-wrap: break-word;
 
   a {
     @include inverted-anchor();
@@ -883,8 +870,12 @@ ul.share {
 
 .company-logo {
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 0 2rem;
+  margin: 0 0 1rem;
+
+  @include breakpoint(medium) {
+    padding: 0 2rem;
+    margin: 1rem 0 2rem;
+  }
 
   img {
     width: auto;
@@ -1601,7 +1592,6 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     position: relative;
     display: block;
     height: $partner-height;
-    line-height: $partner-inner-height;
 
     margin: 0 0 1rem;
     padding: $partner-padding-vertical 0;
@@ -1611,24 +1601,27 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     border: $partner-border-size solid #d9dee5;
     transition: border-color .3s;
 
-    // Style text as fallback when no image is available
-    font-family: $header-font-family;
-    font-weight: $global-weight-bold;
-    color: $primary-color;
-    font-size: rem-calc(13);
-    overflow: hidden;
-    letter-spacing: -1px;
-
-    @include breakpoint(medium) {
-      font-size: rem-calc(18);
-      letter-spacing: 0;
-    }
-
     img {
       width: auto;
       max-height: $partner-inner-height;
       display: block;
       margin: 0 auto;
+    }
+
+    .fallback-title {
+      // Style text as fallback when no image is available
+      font-family: $header-font-family;
+      font-weight: $global-weight-bold;
+      color: $primary-color;
+      font-size: rem-calc(13);
+      letter-spacing: -1px;
+      line-height: $partner-inner-height;
+
+      @include breakpoint(medium) {
+        font-size: rem-calc(18);
+        letter-spacing: 0;
+      }
+
     }
 
     &:hover {
@@ -1661,6 +1654,7 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     text-align: left;
     color: $black;
     padding: .5rem 1rem;
+    line-height: $global-lineheight;
 
     .button {
       font-size: $global-font-size;

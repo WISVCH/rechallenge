@@ -13,11 +13,9 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
 <article>
 
     <div class="row">
-
-        <div class="column medium-5 large-4">
+        <div class="column column-block medium-5 large-4">
 
             <div class="wisv-panel">
-
                 <div class="wisv-panel-content">
 
                     <?php
@@ -29,7 +27,6 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
                     ?>
 
                 </div>
-
             </div>
 
             <div class="wisv-panel">
@@ -43,9 +40,9 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
                     if (has_post_thumbnail($company_id)) {
                         ?>
                         <div class="company-logo">
-                            <?php
-                            echo get_the_post_thumbnail($company_id, "featured-image");
-                            ?>
+                            <a href="<?=get_permalink($company_id);?>">
+                                <?=get_the_post_thumbnail($company_id, "featured-image");?>
+                            </a>
                         </div>
                     <?php } ?>
 
@@ -81,11 +78,12 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
 
         <div class="column medium-7 large-8">
 
-            <?php
-            the_title('<h1>', '</h1>');
-
-            the_content();
-            ?>
+            <div class="row column column-block">
+                <?php
+                the_title('<h1>', '</h1>');
+                the_content();
+                ?>
+            </div>
 
             <?php
             // Get more job openings for company
@@ -99,34 +97,34 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
                 'post__not_in' => [get_the_ID()],
             ]);
 
-            if ($company_openings->have_posts()) {
-                ?>
-                <div class="wisv-panel">
+            if ($company_openings->have_posts()) { ?>
 
-                    <header class="wisv-panel-heading">
-                        <h1 class="small">
-                            Related Job Openings
-                            <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View all <i class="fa ch-arrow-right"></i></a></small>
-                        </h1>
-                    </header>
+                <div class="row column column-block">
+                    <div class="wisv-panel">
 
-                    <div class="wisv-panel-content">
-                        <?php
-                        while ($company_openings->have_posts()) {
-                            $company_openings->the_post();
-                            get_template_part('parts/post-type/excerpt', 'job-opening');
-                        }
-                        wp_reset_postdata();
-                        ?>
+                        <header class="wisv-panel-heading">
+                            <h1 class="small">
+                                Related Job Openings
+                                <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View all <i class="fa ch-arrow-right"></i></a></small>
+                            </h1>
+                        </header>
+
+                        <div class="wisv-panel-content">
+                            <?php
+                            while ($company_openings->have_posts()) {
+                                $company_openings->the_post();
+                                get_template_part('parts/post-type/excerpt', 'job-opening');
+                            }
+                            wp_reset_postdata();
+                            ?>
+                        </div>
+
                     </div>
-
                 </div>
-                <?php
-            }
-            ?>
+
+            <?php } ?>
 
         </div>
-
     </div>
 
 </article>
