@@ -29,15 +29,14 @@ class Scripts
         // Register scripts
         wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
 
-        // Events scripts
-        wp_register_script('events-moment', $stylesheet_uri.'/assets/components/moment/min/moment.min.js', [], null, true);
-        wp_register_script('events-fullcalendar', $stylesheet_uri.'/assets/components/fullcalendar/dist/fullcalendar.min.js', ['jquery', 'events-moment'], null, true);
+        // Calendar scripts
+        wp_register_script('events-calendar', $stylesheet_uri.'/assets/js/calendar.min.js', ['jquery'], null, true);
 
         // Load scripts
         wp_enqueue_script('rechallenge');
 
         if (is_page_template('template-event-calendar.php')) {
-            wp_enqueue_script('events-fullcalendar');
+            wp_enqueue_script('events-calendar');
         }
     }
 }

@@ -67,8 +67,18 @@ gulp.task('foundation-js', function () {
         .pipe(gulp.dest('./assets/js'))
 });
 
+// JSHint, concat, and minify calendar JavaScript
+gulp.task('calendar-js', function () {
+    return gulp.src([
+        './assets/components/moment/min/moment.min.js',
+        './assets/components/fullcalendar/dist/fullcalendar.min.js',
+    ])
+        .pipe(concat('calendar.min.js'))
+        .pipe(gulp.dest('./assets/js'))
+});
+
 // JSHint, concat, and minify JavaScript
-gulp.task('site-js', ['foundation-js'], function () {
+gulp.task('site-js', ['foundation-js', 'calendar-js'], function () {
     return gulp.src([
 
         // Grab your custom scripts

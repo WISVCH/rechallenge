@@ -23,7 +23,7 @@ $title = rechallenge_get_title();
         ?>
         <div class="row">
             <div class="column">
-                <h1><?php echo esc_html($title); ?>
+                <h1><?php echo esc_html($title); ?></h1>
             </div>
         </div>
         <?php
