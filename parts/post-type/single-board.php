@@ -11,16 +11,15 @@ $with_photo = has_post_thumbnail() ? 'has-photo' : false;
             <?php
             the_title('<h1>', '</h1>');
 
-            if (! empty($board_year)) {
-                ?>
+            if (! empty($board_year)) { ?>
                 <p class="byline"><?=esc_html($board_year);?></p>
-                <?php
-            }
-            ?>
+            <?php } ?>
         </div>
 
         <div class="large-5 column">
-            <?php the_post_thumbnail('full'); ?>
+            <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
+                <?php the_post_thumbnail('featured-image'); ?>
+            </a>
         </div>
 
         <div class="large-7 column">
