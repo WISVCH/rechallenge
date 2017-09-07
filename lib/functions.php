@@ -27,18 +27,18 @@ function rechallenge_get_title()
         $title = get_the_title(get_option("page_for_posts"));
     } elseif (is_singular('post')) {
         $title = "News";
-    } elseif (is_post_type_archive("board")) {
+    } elseif (is_post_type_archive("board") || is_singular('board')) {
         $title = "Current and previous boards";
-    } elseif (is_post_type_archive("committee")) {
+    } elseif (is_post_type_archive("committee") || is_singular('committee')) {
         $title = "Committees";
-    } elseif (is_post_type_archive("company")) {
+    } elseif (is_post_type_archive("company") || is_singular('company')) {
         $title = "Companies";
-    } elseif (is_post_type_archive("honorary_member")) {
+    } elseif (is_post_type_archive("honorary_member") || is_singular('honorary_member')) {
         $title = "Honorary Members";
-    } elseif (is_post_type_archive("job_opening")) {
+    } elseif (is_post_type_archive("job_opening") || is_singular('job_opening')) {
         $title = "Job Openings";
-    } elseif (is_post_type_archive("event")) {
-        $title = "Events";
+    } elseif (is_post_type_archive("event") || is_singular('event')) {
+        $title = "Activities";
     } elseif (is_archive()) {
         $title = get_the_archive_title();
     } elseif (is_404()) {

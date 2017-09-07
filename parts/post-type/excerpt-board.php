@@ -1,25 +1,19 @@
 <?php
 $meta = get_post_custom(get_the_ID());
 $board_year = ! isset($meta['_board_year'][0]) ? '' : $meta['_board_year'][0];
+$thumb = get_the_post_thumbnail_url(get_the_ID(), "featured-image");
 ?>
 <article class="excerpt-blockgrid">
-    <?php
-    if (has_post_thumbnail()) {
-        ?>
-        <a class="thumbnail" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-            <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), "featured-image")); ?>" alt="<?php the_title_attribute(); ?>">
-        </a>
-        <?php
-    }
-    ?>
+    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+        <?php if ($thumb) { ?>
+            <div class="thumbnail" style="background-image:url(<?=esc_url($thumb)?>)"></div>
+        <?php } else { ?>
+            <div class="thumbnail placeholder" style="background-image:url(<?=RECHALLENGE_URI.'/assets/images/placeholder.png'?>)"></div>
+        <?php }
+        the_title('<h2>', '</h2>');
 
-    <h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-
-    <?php
-    if (! empty($board_year)) {
-        ?>
-        <p class="byline"><?=esc_html($board_year);?></p>
-        <?php
-    }
-    ?>
+        if (! empty($board_year)) { ?>
+            <p class="byline"><?=esc_html($board_year);?></p>
+        <?php } ?>
+    </a>
 </article>

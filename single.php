@@ -3,7 +3,7 @@ get_header();
 ?>
 
     <!-- Main -->
-    <main <?php echo is_singular(['board', 'company', 'event', 'job_opening']) ? '' : 'class="shrink"'; ?>>
+    <main <?php echo is_singular(['board', 'committee', 'company', 'event', 'job_opening']) ? '' : 'class="shrink"'; ?>>
 
         <?php
         get_template_part("parts/navigation/breadcrumb");

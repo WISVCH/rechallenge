@@ -119,6 +119,21 @@ blockquote {
   }
 }
 
+table {
+  thead {
+    td {
+      text-align: center;
+      color: $white;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-family: $header-font-family;
+      line-height: 1;
+    }
+  }
+}
+
 // Change text selection color
 ::selection {
   background: $secondary-color;
@@ -1488,7 +1503,15 @@ form.edit-profile-form {
   .thumbnail {
     width: 100%;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+
+    &.placeholder {
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
 
   h2, p {
@@ -1503,40 +1526,13 @@ form.edit-profile-form {
 
 }
 
-/* **********
-7.2 CPT Board
-********** */
-
-.board-wrapper {
-
-  .wp-post-image {
-    display: block;
-    width: 100%;
-    max-width: map-get($breakpoints, medium);
-    margin: 0 auto 2rem;
-  }
-
-  h1, p {
-    text-align: center;
-  }
+.roster-page {
 
   table {
-    thead {
-      td {
-        text-align: center;
-        color: $white;
-        padding-top: .5rem;
-        padding-bottom: .5rem;
-        font-size: 14px;
-        text-transform: uppercase;
-        font-family: $header-font-family;
-        line-height: 1;
-      }
-    }
+    table-layout: fixed;
 
     tbody {
       td {
-        width: 50%;
         font-size: rem-calc(15);
 
         &:first-child {
@@ -1545,15 +1541,52 @@ form.edit-profile-form {
       }
     }
   }
+
+  &.has-photo {
+
+    .wp-post-image {
+      display: block;
+      width: 100%;
+      max-width: map-get($breakpoints, medium);
+      margin: 0 auto 2rem;
+    }
+
+  }
+
+  @include breakpoint(large) {
+    table {
+      max-width: 59%;
+    }
+
+    &.has-photo table {
+      max-width: none;
+    }
+  }
+
 }
 
 /* **********
-7.2 CPT Honorary Members
+7.1 Board
+********** */
+
+.single-board .roster-page.has-photo {
+  h1, p {
+    text-align: center;
+  }
+}
+
+/* **********
+7.2 Commitees
+********** */
+
+/* **********
+7.3 Honorary Members
 ********** */
 .excerpt-honorary-member {
 
   .thumbnail {
     margin-bottom: 1rem;
+    padding-top: 120%;
   }
 
   img, .thumbnail {
