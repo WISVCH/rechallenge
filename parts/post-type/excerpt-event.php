@@ -28,12 +28,13 @@ $end = strtotime($meta['_event_end_date'][0]);
 
         <?php
         $categories = get_the_terms($eventID, 'event_category');
+        $has_categories = is_array($categories);
 
         // Only display byline if category and/or start time is available
-        if ($categories !== false || $start !== false) {
+        if ($has_categories || $start !== false) {
             ?>
             <footer class="byline">
-                <?php if ($categories !== false) { ?>
+                <?php if ($has_categories) { ?>
                     <span class="event-location">
                     <?php
 
