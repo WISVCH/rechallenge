@@ -910,8 +910,9 @@ ul.share {
   }
 
   .thumbnail {
-    padding: 1rem;
     margin: .25rem 0 0; // Adjacent text line-height compensation
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   h2 {
@@ -1498,21 +1499,31 @@ form.edit-profile-form {
 /* **********
 7. Custom Post Types
 ********** */
-.excerpt-blockgrid {
+.thumbnail.prop {
+  width: 100%;
+  text-align: center;
+  margin-bottom: .5rem;
+  padding: .5rem 1rem;
 
-  .thumbnail {
+  &.nopad {
+    padding: 0;
+  }
+
+  .thumb-image {
     width: 100%;
-    text-align: center;
-    margin-bottom: .5rem;
     padding-top: 62.5%;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
 
-    &.placeholder {
+    &.contain {
       background-size: contain;
       background-repeat: no-repeat;
     }
   }
+
+}
+
+.excerpt-blockgrid {
 
   h2, p {
     text-align: center;
@@ -1584,12 +1595,11 @@ form.edit-profile-form {
 ********** */
 .excerpt-honorary-member {
 
-  .thumbnail {
-    margin-bottom: 1rem;
+  .thumbnail.prop .thumb-image {
     padding-top: 120%;
   }
 
-  img, .thumbnail {
+  img {
     width: 100%;
   }
 

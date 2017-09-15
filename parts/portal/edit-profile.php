@@ -63,10 +63,10 @@ use WISVCH\Portal\Shortcodes\Profile;
                         <label for="male">Gender</label>
                     </div>
                     <div class="small-12 medium-9 columns">
-                        <label for="male" class="inline"><input type="radio" name="user_gender" id="male" value="male"
-                                                                required <?php checked(Profile::ch('gender', $ch_connect, false), 'male'); ?>> Male</label>
-                        <label for="female" class="inline"><input type="radio" name="user_gender" id="female"
-                                                                  value="female" <?php checked(Profile::ch('gender', $ch_connect, false), 'female'); ?>> Female</label>
+                        <label for="male" class="inline"><input type="radio" name="user_gender" id="male" value="male" disabled
+                                <?php checked(Profile::ch('gender', $ch_connect, false), 'male'); ?>> Male</label>
+                        <label for="female" class="inline"><input type="radio" name="user_gender" id="female" value="female" disabled
+                                <?php checked(Profile::ch('gender', $ch_connect, false), 'female'); ?>> Female</label>
                     </div>
                 </div>
 
