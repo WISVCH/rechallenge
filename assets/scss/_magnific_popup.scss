@@ -1,5 +1,4 @@
 /* Magnific Popup CSS */
-
 @import "settings";
 
 ////////////////////////
@@ -24,13 +23,11 @@
 //
 ////////////////////////
 
-
-
 ////////////////////////
 // 1. General styles
 ////////////////////////
 
-// Transluscent overlay
+// Translucent overlay
 .mfp-bg {
   top: 0;
   left: 0;
@@ -96,6 +93,7 @@
   text-align: left;
   z-index: $mfp-z-index-base + 5;
 }
+
 .mfp-inline-holder,
 .mfp-ajax-holder {
   .mfp-content {
@@ -108,19 +106,18 @@
 .mfp-ajax-cur {
   cursor: progress;
 }
+
 .mfp-zoom-out-cur {
   &, .mfp-image-holder .mfp-close {
-    cursor: -moz-zoom-out;
-    cursor: -webkit-zoom-out;
     cursor: zoom-out;
   }
 }
+
 .mfp-zoom {
   cursor: pointer;
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
   cursor: zoom-in;
 }
+
 .mfp-auto-cursor {
   .mfp-content {
     cursor: auto;
@@ -131,8 +128,6 @@
 .mfp-arrow,
 .mfp-preloader,
 .mfp-counter {
-  -webkit-user-select:none;
-  -moz-user-select: none;
   user-select: none;
 }
 
@@ -161,7 +156,6 @@
     display: none !important;
   }
 }
-
 
 ////////////////////////
 // 2. Appearance
@@ -217,11 +211,10 @@ button {
     touch-action: manipulation;
   }
   &::-moz-focus-inner {
-      padding: 0;
-      border: 0
+    padding: 0;
+    border: 0
   }
 }
-
 
 // Close icon
 .mfp-close {
@@ -231,7 +224,7 @@ button {
 
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2.5rem;
   text-decoration: none;
   text-align: center;
   opacity: $mfp-controls-opacity;
@@ -248,14 +241,16 @@ button {
   }
 
   &:active {
-    top: 1px;
+    top: 2.59rem;
   }
 }
+
 .mfp-close-btn-in {
   .mfp-close {
     color: $mfp-inner-close-icon-color;
   }
 }
+
 .mfp-image-holder,
 .mfp-iframe-holder {
   .mfp-close {
@@ -270,8 +265,8 @@ button {
 // "1 of X" counter
 .mfp-counter {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: .35rem;
+  right: .25rem;
   color: $mfp-controls-text-color;
   font-size: 12px;
   line-height: 18px;
@@ -289,7 +284,7 @@ button {
     padding: 0;
     width: 90px;
     height: 110px;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     &:active {
       margin-top: -54px;
     }
@@ -315,7 +310,7 @@ button {
 
       border-top-width: 13px;
       border-bottom-width: 13px;
-      top:8px;
+      top: 8px;
     }
 
     &:before {
@@ -350,8 +345,6 @@ button {
   }
 }
 
-
-
 // Iframe content type
 @if $mfp-include-iframe-type {
   .mfp-iframe-holder {
@@ -383,8 +376,6 @@ button {
     }
   }
 }
-
-
 
 // Image content type
 @if $mfp-include-image-type {
@@ -431,19 +422,31 @@ button {
     }
   }
   .mfp-bottom-bar {
-    margin-top: -$mfp-image-padding-bottom + 4;
+    margin-top: -$mfp-image-padding-bottom;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     cursor: auto;
   }
+
   .mfp-title {
-    text-align: left;
-    line-height: 18px;
+    text-align: center;
+    line-height: 1.4;
     color: $mfp-caption-title-color;
     word-wrap: break-word;
-    padding-right: 36px; // leave some space for counter at right side
+
+    font-family: $header-font-family;
+    font-size: rem-calc(14);
+
+    background: $primary-color;
+    padding: .35rem 2.5rem;
+    box-shadow: $mfp-shadow;
+
+    &.nobg {
+      background: none;
+      box-shadow: none;
+    }
   }
 
   .mfp-image-holder {
@@ -460,9 +463,8 @@ button {
     }
   }
 
-
   @if $mfp-include-mobile-layout-for-image {
-    @media screen and (max-width: 800px) and (orientation:landscape), screen and (max-height: 300px) {
+    @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
       /**
        * Remove all paddings around the image on small screen
        */
@@ -488,7 +490,7 @@ button {
           }
         }
         .mfp-bottom-bar {
-          background: rgba(0,0,0,0.6);
+          background: rgba(0, 0, 0, 0.6);
           bottom: 0;
           margin: 0;
           top: auto;
@@ -519,8 +521,6 @@ button {
   }
 }
 
-
-
 // Scale navigation arrows and reduce padding from sides
 @media all and (max-width: 900px) {
   .mfp-arrow {
@@ -541,3 +541,42 @@ button {
   }
 }
 
+.mfp-zoom-in {
+
+  /* start state */
+  .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.8);
+  }
+
+  &.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  /* animate in */
+  &.mfp-ready {
+    .mfp-with-anim {
+      opacity: 1;
+      transform: scale(1);
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+
+  /* animate out */
+  &.mfp-removing {
+
+    .mfp-with-anim {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+
+  }
+
+}

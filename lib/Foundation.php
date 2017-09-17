@@ -136,9 +136,9 @@ class Foundation
             $img_srcset = wp_get_attachment_image_srcset($id, $atts['size']);
             $img_full = wp_get_attachment_image_url($id, 'full');
 
-            $caption = (! $attachment->post_excerpt) ? '' : ' data-caption="'.esc_attr($attachment->post_excerpt).'" ';
+            $caption = $attachment->post_excerpt ? ' alt="'.esc_attr($attachment->post_excerpt).'" ' : '';
 
-            $output .= '<div class="column column-block">'.'<a href="'.esc_url($img_full).'" class="gallery-image">'.'<img src="'.esc_url($img).'" '.$caption.' class="th" alt="'.esc_attr($attachment->title).'"  srcset="'.esc_attr($img_srcset).'" sizes="(max-width: 50em) 87vw, 680px" />'.'</a></div>';
+            $output .= '<div class="column column-block">'.'<a href="'.esc_url($img_full).'" class="gallery-image">'.'<img src="'.esc_url($img).'" '.$caption.' class="th" srcset="'.esc_attr($img_srcset).'" sizes="(max-width: 50em) 87vw, 680px" />'.'</a></div>';
         }
 
         $output .= '</div>';

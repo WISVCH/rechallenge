@@ -16,77 +16,75 @@ $formatted_cost = format_event_cost($cost_str);
 $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '');
 ?>
 
-<article>
 
-    <div class="row">
+<div class="row">
 
-        <div class="column medium-7 large-8">
+    <article class="column medium-7 large-8 post-content">
 
-            <?php
-            the_title('<h1>', '</h1>');
-            the_content();
-            ?>
+        <?php
+        the_title('<h1>', '</h1>');
+        the_content();
+        ?>
 
-            <footer>
-                <?php get_template_part("parts/misc/share"); ?>
-            </footer>
+        <footer>
+            <?php get_template_part("parts/misc/share"); ?>
+        </footer>
 
-            <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/');?>">&lsaquo; Back to calendar</a></p>
+        <p class="events-backlink"><a class="button small" href="<?=site_url('/activities/');?>">&lsaquo; Back to calendar</a></p>
 
-        </div>
+    </article>
 
-        <aside class="column medium-5 large-4">
+    <aside class="column medium-5 large-4">
 
-            <div class="wisv-panel">
+        <div class="wisv-panel">
 
-                <header class="wisv-panel-heading">
-                    <h1 class="small">Details</h1>
-                </header>
+            <header class="wisv-panel-heading">
+                <h1 class="small">Details</h1>
+            </header>
 
-                <div class="wisv-panel-content">
+            <div class="wisv-panel-content">
 
-                    <?php if ($formatted_date[0]) { ?>
-                        <ul class="fa-ul company-details">
-                            <li><i class="fa-li fa ch-clock-o"></i><?=esc_attr($formatted_date[0])?></li>
-                            <?php if (! empty($formatted_date[1])) { ?>
-                                <li>till <?=esc_attr($formatted_date[1])?></li>
-                            <?php } ?>
-                        </ul>
-                    <?php } ?>
-
-                    <?php if ($location) { ?>
-                        <ul class="fa-ul company-details">
-                            <li><i class="fa-li fa ch-map-marker"></i><?=esc_attr($location)?></li>
-                        </ul>
-                    <?php } ?>
-
+                <?php if ($formatted_date[0]) { ?>
                     <ul class="fa-ul company-details">
-                        <li><i class="fa-li fa ch-eur"></i><?=$formatted_cost?></li>
+                        <li><i class="fa-li fa ch-clock-o"></i><?=esc_attr($formatted_date[0])?></li>
+                        <?php if (! empty($formatted_date[1])) { ?>
+                            <li>till <?=esc_attr($formatted_date[1])?></li>
+                        <?php } ?>
                     </ul>
+                <?php } ?>
 
-                    <?php if ($category_list) { ?>
-                        <ul class="fa-ul company-details">
-                            <li><i class="fa-li fa ch-tag"></i><?=$category_list?></li>
-                        </ul>
-                    <?php } ?>
+                <?php if ($location) { ?>
+                    <ul class="fa-ul company-details">
+                        <li><i class="fa-li fa ch-map-marker"></i><?=esc_attr($location)?></li>
+                    </ul>
+                <?php } ?>
 
-                </div>
+                <ul class="fa-ul company-details">
+                    <li><i class="fa-li fa ch-eur"></i><?=$formatted_cost?></li>
+                </ul>
+
+                <?php if ($category_list) { ?>
+                    <ul class="fa-ul company-details">
+                        <li><i class="fa-li fa ch-tag"></i><?=$category_list?></li>
+                    </ul>
+                <?php } ?>
 
             </div>
 
-            <?php
-            if (has_post_thumbnail()) {
-                ?>
-                <div class="wisv-panel">
-                    <?php
-                    the_post_thumbnail();
-                    ?>
-                </div>
-                <?php
-            }
+        </div>
+
+        <?php
+        if (has_post_thumbnail()) {
             ?>
-        </aside>
+            <div class="wisv-panel">
+                <?php
+                the_post_thumbnail();
+                ?>
+            </div>
+            <?php
+        }
+        ?>
+    </aside>
 
-    </div>
+</div>
 
-</article>

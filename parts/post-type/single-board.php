@@ -3,7 +3,7 @@ $meta = get_post_custom(get_the_ID());
 $board_year = ! isset($meta['_board_year'][0]) ? '' : $meta['_board_year'][0];
 $with_photo = has_post_thumbnail() ? 'has-photo' : false;
 ?>
-<div class="row roster-page <?=$with_photo ?? ''?>">
+<article class="row roster-page post-content <?=$with_photo ?? ''?>">
 
     <?php if ($with_photo) { ?>
 
@@ -18,7 +18,9 @@ $with_photo = has_post_thumbnail() ? 'has-photo' : false;
 
         <div class="large-5 column">
             <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
-                <?php the_post_thumbnail('featured-image'); ?>
+                <?php the_post_thumbnail('featured-image', [
+                    'alt' => esc_attr(get_the_title()),
+                ]); ?>
             </a>
         </div>
 
@@ -37,4 +39,4 @@ $with_photo = has_post_thumbnail() ? 'has-photo' : false;
 
     <?php } ?>
 
-</div>
+</article>

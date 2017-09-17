@@ -1,10 +1,14 @@
 <?php $with_photo = has_post_thumbnail() ? 'has-photo' : false; ?>
-<div class="row roster-page <?=$with_photo ?? ''?>">
+<article class="row roster-page post-content <?=$with_photo ?? ''?>">
 
     <?php if ($with_photo) { ?>
 
         <div class="large-5 column">
-            <?php the_post_thumbnail('full'); ?>
+            <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
+                <?php the_post_thumbnail('featured-image', [
+                    'alt' => esc_attr(get_the_title()),
+                ]); ?>
+            </a>
         </div>
 
         <div class="large-7 column">
@@ -23,4 +27,4 @@
 
     <?php } ?>
 
-</div>
+</article>

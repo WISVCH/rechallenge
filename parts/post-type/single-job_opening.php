@@ -78,12 +78,12 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
 
         <div class="column medium-7 large-8">
 
-            <div class="row column column-block">
+            <article class="row column column-block post-content">
                 <?php
                 the_title('<h1>', '</h1>');
                 the_content();
                 ?>
-            </div>
+            </article>
 
             <?php
             // Get more job openings for company

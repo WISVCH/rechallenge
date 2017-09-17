@@ -30,9 +30,66 @@
             type: 'image',
             gallery: {
                 enabled: true
+            },
+            image: {
+                titleSrc: function (item) {
+                    var p = item.el.parent();
+                    if (p.is('figure')) {
+                        var cap = p.find('figcaption').text();
+                    } else {
+                        var cap = item.el.find('img').attr('alt');
+                    }
+                    return cap ? cap : '';
+                }
+            },
+            callbacks: {
+                beforeOpen: function () {
+                    this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                    this.st.mainClass = 'mfp-zoom-in';
+                },
+                change: function () {
+                    var t = this.content.find('.mfp-title');
+                    if (t) {
+                        if (t.text() == "") {
+                            t.addClass('nobg');
+                        } else {
+                            t.removeClass('nobg');
+                        }
+                    }
+                }
             }
         });
     });
+
+    $('.post-content').find('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"], a[href$=".gif"]').each(function () {
+
+        $(this).magnificPopup({
+            type: 'image',
+            image: {
+                titleSrc: function (item) {
+                    var p = item.el.parent();
+                    return p.is('figure') ? p.find('figcaption').text() : item.el.find('img').attr('alt');
+                }
+            },
+            callbacks: {
+                beforeOpen: function () {
+                    this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                    this.st.mainClass = 'mfp-zoom-in';
+                },
+                change: function () {
+                    var t = this.content.find('.mfp-title');
+                    if (t) {
+                        if (t.text() == "") {
+                            t.addClass('nobg');
+                        } else {
+                            t.removeClass('nobg');
+                        }
+                    }
+                }
+            }
+        });
+    });
+
 
     /* EVENTS */
     if ($.fullCalendar) {

@@ -1,4 +1,4 @@
-<div class="row column">
+<article class="row column post-content">
     <?php
     the_title('<h1>', '</h1>');
 
@@ -14,4 +14,4 @@
 
     the_content();
     ?>
-</div>
+</article>
