@@ -147,8 +147,11 @@ table {
   margin: 1rem 0 ($global-margin * 2);
   padding: 0;
   font-size: $breadcrumbs-item-font-size;
-  color: $breadcrumbs-item-color;
   text-align: center;
+
+  .breadcrumb_last {
+    color: $breadcrumbs-item-color;
+  }
 
   @include breakpoint(medium) {
     margin: $breadcrumbs-margin;
@@ -156,7 +159,7 @@ table {
   }
 
   a {
-    color: $breadcrumbs-item-color;
+    color: $medium-gray;
     &:hover, &:focus {
       text-decoration: underline;
     }
@@ -901,7 +904,7 @@ ul.share {
 /* **********
 3.2 Job Opening
 ********** */
-.exerpt-job-opening {
+.excerpt-job-opening {
 
   margin-bottom: 2rem;
 
@@ -910,7 +913,6 @@ ul.share {
   }
 
   .thumbnail {
-    margin: .25rem 0 0; // Adjacent text line-height compensation
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -1205,12 +1207,20 @@ ul.share {
 
   // Separator
   span {
-    display: inline-block;
+    & + span:before {
+      content: ",";
+      padding: 0 .5em 0 0;
+    }
   }
 
-  span + span:before {
-    content: "|";
-    padding: 0 .5em;
+  @include breakpoint(medium) {
+    span {
+      display: inline-block;
+      & + span:before {
+        content: "|";
+        padding: 0 .5em;
+      }
+    }
   }
 
   a {
@@ -1225,19 +1235,13 @@ ul.share {
 4.4 News
 ********** */
 
-.news-overview {
+.next-prev-links {
+  padding: 1rem 0;
+
   .button {
-    margin-top: 1rem;
-  }
-
-  .next-prev-links {
-    margin: 1rem 0;
-
-    .button {
-      margin-top: 0;
-      &:last-child {
-        float: right;
-      }
+    margin-top: 0;
+    &:last-child {
+      float: right;
     }
   }
 }
@@ -1505,6 +1509,10 @@ form.edit-profile-form {
   margin-bottom: .5rem;
   padding: .5rem 1rem;
 
+  @include breakpoint(medium) {
+    margin-bottom: 0;
+  }
+
   &.nopad {
     padding: 0;
   }
@@ -1611,6 +1619,28 @@ form.edit-profile-form {
 
 .single-honorary_member .thumbnail {
   margin: 0 0 1rem 1rem;
+}
+
+/* **********
+X. Career Dashboard
+********** */
+.page-template-template-career-dashboard .excerpt-job-opening {
+
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(small only) {
+    border-bottom: 2px dashed $light-gray;
+    padding-bottom: 1rem;
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
 }
 
 /* **********

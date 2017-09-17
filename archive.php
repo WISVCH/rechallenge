@@ -6,7 +6,7 @@ get_header();
         <?php
         get_template_part("parts/navigation/breadcrumb");
 
-        if (have_posts() && false !== ($archive_post_type = get_post_type())) {
+        if (have_posts()) {
             get_template_part('parts/post-type/archive', get_post_type());
         } else {
             get_template_part('parts/post-type/archive', 'empty');

@@ -88,47 +88,20 @@ function rechallenge_get_aux_page_id()
 {
 
     // Custom post type archives
-    if (is_post_type_archive("board")) {
+    if (is_post_type_archive("board") || is_singular('board')) {
         $id = get_page_by_path("association/boards");
-    } elseif (is_post_type_archive("committee")) {
+    } elseif (is_post_type_archive("committee") || is_singular('committee')) {
         $id = get_page_by_path("association/committees");
-    } elseif (is_post_type_archive("company")) {
+    } elseif (is_post_type_archive("company") || is_singular('company')) {
         $id = get_page_by_path("career/companies");
-    } elseif (is_post_type_archive("honorary_member")) {
-        $id = get_page_by_path("association/honorary-members/");
-    } elseif (is_post_type_archive("job_opening")) {
+    } elseif (is_post_type_archive("honorary_member") || is_singular('honorary_member')) {
+        $id = get_page_by_path("association/honorary-members");
+    } elseif (is_post_type_archive("job_opening") || is_singular('job_opening')) {
         $id = get_page_by_path("career/job-openings");
-    } elseif (is_post_type_archive("event")) {
+    } elseif (is_post_type_archive("event") || is_singular('event')) {
         $id = get_page_by_path("activities/overview");
-    }
-
-    // Singular custom post type
-    if (is_singular([
-        "board",
-        "committee",
-        "company",
-        "honorary_member",
-        "job_opening",
-        "event",
-    ])) {
-
-        switch (get_post_type()) {
-            case "board":
-                $id = get_page_by_path("association/boards");
-                break;
-            case "committee":
-                $id = get_page_by_path("association/committees");
-                break;
-            case "company":
-                $id = get_page_by_path("career/companies");
-                break;
-            case "honorary_member":
-                $id = get_page_by_path("association/honorary-members");
-                break;
-            case "job_opening":
-                $id = get_page_by_path("career/job-openings");
-                break;
-        }
+    } elseif (is_home() || is_archive()) {
+        $id = get_post(get_option("page_for_posts"));
     }
 
     if (isset($id) && is_a($id, "WP_Post")) {

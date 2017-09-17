@@ -5,7 +5,7 @@ $location = ! isset($meta['_company_location'][0]) ? '' : $meta['_company_locati
 $thumb = get_the_post_thumbnail_url($company_id, "featured-image");
 $thumb_sizing = 'contain';
 ?>
-<article class="row exerpt-job-opening">
+<article class="row excerpt-job-opening">
 
     <div class="small-12 medium-3 column">
 
@@ -38,8 +38,8 @@ $thumb_sizing = 'contain';
                     ?><span><?=join(", ", $job_types)?></span><?php
                 }
             }
-            ?><span><a href="<?php echo get_permalink($company_id); ?>"><?php echo get_the_title($company_id); ?></a></span><?php if (! empty($location)) { ?>
-                <span><?php echo esc_html($location); ?></span><?php } ?>
+            ?><span><a href="<?php echo get_permalink($company_id); ?>"><?php echo get_the_title($company_id); ?></a></span><?php if (! empty($location)) {
+                ?><span><?php echo esc_html($location); ?></span><?php } ?>
         </aside>
 
         <?php the_excerpt(); ?>
@@ -63,7 +63,7 @@ $thumb_sizing = 'contain';
                 }
             }
 
-            ?><span>Placed <?=human_time_diff(get_the_time('U'), current_time('timestamp'))?> ago</span>
+            ?><span class="show-for-medium">Placed <?=human_time_diff(get_the_time('U'), current_time('timestamp'))?> ago</span>
         </footer>
     </div>
 

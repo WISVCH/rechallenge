@@ -18,7 +18,7 @@ get_template_part("parts/navigation/breadcrumb");
         <div class="section-even calendar-news">
 
             <div class="row">
-                <div class="column medium-5 large-4">
+                <div class="column column-block medium-5 large-4">
                     <?php get_template_part('parts/misc/career', 'calendar'); ?>
                 </div>
                 <div class="column medium-7 large-8">

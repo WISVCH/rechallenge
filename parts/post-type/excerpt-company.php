@@ -2,7 +2,7 @@
 $thumb = get_the_post_thumbnail_url(get_the_ID(), "featured-image");
 $thumb_sizing = 'contain';
 ?>
-<article class="row exerpt-job-opening">
+<article class="row excerpt-company">
 
     <div class="small-12 medium-3 column">
         <a class="thumbnail prop" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">

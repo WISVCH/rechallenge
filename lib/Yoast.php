@@ -73,14 +73,14 @@ class Yoast
             array_splice($links, -1, -1, $company_name);
         }
 
-        // Completely change breadcrumb for education updates
-        // Note: hardcoded
-        if (is_singular('post') && has_category('education-updates')) {
+        // Add assocation page to breadcrumbs for news
+        if (is_home() || is_single() || is_archive()) {
 
-            $breadcrumb[] = ['id' => 23];
-            $breadcrumb[] = ['id' => 58];
-
-            array_splice($links, 1, 1, $breadcrumb);
+            array_splice($links, 1, 0, [
+                [
+                    'id' => 18,
+                ],
+            ]);
         }
 
         return $links;
