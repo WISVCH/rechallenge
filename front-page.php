@@ -2,12 +2,12 @@
 get_header();
 ?>
 
-	<!-- Intro text -->
-	<section class="section-odd intro-text">
-		<div class="row column text-center">
-			<?php the_content(); ?>
-		</div>
-	</section>
+    <!-- Intro text -->
+    <section class="section-odd intro-text">
+        <div class="row column text-center">
+            <?php the_content(); ?>
+        </div>
+    </section>
 
 <?php
 // Events / News

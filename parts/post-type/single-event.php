@@ -17,9 +17,9 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
 ?>
 
 
-<div class="row">
+<div class="row post-content">
 
-    <article class="column medium-7 large-8 post-content">
+    <article class="column medium-7 large-8">
 
         <?php
         the_title('<h1>', '</h1>');
@@ -77,9 +77,11 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
         if (has_post_thumbnail()) {
             ?>
             <div class="wisv-panel">
-                <?php
-                the_post_thumbnail();
-                ?>
+                <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
+                    <?php the_post_thumbnail('medium', [
+                        'alt' => esc_attr(get_the_title()),
+                    ]); ?>
+                </a>
             </div>
             <?php
         }

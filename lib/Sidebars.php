@@ -22,6 +22,18 @@ class Sidebars
     static function register_sidebars()
     {
 
+        // Banner Bar
+        register_sidebar([
+            'name' => "Banner",
+            'id' => 'banner-bar',
+            'description' => 'Front page banner.',
+            'class' => '',
+            'before_widget' => '<div class="small-12 large-8 column">',
+            'after_widget' => '</div>',
+            'before_title' => '',
+            'after_title' => '',
+        ]);
+
         // Footer Left
         register_sidebar([
             'name' => "Footer (Left)",

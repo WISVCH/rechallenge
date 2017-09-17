@@ -2,7 +2,7 @@
 $meta = get_post_custom(get_the_ID());
 $company_id = ! isset($meta['_company_id'][0]) ? '' : $meta['_company_id'][0];
 $location = ! isset($meta['_company_location'][0]) ? '' : $meta['_company_location'][0];
-$thumb = get_the_post_thumbnail_url($company_id, "featured-image");
+$thumb = get_the_post_thumbnail_url($company_id, "medium");
 $thumb_sizing = 'contain';
 ?>
 <article class="row excerpt-job-opening">

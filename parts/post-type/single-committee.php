@@ -5,7 +5,7 @@
 
         <div class="large-5 column">
             <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
-                <?php the_post_thumbnail('featured-image', [
+                <?php the_post_thumbnail('medium', [
                     'alt' => esc_attr(get_the_title()),
                 ]); ?>
             </a>

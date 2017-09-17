@@ -1,5 +1,5 @@
 <?php
-$thumb = get_the_post_thumbnail_url(get_the_ID(), "featured-image");
+$thumb = get_the_post_thumbnail_url(get_the_ID(), "medium");
 ?>
 <article class="row excerpt-post">
 

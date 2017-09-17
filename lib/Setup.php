@@ -20,6 +20,8 @@ class Setup
 
         // Add image sizes
         add_action('after_setup_theme', [__CLASS__, "image_sizes"]);
+
+        add_filter('intermediate_image_sizes', [__CLASS__, "disable_default_sizes"]);
     }
 
     /**
@@ -48,9 +50,13 @@ class Setup
         add_image_size("cover", 1920, 500, true);
 
         // Featured image (news)
-        add_image_size("featured-image", 800, 300, false);
+        add_image_size("featured-image", 800, 350, true);
+    }
 
-        // Banner
-        add_image_size("banner", 837, 170, true);
+    static function disable_default_sizes($sizes)
+    {
+        return array_filter($sizes, function ($val) {
+            return 'medium_large' !== $val && 'large' !== $val;
+        });
     }
 }

@@ -1,4 +1,4 @@
-<?php $thumb = get_the_post_thumbnail_url(get_the_ID(), "featured-image"); ?>
+<?php $thumb = get_the_post_thumbnail_url(get_the_ID(), "medium"); ?>
 <article class="excerpt-blockgrid excerpt-honorary-member">
     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
         <div class="thumbnail nopad prop">
