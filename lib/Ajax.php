@@ -15,6 +15,11 @@ class Ajax
     const FLITCIE_REFRESH_INTERVAL = 3600;
 
     /**
+     * Gallery3 Album ID to fetch
+     */
+    const ALBUM_GROUP_ID = '62577';
+
+    /**
      * Hook into WordPress.
      */
     static function register_hooks()
@@ -31,25 +36,20 @@ class Ajax
     static function flitcie()
     {
 
-        $last_call = get_option("_rechallenge_flitcie_last_api_call");
+        $last_call = get_option("_rechallenge_flitcie_last_api_call_".self::ALBUM_GROUP_ID);
 
         // Reload FlitCie data
         if (empty($last_call) || $last_call < time() - self::FLITCIE_REFRESH_INTERVAL) {
 
-            $album_group_id = "57661"; // Album for 60.
-
             // Get latest members from album
-            $latest = self::_flitcie_latest($album_group_id);
+            $latest = self::_flitcie_latest(self::ALBUM_GROUP_ID);
 
             // Get album meta from latest albums
             $albums = self::_flitcie_album_meta($latest);
-
-
         } else {
 
             // Get from db
-            $albums = get_option("_rechallenge_flitcie_cache");
-
+            $albums = get_option("_rechallenge_flitcie_cache_".self::ALBUM_GROUP_ID);
         }
 
         // Output response
@@ -137,8 +137,8 @@ class Ajax
         $albums = array_reverse($albums);
 
         // Cache
-        update_option("_rechallenge_flitcie_last_api_call", time());
-        update_option("_rechallenge_flitcie_cache", $albums);
+        update_option("_rechallenge_flitcie_last_api_call_".self::ALBUM_GROUP_ID, time());
+        update_option("_rechallenge_flitcie_cache_".self::ALBUM_GROUP_ID, $albums);
 
         return $albums;
     }
