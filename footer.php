@@ -12,6 +12,7 @@
 
             <!-- Twitter -->
             <section class="small-12 large-push-6 large-6 columns">
+                <h1 class="small">Follow us <a href="https://twitter.com/WISVCH/" target="new">@WISVCH</a></h1>
                 <?php
                 dynamic_sidebar("footer-right");
                 ?>
