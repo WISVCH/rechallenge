@@ -19,7 +19,15 @@ if ($partners->have_posts()) { ?>
 
                 <div class="column">
                     <?php
-                    $link_type = get_post_meta(get_the_ID(), "_link_to", true);
+                    $meta = get_post_custom(get_the_ID());
+                    $link_url = empty($meta["_company_website"][0]) ? false : $meta["_company_website"][0];
+                    $link_type = $meta["_link_to"][0] ?? false;
+
+                    // Switch link type to post when 1) no link type is set or 2) the URL is not set
+                    if (! $link_type || ($link_type == 'url' && empty($link_url))) {
+                        $link_type = "post";
+                    }
+
                     switch ($link_type) {
                         default:
                         case "post":

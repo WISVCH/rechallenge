@@ -21,7 +21,11 @@ class Setup
         // Add image sizes
         add_action('after_setup_theme', [__CLASS__, "image_sizes"]);
 
+        // Remove unnecessary image sizes
         add_filter('intermediate_image_sizes', [__CLASS__, "disable_default_sizes"]);
+
+        // Increase Twitter cache
+        add_filter('latest_tweets_cache_seconds', [__CLASS__, "twitter_cache"]);
     }
 
     /**
@@ -58,5 +62,10 @@ class Setup
         return array_filter($sizes, function ($val) {
             return 'medium_large' !== $val && 'large' !== $val;
         });
+    }
+
+    static function twitter_cache()
+    {
+        return 3600;
     }
 }
