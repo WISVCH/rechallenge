@@ -1,0 +1,138 @@
+h1, h2, h3, h4, h5, h6 {
+  transition: color .2s;
+  a {
+    @include inverted-anchor();
+  }
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: $global-weight-bold;
+  margin: $header-margin-bottom 0 0;
+}
+
+// Create h.small classes (small heading size on medium up displays)
+@each $header, $header-settings in map-get($header-styles, 'small') {
+  @include breakpoint(medium) {
+    #{$header}.small {
+      font-size: rem-calc(map-get($header-settings, 'font-size'));
+    }
+  }
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  transition: color .2s;
+}
+
+// Fix element widths on medium up
+@include breakpoint(medium) {
+  blockquote {
+    width: 80%;
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+blockquote {
+  background: $light-gray;
+  margin: $paragraph-margin-bottom 0;
+  padding: 1.5rem 2rem;
+
+  h1 {
+    font-size: rem-calc(22);
+    text-transform: none;
+  }
+
+  @include breakpoint(medium down) {
+    padding: 1rem;
+
+    h1 {
+      font-size: rem-calc(18);
+    }
+  }
+
+  p {
+    padding-left: 3rem;
+    font-size: rem-calc(16);
+    color: $black;
+    width: 100%;
+
+    &:before {
+      content: "\201C";
+      font: bold italic 50px / 1 "Noto Sans";
+
+      position: absolute;
+      margin-left: -2.8rem;
+      margin-top: -2px;
+      color: $primary-color;
+    }
+  }
+
+  h1 + p {
+    margin-top: 1rem;
+  }
+}
+
+table {
+  thead {
+    td {
+      text-align: center;
+      color: $white;
+      padding-top: .5rem;
+      padding-bottom: .5rem;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-family: $header-font-family;
+      line-height: 1;
+    }
+  }
+}
+
+// Change text selection color
+::selection {
+  background: $secondary-color;
+  color: $white;
+}
+
+.byline {
+  color: $medium-gray;
+  font-weight: $global-weight-bold;
+  font-family: $header-font-family;
+  font-size: rem-calc(14);
+  line-height: 1.2;
+  padding: 0;
+
+  // Separator
+  span {
+    & + span:before {
+      content: ",";
+      padding: 0 .5em 0 0;
+    }
+  }
+
+  @include breakpoint(medium) {
+    span {
+      display: inline-block;
+      & + span:before {
+        content: "|";
+        padding: 0 .5em;
+      }
+    }
+  }
+
+  a {
+    color: $medium-gray;
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+}

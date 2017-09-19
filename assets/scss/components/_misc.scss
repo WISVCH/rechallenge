@@ -1,0 +1,92 @@
+/* **********
+1. Breadcrumbs
+********** */
+#breadcrumbs {
+  margin: 1rem 0 ($global-margin * 2);
+  padding: 0;
+  font-size: $breadcrumbs-item-font-size;
+  text-align: center;
+
+  .breadcrumb_last {
+    color: $breadcrumbs-item-color;
+  }
+
+  @include breakpoint(medium) {
+    margin: $breadcrumbs-margin;
+    text-align: left;
+  }
+
+  a {
+    color: $medium-gray;
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .sep {
+    margin: 0 $breadcrumbs-item-margin;
+    color: $medium-gray;
+  }
+
+}
+
+/* **********
+2. Row with thumbnail
+********** */
+.icon-row {
+  display: table;
+
+  .icon-cell {
+    display: table-cell;
+    width: 5rem;
+    min-width: 5rem;
+
+    a {
+      display: block;
+      width: 100%;
+      padding-top: 100%;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  .text-cell {
+    display: table-cell;
+    width: auto;
+    vertical-align: middle;
+    padding-left: 1rem;
+  }
+}
+
+/* **********
+3. FontAwesome helpers
+********** */
+
+$fa-li-width: 2.2rem;
+
+.fa-ul {
+  padding-left: 0;
+  margin-left: $fa-li-width;
+  list-style-type: none;
+
+  & > li {
+    position: relative;
+  }
+
+  i {
+    margin-top: 3px;
+  }
+}
+
+.fa-li {
+  position: absolute;
+  left: -$fa-li-width;
+  width: $fa-li-width;
+  top: 0;
+  text-align: center;
+}
+
+.fa-fw {
+  width: (18em / 14);
+  text-align: center;
+}

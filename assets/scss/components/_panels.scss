@@ -1,0 +1,76 @@
+.wisv-panel {
+  border: 3px solid $light-gray;
+
+  & + .wisv-panel {
+    margin-top: $global-margin;
+  }
+
+  .wisv-panel-heading {
+
+    background: $primary-color;
+    padding: 0 1rem;
+    height: 3rem;
+
+    text-transform: uppercase;
+    font-family: $header-font-family;
+    font-size: rem-calc(20);
+    font-weight: $global-weight-bold;
+
+    h1 {
+      font-size: rem-calc(20);
+      color: $white;
+      margin: 0;
+      line-height: 3rem;
+      overflow: hidden;
+    }
+
+    a {
+      color: $white;
+      &:hover, &:focus {
+        color: $alert-color;
+      }
+    }
+
+    small {
+      float: right;
+      line-height: 3rem;
+      font-size: rem-calc(14);
+    }
+
+    i[class^="ch-"]:before,
+    i[class*=" ch-"]:before {
+      padding-left: .25em;
+    }
+
+    // Make headings bigger on larger screens
+    @include breakpoint(medium) {
+      height: 4rem;
+      font-size: rem-calc(24);
+
+      h1 {
+        font-size: rem-calc(24);
+        line-height: 4rem;
+      }
+
+      small {
+        line-height: 4rem;
+        font-size: $small-font-size;
+      }
+    }
+  }
+
+  .wisv-panel-content {
+    padding: 1rem;
+
+    & > ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    p {
+      padding-right: 0;
+    }
+
+  }
+
+}

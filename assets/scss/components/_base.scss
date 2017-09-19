@@ -1,0 +1,677 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  &.is-reveal-open {
+    overflow: visible; // Prevent scrollbar flickering
+  }
+}
+
+.page-container {
+  flex: 1 0 auto;
+}
+
+/* **********
+1. Header
+********** */
+
+.page-header {
+  z-index: 1;
+  background-color: #fff;
+
+  body.menu-open & {
+    background-color: $primary-color;
+  }
+}
+
+/* **********
+1.1 Logo
+********** */
+
+.logo-wrapper {
+  position: relative;
+
+  @include breakpoint(large) {
+    padding-left: map-get($grid-column-gutter, medium) / 2;
+  }
+
+  .logo {
+
+    @include breakpoint(xlarge) {
+      margin-top: 0;
+      img {
+        height: 110px;
+      }
+    }
+
+  }
+}
+
+/* **********
+1.2 Top bar (large up)
+********** */
+
+$topbar-height: rem-calc(90);
+
+// Crazy background solution
+@include breakpoint($topbar-unstack-breakpoint) {
+  .wisv-header {
+
+    height: $topbar-height;
+
+    &.left {
+      @include clearfix;
+      width: 100%;
+      background: url(../images/top-bar-bg.png) 52px -180px repeat-x;
+      position: relative;
+      z-index: 3; // put above page title section
+    }
+
+    &.right {
+      width: 50%;
+      float: right;
+      background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+
+      .center {
+        margin-left: $grid-row-width / -2;
+        @include breakpoint(large down) {
+          margin-left: -100%;
+        }
+      }
+    }
+
+  }
+}
+
+.top-bar {
+  font-family: $header-font-family;
+  position: relative;
+  z-index: 10;
+
+  .top-bar-right {
+    background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
+    @include breakpoint($topbar-unstack-breakpoint) {
+      padding-left: 65px;
+      padding-right: map-get($grid-column-gutter, medium) / 2;
+    }
+
+    @include breakpoint(large only) {
+      padding-left: 30px;
+    }
+  }
+
+  .menu {
+    background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+
+    > li {
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      @include breakpoint($topbar-unstack-breakpoint) {
+        padding: 0 .9rem;
+        vertical-align: middle;
+        height: $topbar-height;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      // Remove left padding from leftmost menu item
+      @include breakpoint(xlarge only) {
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+
+      a {
+        @include inverted-anchor();
+        text-transform: uppercase;
+        font-weight: $global-weight-bold;
+        letter-spacing: 1px;
+
+        @include breakpoint($topbar-unstack-breakpoint) {
+          border-bottom: 3px solid transparent; // compensate for active menu item border
+          border-top: 3px solid transparent; // compensate for line-height
+          padding-left: .2rem;
+          padding-right: .2rem;
+
+          &.active {
+            border-bottom-color: $primary-color;
+          }
+
+          &.login-button {
+            color: $white;
+            font-size: 1rem;
+            padding: .3rem 1.75rem;
+            border-bottom-color: $button-background; // fixes animation quirk
+            border-top-color: $button-background; // fixes animation quirk
+            &.account-button {
+              padding-left: 1rem;
+              padding-right: 1rem;
+            }
+            &:hover, &:focus {
+              color: $alert-color;
+            }
+          }
+        }
+
+      }
+
+      @include breakpoint(medium down) {
+
+        // Menu items
+        a, .login-button {
+          background: $primary-color;
+          color: $white;
+          border: none;
+          border-bottom: 1px solid $light-gray;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          letter-spacing: 0;
+          font-size: 1rem;
+          text-align: left;
+
+          &:hover, &:focus {
+            color: $primary-color;
+            background: $white;
+          }
+        }
+      }
+
+      // Create more breathing room for the menu
+      @include breakpoint($topbar-unstack-breakpoint only) {
+
+        a {
+          font-size: rem-calc(15);
+          padding-left: .2rem;
+          padding-right: .2rem;
+
+          &.login-button {
+            font-size: rem-calc(15);
+            padding-left: .5rem;
+            padding-right: .5rem;
+            &.account-button {
+              padding-left: .5rem;
+              padding-right: .5rem;
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+
+}
+
+/* **********
+1.3 Title bar (medium down)
+********** */
+$titlebar-height: 55px;
+
+.title-bar {
+  font-family: $header-font-family;
+  z-index: 2;
+  position: relative;
+
+  background: url(../images/top-bar-bg.png) 0 -115px repeat-x;
+
+  .column {
+    height: $titlebar-height;
+  }
+
+  a.logo-small {
+    float: left;
+    position: relative;
+
+    padding: 4px 0;
+    margin-left: map-get($grid-column-gutter, small) / 2;
+    z-index: 10;
+
+    @include breakpoint(medium) {
+      margin-left: map-get($grid-column-gutter, medium) / 2;
+    }
+
+    img {
+      width: 150px;
+      max-width: none;
+      z-index: 10;
+
+      // Slightly larger logo for medium screens
+      @include breakpoint(medium only) {
+        width: auto;
+        max-height: 70px;
+      }
+
+    }
+
+  }
+
+  a.login-button {
+    display: none;
+    font-size: 1rem;
+    color: $white;
+    font-size: 1rem;
+    padding: .3rem 1.75rem;
+    text-transform: uppercase;
+    font-weight: $global-weight-bold;
+    margin: rem-calc(11) 1.5rem 0 0;
+  }
+
+  .bg-left {
+    z-index: 2;
+    background: url(../images/top-bar-bg.png) 0 0 no-repeat;
+    background-position: right -59px;
+  }
+
+  .bg-right {
+    background: url(../images/top-bar-bg.png) 0 0 repeat-x;
+    z-index: 1;
+  }
+
+  background-size: 121px auto;
+  .bg-left, .bg-right {
+    background-size: 121px auto;
+  }
+
+}
+
+.wisv-menu-icon {
+  outline: 0 none;
+  height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2 + $hamburger-padding-y * 2;
+}
+
+// Show login button on medium
+@include breakpoint(medium only) {
+  .title-bar {
+    a.login-button {
+      display: block;
+      float: left;
+    }
+  }
+
+  .top-bar .login-button {
+    display: none;
+  }
+
+}
+
+/* **********
+2. Page title
+********** */
+
+.page-title {
+  position: relative;
+  z-index: 1;
+  background-color: $primary-color;
+  background-size: cover;
+  background-position: center;
+  margin-top: -22px;
+  padding: 6px 0 16px;
+
+  .column {
+    padding-top: 1rem;
+  }
+
+  @include breakpoint($topbar-unstack-breakpoint) {
+    margin-top: -35px;
+    padding: 35px 0 0;
+    .column {
+      padding-top: 0;
+      padding-bottom: 6px; // dotted border compensation (visually centered)
+      height: rem-calc(192px + 35px); // 12rem + padding-top
+    }
+  }
+
+  // Add dotted border if no subpages or no background image
+  &.dotted-border {
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 6px;
+
+      position: absolute;
+      bottom: 0px;
+
+      background: url(../images/dotted-border.png) center top repeat-x;
+
+      @include breakpoint(retina) {
+        background-image: url(../images/dotted-border@2x.png);
+        background-size: 23px auto;
+      }
+    }
+  }
+
+  h1 {
+    font-weight: $global-weight-bold;
+    color: $white;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+    text-align: center;
+    margin: 0;
+  }
+
+  @include breakpoint(medium) {
+
+    .column {
+      display: table;
+      height: 12rem;
+
+      h1 {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 10rem; // Shorten line by 20rem
+      }
+    }
+
+  }
+}
+
+/* **********
+2. Sub-nav
+********** */
+
+.sub-nav {
+  background: $primary-color;
+
+  .menu {
+    text-align: center;
+    padding: 1.1rem 0;
+
+    & > li {
+      display: inline-block;
+
+      // Add separator
+      & + li:before {
+        content: "\00a0\00a0";
+        @include breakpoint(medium) {
+          content: " | ";
+        }
+
+        font: $global-weight-bold 14px / 1.2 $header-font-family;
+        color: $white;
+        vertical-align: text-top;
+      }
+
+      & > a {
+        display: inline;
+        padding: 0;
+        margin: 0 .5rem;
+
+        color: $white;
+        font: bold 14px / 1.2 $header-font-family;
+        text-transform: uppercase;
+        letter-spacing: .2px;
+        vertical-align: text-top;
+
+        &:hover,
+        &:focus,
+        &.active {
+          border-bottom: 2px solid $white;
+        }
+      }
+    }
+  }
+}
+
+/* **********
+3. Page styles
+********** */
+
+main.shrink {
+
+  @include breakpoint(large) {
+    & > .row {
+      padding-left: rem-calc(184); // based on logo
+      padding-right: rem-calc(184);
+    }
+  }
+
+}
+
+ul.share {
+  list-style: none;
+  padding: .5rem .5rem .4rem;
+  margin: 2rem 0 0;
+
+  border-top: 3px solid $light-gray;
+  border-bottom: 3px solid $light-gray;
+
+  li {
+    display: inline;
+    padding-right: 1rem;
+    font-size: 1rem;
+
+    a {
+      vertical-align: middle;
+      color: $secondary-color;
+      &:hover, &:focus {
+        color: $alert-color;
+      }
+    }
+
+    &.text {
+      font: $global-weight-bold 14px / 1.5 $header-font-family;
+      color: $primary-color;
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* **********
+X. Footer
+********** */
+.page-footer {
+  margin-top: 4rem;
+}
+
+/* **********
+X.1 Partners
+********** */
+$partner-height: 60px;
+$partner-border-size: 4px;
+$partner-padding-vertical: 10px;
+$partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner-padding-vertical;
+
+.partners {
+  margin-top: 1.5rem;
+
+  .partner {
+    position: relative;
+    display: block;
+    height: $partner-height;
+
+    margin: 0 0 1rem;
+    padding: $partner-padding-vertical 0;
+
+    text-align: center;
+
+    border: $partner-border-size solid #d9dee5;
+    transition: border-color .3s;
+
+    img {
+      width: auto;
+      max-height: $partner-inner-height;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .fallback-title {
+      // Style text as fallback when no image is available
+      font-family: $header-font-family;
+      font-weight: $global-weight-bold;
+      color: $primary-color;
+      font-size: rem-calc(13);
+      letter-spacing: -1px;
+      line-height: $partner-inner-height;
+
+      @include breakpoint(medium) {
+        font-size: rem-calc(18);
+        letter-spacing: 0;
+      }
+
+    }
+
+    &:hover {
+      border-color: $medium-gray;
+
+      .partner-excerpt {
+        visibility: visible;
+        opacity: 1;
+      }
+
+    }
+  }
+
+  .partner-excerpt {
+
+    position: absolute;
+    top: $partner-height - $partner-border-size;
+
+    left: -$partner-border-size;
+    right: -$partner-border-size;
+
+    visibility: hidden;
+    z-index: 1;
+
+    opacity: 0;
+    transition: visibility 0s, opacity 500ms; // visibility transition needed for opacity transition to work
+
+    background: #d9dee5;
+    font-size: rem-calc(14);
+    text-align: left;
+    color: $black;
+    padding: .5rem 1rem;
+    line-height: $global-lineheight;
+
+    .button {
+      font-size: $global-font-size;
+      color: $primary-color;
+      letter-spacing: 0;
+      text-transform: none;
+      margin: .5rem 0 .25rem;
+
+      &:hover {
+        color: $alert-color;
+      }
+
+      .fa {
+        vertical-align: middle;
+      }
+    }
+
+  }
+}
+
+/* **********
+X.2 Footer Top
+********** */
+.footer-top {
+
+  position: relative;
+  background: $light-gray;
+  margin-top: 2rem;
+  padding: 3rem 0 2rem;
+
+  &.dotted-border {
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 6px;
+
+      position: absolute;
+      top: -6px;
+
+      background: url(../images/dotted-border.png) 0 -10px repeat-x;
+
+      @include breakpoint(retina) {
+        background-image: url(../images/dotted-border@2x.png);
+        background-size: 23px auto;
+      }
+    }
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .fa-ul i {
+    color: $secondary-color;
+  }
+
+  a {
+    color: $secondary-color;
+    &:hover, &:focus {
+      color: $alert-color;
+    }
+  }
+}
+
+/* **********
+X.2.1 Twitter
+********** */
+.latest-tweets {
+  ul {
+    list-style: none;
+    margin: 0 0 1rem;
+
+    @include breakpoint(large) {
+      margin-bottom: 0;
+    }
+
+    li {
+      margin: 1rem 0 0;
+      padding: 0;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    .tweet-text {
+      font-size: rem-calc(15);
+      margin: 0;
+      line-height: 1.35;
+      a {
+        color: $primary-color;
+        &:hover, &:focus {
+          color: $alert-color;
+        }
+      }
+    }
+
+    .tweet-details {
+      a {
+        color: $medium-gray;
+        font-weight: $global-weight-bold;
+        font-size: rem-calc(13);
+        &:hover, &:focus {
+          color: $alert-color;
+        }
+      }
+    }
+
+  }
+}
+
+/* **********
+X.3 Footer Bottom
+********** */
+.footer-bottom {
+  background: $primary-color;
+  padding: 1.1rem 0;
+
+  p {
+    color: $white;
+    font-size: rem-calc(14);
+    font-family: $header-font-family;
+  }
+}

@@ -1,0 +1,191 @@
+$wisv-button-height-small: 3.5rem;
+$wisv-button-border-small: .25rem;
+$wisv-button-padding-small: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-small: rem-calc(16);
+
+$wisv-button-height-medium: 3.75rem;
+$wisv-button-border-medium: .25rem;
+$wisv-button-padding-medium: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-medium: rem-calc(18);
+
+$wisv-button-height-large: 4.375rem;
+$wisv-button-border-large: .25rem;
+$wisv-button-padding-large: 0 1.5rem 0 5rem;
+$wisv-button-fontsize-large: rem-calc(20);
+
+$wisv-button-lineheight-small: $wisv-button-height-small - 2 * $wisv-button-border-small;
+$wisv-button-lineheight-medium: $wisv-button-height-medium - 2 * $wisv-button-border-medium;
+$wisv-button-lineheight-large: $wisv-button-height-large - 2 * $wisv-button-border-large;
+
+// @TODO rewrite using new button styles, should result in much less code
+.wisv-button {
+  display: block;
+  position: relative;
+
+  height: $wisv-button-height-small;
+  line-height: $wisv-button-lineheight-small;
+  padding: 0 1.5rem 0 5rem;
+
+  color: $white;
+  font-size: $wisv-button-fontsize-small;
+  font-weight: $global-weight-bold;
+  font-family: $header-font-family;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: right;
+  border: $wisv-button-border-small solid transparent;
+
+  &, &:before {
+    transition: all .2s;
+  }
+
+  // Hover / focus
+  &:hover, &:focus {
+    background-color: $white !important;
+  }
+
+  // Colors
+  &.red {
+    background-color: $alert-color;
+    &:hover, &:focus {
+      &, &:before {
+        color: $alert-color;
+        border-color: $alert-color;
+      }
+    }
+  }
+
+  &.blue {
+    background-color: $secondary-color;
+    &:hover, &:focus {
+      &, &:before {
+        color: $secondary-color;
+        border-color: $secondary-color;
+      }
+    }
+  }
+
+  &.last {
+    @include breakpoint(small only) {
+      margin-top: $global-margin;
+    }
+
+    @include breakpoint(large only) {
+      margin-top: $global-margin;
+    }
+  }
+
+  // Icons
+  &:before {
+    position: absolute;
+    display: block;
+
+    top: 0;
+    left: .5rem;
+
+    width: $wisv-button-height-small;
+    height: $wisv-button-height-small;
+
+    text-align: center;
+    line-height: $wisv-button-lineheight-small;
+    font-size: 222%;
+
+    color: $white;
+
+  }
+
+  // Responsive
+  @include breakpoint(medium) {
+    font-size: $wisv-button-fontsize-medium;
+    height: $wisv-button-height-medium;
+    line-height: $wisv-button-lineheight-medium;
+    padding: $wisv-button-padding-medium;
+    border-width: $wisv-button-border-medium;
+    &:before {
+      width: $wisv-button-height-medium;
+      height: $wisv-button-height-medium;
+      line-height: $wisv-button-lineheight-medium;
+    }
+  }
+
+  @include breakpoint(large) {
+    font-size: $wisv-button-fontsize-large;
+    height: $wisv-button-height-large;
+    line-height: $wisv-button-lineheight-large;
+    padding: $wisv-button-padding-large;
+    border-width: $wisv-button-border-large;
+    &:before {
+      width: $wisv-button-height-large;
+      height: $wisv-button-height-large;
+      line-height: $wisv-button-lineheight-large;
+    }
+  }
+
+  @include breakpoint(xlarge) {
+    &.last {
+      margin-top: 10.625rem - 2 * $wisv-button-height-large;
+    }
+  }
+}
+
+/* **********
+X.3 Buttons
+********** */
+$button-border-width: 3px;
+
+.button {
+  font-family: $header-font-family;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  border: $button-border-width solid $button-background;
+
+  // Default
+  &:hover, &:focus {
+    background: $button-background-hover;
+    color: $button-background;
+    border-color: $button-background;
+  }
+
+  // Colors
+  @each $name, $color in $foundation-palette {
+
+    &.#{$name} {
+      border-color: $color;
+
+      &:hover, &:focus {
+        background: $button-background-hover;
+        color: $color;
+        border-color: $color;
+      }
+
+      &.hollow {
+        border: $button-border-width solid $color;
+        &:hover, &:focus {
+          border-color: $color;
+          background: $color;
+          color: $button-color;
+          &.alt { // y'all got any more of them edge cases? ...
+            background: none;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.alt {
+    background: none;
+    border: none !important;
+    color: $alert-color;
+    font-weight: bold;
+    font-size: $global-font-size;
+    padding: 0;
+
+    &:hover, &:focus {
+      color: $primary-color;
+    }
+  }
+
+}

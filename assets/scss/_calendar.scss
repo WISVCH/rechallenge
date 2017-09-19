@@ -309,3 +309,57 @@
   }
 }
 
+/* **********
+ * Calendar
+   ********** */
+.event {
+  margin-top: 1rem;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// calendar icon background
+.event-date-wrapper {
+  background: url(../images/calendar.png) center top no-repeat;
+  background-size: contain;
+
+  a.event-date {
+    display: block;
+    padding: 45% 3.125% 10%;
+    color: $secondary-color;
+    text-align: center;
+    line-height: 1;
+    font-size: rem-calc(12);
+    font-family: $header-font-family;
+
+    span {
+      display: block;
+      font-size: 166.66%;
+      font-weight: $global-weight-bold;
+      line-height: 1.1;
+    }
+  }
+}
+
+.event-desc {
+  padding-top: .5rem;
+
+  .event-desc-header {
+    font-size: 1rem;
+    text-transform: none;
+    margin: 0 0 .2rem;
+    word-wrap: break-word;
+  }
+
+  p {
+    line-height: 1.35;
+    font-size: rem-calc(14);
+    margin: .4rem 0 0;
+  }
+
+}
+
+.events-backlink {
+  margin-top: $paragraph-margin-bottom;
+}

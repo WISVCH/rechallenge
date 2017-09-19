@@ -1,0 +1,123 @@
+/* **********
+1. Foundation overrides
+********** */
+
+// Use lists as columns
+ul.column {
+  margin: 0;
+  list-style: none;
+}
+
+// thumbnail border hover
+.thumbnail {
+  margin-bottom: 0;
+  &:hover, &:focus {
+    border-color: $dark-gray;
+  }
+}
+
+/* **********
+1.1 Tabs
+********** */
+.tabs, .tabs-content {
+  border-width: 4px;
+}
+
+.tabs-title {
+  margin-right: 4px;
+
+  a {
+    text-transform: uppercase;
+    @include inverted-anchor();
+    font-weight: $global-weight-bold;
+    font-family: $header-font-family;
+  }
+}
+
+/* **********
+1.2 Callouts
+********** */
+.callout {
+  box-shadow: 1px 1px 2px darken($light-gray, 12%);
+}
+
+.close-button {
+  background: $primary-color;
+  border-radius: 1rem;
+
+  width: 1.7rem;
+  height: 1.7rem;
+
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: $global-weight-bold;
+
+  box-shadow: 1px 1px 2px darken($light-gray, 12%);
+
+  &:hover,
+  &:focus {
+    background-color: $secondary-color;
+  }
+}
+
+/* **********
+X.3 Buttons
+********** */
+$button-border-width: 3px;
+
+.button {
+  font-family: $header-font-family;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  border: $button-border-width solid $button-background;
+
+  // Default
+  &:hover, &:focus {
+    background: $button-background-hover;
+    color: $button-background;
+    border-color: $button-background;
+  }
+
+  // Colors
+  @each $name, $color in $foundation-palette {
+
+    &.#{$name} {
+      border-color: $color;
+
+      &:hover, &:focus {
+        background: $button-background-hover;
+        color: $color;
+        border-color: $color;
+      }
+
+      &.hollow {
+        border: $button-border-width solid $color;
+        &:hover, &:focus {
+          border-color: $color;
+          background: $color;
+          color: $button-color;
+          &.alt { // y'all got any more of them edge cases? ...
+            background: none;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.alt {
+    background: none;
+    border: none !important;
+    color: $alert-color;
+    font-weight: bold;
+    font-size: $global-font-size;
+    padding: 0;
+
+    &:hover, &:focus {
+      color: $primary-color;
+    }
+  }
+
+}

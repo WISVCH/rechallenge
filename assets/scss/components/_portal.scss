@@ -1,0 +1,70 @@
+/* **********
+1. Portal
+********** */
+
+form.edit-profile-form {
+
+  @include breakpoint(small only) {
+    label.middle {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  label.inline {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  input[type="radio"] {
+    margin-right: .25rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    top: 1px;
+  }
+
+  input[readonly], input[disabled] {
+
+    background: none 99% 60% no-repeat;
+    background-size: $input-font-size + ($form-spacing / 2); // @see forms/_text.scss;
+    box-shadow: none;
+    cursor: pointer;
+    border: 2px dashed $light-gray;
+    position: relative;
+
+    &:hover {
+      background-image: url(../images/pencil-square-o.svg);
+    }
+
+  }
+
+}
+
+/* **********
+1.1 User login form
+********** */
+
+.user-login-form {
+  .row {
+    margin-bottom: 1rem;
+  }
+
+  &:not(.user-login-modal) {
+    margin: 4rem auto;
+
+    @include breakpoint(medium up) {
+      width: 50%;
+    }
+  }
+}
+
+#login-form.reveal {
+
+  @include breakpoint(medium only) {
+    width: 60%;
+  }
+}
+
+.openid-button-left .openid-connect-login-button {
+  text-align: left !important;;
+}

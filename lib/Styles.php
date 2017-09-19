@@ -16,6 +16,7 @@ class Styles
     {
 
         add_action('wp_enqueue_scripts', [__CLASS__, 'load_stylesheets']);
+        add_action('admin_init', [__CLASS__, 'editor_style']);
     }
 
     /**
@@ -32,5 +33,13 @@ class Styles
 
         // Let's go!
         wp_enqueue_style('rechallenge');
+    }
+
+    /**
+     * Add reCHallenge to editor.
+     */
+    static function editor_style()
+    {
+        add_editor_style(get_stylesheet_directory_uri()."/assets/css/editor.css");
     }
 }

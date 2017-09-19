@@ -1,0 +1,6 @@
+@mixin inverted-anchor() {
+  color: $primary-color;
+  &:hover, &:focus {
+    color: $alert-color;
+  }
+}

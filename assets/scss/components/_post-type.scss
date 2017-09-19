@@ -1,0 +1,306 @@
+/* **********
+1. News
+********** */
+.next-prev-links {
+  padding: 1rem 0;
+
+  .button {
+    margin-top: 0;
+    &:last-child {
+      float: right;
+    }
+  }
+}
+
+.separator-block {
+
+  margin: 0;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 3px dashed $light-gray;
+
+  @include breakpoint(medium) {
+    padding: 2rem 0;
+  }
+
+  &:first-child {
+    margin-top: 2rem;
+    border-top: 3px dashed $light-gray;
+  }
+
+}
+
+.news-block {
+  h1 {
+    margin-top: 0;
+  }
+
+  header {
+    img {
+      float: left;
+      max-height: 10rem;
+      width: 10rem;
+
+      margin: 0 1rem 0 0;
+    }
+  }
+}
+
+// Featured item
+.news-featured {
+
+  img {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  h1 {
+    text-transform: none;
+    margin: 0;
+  }
+
+  .byline {
+    color: $medium-gray;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 1rem;
+    padding: 0;
+    text-align: justify;
+  }
+
+  a {
+    color: $body-font-color;
+    &:hover {
+      h1 {
+        color: $alert-color;
+      }
+    }
+  }
+}
+
+// News list
+ul.news {
+
+  li {
+    margin: 0 0 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include breakpoint(medium down) {
+      margin-top: 2rem;
+    }
+  }
+
+  h2 {
+    text-transform: none;
+    margin: 0 0 .25rem;
+  }
+
+}
+
+/* **********
+2. Custom Post Types
+********** */
+.thumbnail.prop {
+  width: 100%;
+  text-align: center;
+  margin-bottom: .5rem;
+  padding: .5rem 1rem;
+
+  @include breakpoint(medium) {
+    margin-bottom: 0;
+  }
+
+  &.nopad {
+    padding: 0;
+  }
+
+  .thumb-image {
+    width: 100%;
+    padding-top: 62.5%;
+    background-position: center;
+    background-size: cover;
+
+    &.contain {
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+}
+
+.excerpt-blockgrid {
+
+  h2, p {
+    text-align: center;
+  }
+
+  @include breakpoint(medium) {
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+
+}
+
+.roster-page {
+
+  table {
+    table-layout: fixed;
+
+    tbody {
+      td {
+        font-size: rem-calc(15);
+
+        &:first-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  &.has-photo {
+
+    .wp-post-image {
+      display: block;
+      width: 100%;
+      max-width: map-get($breakpoints, medium);
+      margin: 0 auto 2rem;
+    }
+
+  }
+
+  @include breakpoint(large) {
+    table {
+      max-width: 59%;
+    }
+
+    &.has-photo table {
+      max-width: none;
+    }
+  }
+
+}
+
+/* **********
+2.1 Boards
+********** */
+
+.single-board .roster-page.has-photo {
+  h1, p {
+    text-align: center;
+  }
+}
+
+/* **********
+2.2 Honorary Members
+********** */
+.excerpt-honorary-member {
+
+  .thumbnail.prop .thumb-image {
+    padding-top: 120%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h2, p {
+    text-align: center;
+  }
+
+}
+
+.single-honorary_member .thumbnail {
+  margin: 0 0 1rem 1rem;
+}
+
+/* **********
+2.3 Career Dashboard
+********** */
+.page-template-template-career-dashboard .excerpt-job-opening {
+
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(small only) {
+    border-bottom: 2px dashed $light-gray;
+    padding-bottom: 1rem;
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+}
+
+/* **********
+2.4 Companies
+********** */
+
+/* Company page */
+.wisv-panel .wisv-panel-content > ul.company-details {
+  margin: 0 0 1rem 2rem;
+  word-wrap: break-word;
+
+  a {
+    @include inverted-anchor();
+  }
+
+  i {
+    color: $secondary-color;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.company-logo {
+  text-align: center;
+  margin: 0 0 1rem;
+
+  @include breakpoint(medium) {
+    padding: 0 2rem;
+    margin: 1rem 0 2rem;
+  }
+
+  img {
+    width: auto;
+    max-height: 10rem;
+  }
+}
+
+/* **********
+2.5 Job Openings
+********** */
+.excerpt-job-opening {
+
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .thumbnail {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    margin: .75rem 0 1rem;
+  }
+
+}

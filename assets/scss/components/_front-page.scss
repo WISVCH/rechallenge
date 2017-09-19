@@ -1,0 +1,292 @@
+.front-page {
+
+  .section-even, .section-odd {
+    padding: 2rem 0;
+
+    @include breakpoint(large) {
+      padding: 3rem 0;
+    }
+  }
+
+  .section-odd {
+    background: $light-gray;
+  }
+
+  // Remove extra padding for adjacent sections
+  .section-even + .section-even {
+    padding-top: 0;
+  }
+  .section-odd + .section-odd {
+    padding-top: 0;
+  }
+
+  // Less padding below news/calendar
+  .calendar-news {
+    padding-bottom: map-get($grid-column-gutter, 'small');
+    @include breakpoint(medium) {
+      padding-bottom: map-get($grid-column-gutter, 'medium');
+    }
+
+    @include breakpoint(medium down) {
+      .wisv-column-block {
+        @include grid-column-margin();
+      }
+    }
+  }
+
+}
+
+/* **********
+4.1 Slider
+********** */
+
+.orbit, .orbit-container, .orbit-slide, .page-title.slider {
+  padding: 0;
+  width: 100%;
+  height: 22rem !important; // GRRRR
+  max-height: none !important;
+}
+
+.orbit-container {
+  position: relative;
+  top: -22px;
+  @include breakpoint($topbar-unstack-breakpoint) {
+    top: -35px;
+  }
+}
+
+.orbit-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.orbit-caption {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+
+  height: 100%;
+  width: 100%;
+
+  display: table;
+  vertical-align: middle;
+
+  h1 {
+    font-size: rem-calc(30);
+    text-transform: none;
+
+    a {
+      color: $white;
+    }
+  }
+
+  p {
+    text-align: center;
+    color: $white;
+    font-size: rem-calc(16);
+    line-height: 1.35;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+  }
+
+  .button {
+    text-shadow: none;
+    font-size: rem-calc(14);
+  }
+
+  .align-middle {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    padding: 35px map-get($grid-column-gutter, 'small') 20px;
+
+    p.button-par {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.orbit-bullets {
+  position: absolute;
+  bottom: .5rem;
+  width: 100%;
+  text-align: center;
+
+  button {
+    height: .8rem;
+    width: .8rem;
+    margin: 0 .25rem;
+    padding: 0;
+  }
+}
+
+// Responsive rules
+@include breakpoint(medium) {
+
+  .orbit, .orbit-container, .orbit-slide, .page-title.slider {
+    height: 24rem !important;
+  }
+
+  .orbit-caption {
+    h1 {
+      font-size: rem-calc(40);
+    }
+    p {
+      font-size: rem-calc(20);
+      margin: 1rem 0 2rem;
+    }
+    .button {
+      font-size: rem-calc(18);
+    }
+    .align-middle {
+      padding: (rem-calc(35px) + 1rem) 10% 1rem;
+    }
+  }
+
+  .orbit-bullets {
+    bottom: 1rem;
+    button {
+      height: 1.1rem;
+      width: 1.1rem;
+    }
+  }
+}
+
+@include breakpoint(large) {
+
+  .orbit, .orbit-container, .orbit-slide, .page-title.slider {
+    height: 32rem !important;
+  }
+
+  .orbit-caption {
+    h1 {
+      font-size: rem-calc(60);
+    }
+    p {
+      font-size: rem-calc(24);
+    }
+    .button {
+      font-size: rem-calc(20);
+    }
+    .align-middle {
+      padding: (rem-calc(35px) + 1rem) 15% 1rem;
+    }
+  }
+
+  .orbit-bullets {
+    bottom: 1.5rem;
+  }
+}
+
+/* **********
+4.6 Gallery
+********** */
+.gallery {
+  background: url(../images/alt-bg-overlay.png) 0 -15px repeat !important;
+
+  .gallery-title {
+    margin-bottom: 2rem;
+    font-size: rem-calc(24);
+    line-height: 1;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery-item-wrapper {
+
+    .image-wrapper {
+      display: block;
+      width: 100%;
+      padding-top: 56.25%; // 16:9
+
+      background-position: center;
+      background-size: cover;
+    }
+
+    &:hover, &:focus {
+      .caption {
+        background: $alert-color;
+      }
+    }
+  }
+
+  .caption {
+    width: 100%;
+    display: table;
+
+    background: $primary-color;
+    color: $white;
+    text-align: center;
+
+    transition: background-color .2s;
+
+    .align-middle {
+      width: 100%;
+      display: table-cell;
+      height: 4.5rem;
+      vertical-align: middle;
+      color: $white;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      color: $white;
+      margin: 0;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  // Limit number of items on mobile devices
+  @include breakpoint(small down) {
+    .column:nth-child(n + 2) {
+      display: none;
+    }
+  }
+
+  @include breakpoint(medium only) {
+    .column:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+}
+
+/* **********
+4.5 Banner Bar
+********** */
+.banner-bar {
+  .banner-container {
+    display: block;
+    width: 100%;
+    height: 0;
+    background-position: center;
+    background-size: cover;
+
+    padding-bottom: percentage(170 / 837);
+
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .wisv-buttons {
+
+    @include breakpoint(medium down) {
+      margin-top: $global-margin;
+    }
+
+    i[class^="ch-"]:before,
+    i[class*=" ch-"]:before {
+      padding-left: .35em;
+    }
+
+  }
+
+}

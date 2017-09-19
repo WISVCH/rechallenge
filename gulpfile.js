@@ -14,7 +14,7 @@ var sassPaths = [
 
 // Process SCSS
 gulp.task('sass', function () {
-    return gulp.src('assets/scss/app.scss')
+    return gulp.src(['assets/scss/app.scss', 'assets/scss/editor.scss'])
         .pipe($.sass({
             includePaths: sassPaths,
             outputStyle: 'compressed'
