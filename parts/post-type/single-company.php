@@ -20,7 +20,7 @@
                     ?>
                     <div class="company-logo">
                         <?php
-                        the_post_thumbnail("featured-image");
+                        the_post_thumbnail("medium");
                         ?>
                     </div>
                 <?php } ?>

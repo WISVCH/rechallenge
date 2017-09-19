@@ -41,7 +41,7 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
                         ?>
                         <div class="company-logo">
                             <a href="<?=get_permalink($company_id);?>">
-                                <?=get_the_post_thumbnail($company_id, "featured-image");?>
+                                <?=get_the_post_thumbnail($company_id, "medium");?>
                             </a>
                         </div>
                     <?php } ?>

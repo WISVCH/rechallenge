@@ -1343,16 +1343,16 @@ ul.news {
 .banner-bar {
   .banner-container {
     display: block;
-    height: auto;
+    width: 100%;
+    height: 0;
+    background-position: center;
+    background-size: cover;
 
-    img {
-      display: block;
-      width: 100%; // explicit 100% in case width attribute on img in html
-      height: auto;
-      @include breakpoint(xlarge) {
-        height: 10.625rem;
-      }
-    }
+    padding-bottom: percentage(170 / 837);
+
+    text-indent: 100%;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .wisv-buttons {
