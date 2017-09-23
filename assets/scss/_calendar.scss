@@ -324,7 +324,7 @@
   background: url(../images/calendar.png) center top no-repeat;
   background-size: contain;
 
-  a.event-date {
+  .icon-cell a.event-date {
     display: block;
     padding: 45% 3.125% 10%;
     color: $secondary-color;

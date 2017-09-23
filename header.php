@@ -6,6 +6,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#058cce">
     <link rel="icon" href="<?php echo RECHALLENGE_URI; ?>/assets/images/favicon.png">
 
     <?php wp_head(); ?>
