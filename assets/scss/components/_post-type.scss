@@ -24,7 +24,7 @@
   }
 
   &:first-child {
-    margin-top: 2rem;
+    margin-top: .5rem;
     border-top: 3px dashed $light-gray;
   }
 
@@ -242,6 +242,12 @@ ul.news {
   }
 }
 
+#careerSelector {
+  .button-group {
+    margin-bottom: 0;
+  }
+}
+
 /* **********
 2.4 Companies
 ********** */
@@ -282,18 +288,8 @@ ul.news {
 /* **********
 2.5 Job Openings
 ********** */
-.excerpt-job-opening {
-
-  margin-bottom: 2rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .thumbnail {
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
+.excerpt-job-opening,
+.excerpt-company {
 
   h2 {
     font-size: 20px;
@@ -301,6 +297,57 @@ ul.news {
 
   p {
     margin: .75rem 0 1rem;
+  }
+
+}
+
+.faceted-selection {
+
+  .tabs-title {
+    float: none;
+    display: block;
+    margin-right: 0;
+
+    a {
+      padding: .5rem;
+      font-size: rem-calc(14);
+    }
+  }
+
+  .tabs-label {
+    display: block;
+    span {
+      font-size: rem-calc(12);
+      text-transform: uppercase;
+      font-weight: $global-weight-bold;
+      font-family: $header-font-family;
+      color: $medium-gray;
+      padding: .5rem;
+      display: inline-block;
+      line-height: 1;
+    }
+  }
+
+  @include breakpoint(medium) {
+    padding-left: 7rem;
+
+    .tabs-title {
+      display: inline-block;
+
+      a {
+        font-size: rem-calc(15);
+        padding: .75rem 1rem;
+      }
+    }
+
+    .tabs-label {
+      float: left;
+      margin-left: -7rem;
+      span {
+        margin-top: 2px;
+        padding: .75rem 1rem;
+      }
+    }
   }
 
 }

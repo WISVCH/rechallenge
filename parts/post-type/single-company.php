@@ -51,11 +51,11 @@
                 <?php } ?>
 
                 <?php
-                // Display for which studies job openings are available
-                echo get_the_term_list(get_the_ID(), 'job-study', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-graduation-cap"></i> ', '</li><li>', '</li></ul>');
+                // Display the available studies
+                echo get_the_term_list(get_the_ID(), 'company_study', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-graduation-cap"></i> ', '</li><li>', '</li></ul>');
 
-                // Display for which type of job openings are available
-                echo get_the_term_list(get_the_ID(), 'job-type', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-briefcase"></i> ', '</li><li>', '</li></ul>');
+                // Display the job types on offer
+                echo get_the_term_list(get_the_ID(), 'company_offerings', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-briefcase"></i> ', '</li><li>', '</li></ul>');
                 ?>
 
             </div>
@@ -97,7 +97,7 @@
                         <?php
                         while ($company_openings->have_posts()) {
                             $company_openings->the_post();
-                            get_template_part('parts/post-type/excerpt', 'job-opening');
+                            get_template_part('parts/post-type/excerpt', 'job_opening');
                         }
                         wp_reset_postdata();
                         ?>

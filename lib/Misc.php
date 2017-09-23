@@ -15,6 +15,8 @@ class Misc
     static function register_hooks()
     {
         add_filter('get_the_archive_title', [__CLASS__, 'archive_titles']);
+
+        add_filter('term_link', [__CLASS__, 'term_links'], 10, 3);
     }
 
     /**
@@ -56,5 +58,25 @@ class Misc
         }
 
         return $title;
+    }
+
+    static function term_links($termlink, $term, $taxonomy)
+    {
+
+        switch ($taxonomy) {
+            case 'job_type':
+            case 'company_offerings':
+                $termlink = get_post_type_archive_link($taxonomy === 'job_type' ? 'job_opening' : 'company');
+
+                return add_query_arg('filter_type', $term->slug, $termlink);
+            case 'job_study':
+            case 'company_study':
+
+                $termlink = get_post_type_archive_link($taxonomy === 'job_study' ? 'job_opening' : 'company');
+
+                return add_query_arg('filter_study', $term->slug, $termlink);
+            default:
+                return $termlink;
+        }
     }
 }

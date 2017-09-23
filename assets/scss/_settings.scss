@@ -362,13 +362,10 @@ $input-prefix-color: $black;
 $input-prefix-background: $light-gray;
 $input-prefix-border: 1px solid $medium-gray;
 $input-prefix-padding: 1rem;
-$form-label-color: $black;
+$form-label-color: $primary-color;
 $form-label-font-size: rem-calc(14);
-$form-label-font-weight: $global-weight-normal;
+$form-label-font-weight: $global-weight-bold;
 $form-label-line-height: 1.8;
-$select-background: $white;
-$select-triangle-color: $primary-color;
-$select-radius: 0;
 $input-color: $black;
 $input-placeholder-color: $medium-gray;
 $input-font-family: inherit;
@@ -385,6 +382,9 @@ $input-cursor-disabled: not-allowed;
 $input-transition: box-shadow 0.15s linear;
 $input-number-spinners: true;
 $input-radius: 0;
+$select-background: $input-background;
+$select-triangle-color: $primary-color;
+$select-radius: $input-radius;
 $form-button-radius: $global-radius;
 
 // 20. Label
@@ -560,14 +560,14 @@ $show-header-for-stacked: false;
 // 33. Tabs
 // --------
 
-$tab-margin: 0;
+$tab-margin: 1.5rem 0 0;
 $tab-background: $light-gray;
 $tab-color: $primary-color;
 $tab-background-active: $white;
 $tab-active-color: $primary-color;
-$tab-item-font-size: rem-calc(18);
+$tab-item-font-size: 1rem;
 $tab-item-background-hover: $white;
-$tab-item-padding: 1.25rem 1.5rem;
+$tab-item-padding: .75rem 1.5rem;
 $tab-expand-max: 6;
 $tab-content-background: $white;
 $tab-content-border: $light-gray;

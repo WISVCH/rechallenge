@@ -19,14 +19,14 @@ $thumb_sizing = 'contain';
             <?php
 
             // Get job opening studies
-            $terms_study = get_the_terms(get_the_ID(), 'job-study');
+            $terms_study = get_the_terms(get_the_ID(), 'company_study');
 
             if ($terms_study && ! is_wp_error($terms_study)) {
 
                 $job_studies = [];
 
                 foreach ($terms_study as $term) {
-                    $job_studies[] = '<a href="'.esc_url(get_term_link($term->term_id)).'">'.esc_html($term->name).'</a>';
+                    $job_studies[] = '<a href="'.esc_url(get_term_link($term)).'">'.esc_html($term->name).'</a>';
                 }
 
                 if (! empty($job_studies)) {
@@ -43,14 +43,14 @@ $thumb_sizing = 'contain';
             <?php
 
             // Get job opening types
-            $terms_type = get_the_terms(get_the_ID(), 'job-type');
+            $terms_type = get_the_terms(get_the_ID(), 'company_offerings');
 
             if ($terms_type && ! is_wp_error($terms_type)) {
 
                 $job_types = [];
 
                 foreach ($terms_type as $term) {
-                    $job_types[] = $term->name;
+                    $job_types[] = '<a href="'.esc_url(get_term_link($term)).'">'.esc_html($term->name).'</a>';
                 }
 
                 if (! empty($job_types)) {

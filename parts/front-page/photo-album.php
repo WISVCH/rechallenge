@@ -20,6 +20,10 @@
             $.getJSON("<?php echo admin_url("admin-ajax.php"); ?>?action=photo_album").done(function (data) {
                 var el = $("[data-wisvch-gallery]");
                 el.removeClass("loading").find(".loading").remove();
+                if (data.success === false) {
+                    el.append('<div class="column">Could not load photo album.</div>');
+                    return;
+                }
                 $.each(data, function (k, v) {
                     el.append('<article class="column"><a target="new" class="gallery-item-wrapper" href="' + v.url + '"><div class="image-wrapper" style="background-image:url(' + v.cover + ')"></div><div class="caption"><div class="align-middle"><h1 class="small">' + v.title + '</h1></div></div></a></article>');
                 });

@@ -19,6 +19,7 @@ get_template_part("parts/navigation/breadcrumb");
 
             <div class="row">
                 <div class="column column-block medium-5 large-4">
+                    <?php get_template_part('parts/misc/career', 'selector'); ?>
                     <?php get_template_part('parts/misc/career', 'calendar'); ?>
                 </div>
                 <div class="column medium-7 large-8">
@@ -43,7 +44,7 @@ get_template_part("parts/navigation/breadcrumb");
                             iF ($job_openings->have_posts()) {
                                 while ($job_openings->have_posts()) {
                                     $job_openings->the_post();
-                                    get_template_part('parts/post-type/excerpt', 'job-opening');
+                                    get_template_part('parts/post-type/excerpt', 'job_opening');
                                 }
                                 wp_reset_postdata();
                             } else {

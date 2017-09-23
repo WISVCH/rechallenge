@@ -56,22 +56,6 @@ function rechallenge_get_cover_image()
     // News
     if (is_singular('post') || is_home()) {
         $cover_image = get_the_post_thumbnail_url(get_option('page_for_posts'), 'cover');
-    } elseif (is_singular("event")) {
-        // @TODO: check if Yoast SEO enabled
-        $cat = new WPSEO_Primary_Term('event_category', get_the_ID());
-        $cat = $cat->get_primary_term();
-
-        $terms = get_the_terms(get_the_ID(), 'event_category');
-
-        if ($terms !== false) {
-
-            // @TODO fix this, maybe no cover image for specific events but use the calendar cover image instead.
-            foreach ($terms as $item) {
-                if ($item->term_id === $cat) {
-                    $cover_image = $item->description;
-                }
-            }
-        }
     } else {
         $cover_image = get_the_post_thumbnail_url(rechallenge_get_aux_page_id(), 'cover');
     }
@@ -185,3 +169,29 @@ function format_event_cost($cost_str)
 
     return $formatted_cost;
 }
+
+/**
+ * Display tab-like bar to select taxonomy terms.
+ *
+ * @param $term_array get_terms() array.
+ * @param $filter GET-variable name of filter.
+ */
+function rechallenge_faceted_term_selection($term_array, $filter, $label = null)
+{
+    $filter_check = empty($_GET[$filter]) ? null : sanitize_title($_GET[$filter]);
+
+    if (! is_wp_error($term_array)) { ?>
+        <ul class="tabs faceted-selection">
+            <?php if ($label) { ?>
+                <li class="tabs-title tabs-label"><span><?=esc_html($label)?></span></li>
+            <?php } ?>
+            <li class="tabs-title"><a<?=$filter_check === null ? ' aria-selected="true"' : ''?> href="<?=esc_attr(remove_query_arg($filter))?>">All</a></li>
+            <?php
+            foreach ($term_array as $term) {
+                $active_class = $term->slug === $filter_check ? ' aria-selected="true"' : ''; ?>
+                <li class="tabs-title"><a<?=$active_class?> href="<?=esc_attr(add_query_arg($filter, $term->slug))?>"><?=esc_html($term->name);?></a></li>
+            <?php } ?>
+        </ul>
+    <?php }
+}
+

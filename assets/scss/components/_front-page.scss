@@ -226,15 +226,19 @@
     .align-middle {
       width: 100%;
       display: table-cell;
-      height: 4.5rem;
+      height: 3rem;
       vertical-align: middle;
       color: $white;
       padding: 0 1rem;
+      @include breakpoint(medium) {
+        height: 4rem;
+      }
     }
 
     h1 {
       color: $white;
       margin: 0;
+      line-height: 1;
     }
 
     p {
@@ -245,13 +249,13 @@
 
   // Limit number of items on mobile devices
   @include breakpoint(small down) {
-    .column:nth-child(n + 2) {
+    article.column:nth-child(n + 2) {
       display: none;
     }
   }
 
   @include breakpoint(medium only) {
-    .column:nth-child(n + 3) {
+    article.column:nth-child(n + 3) {
       display: none;
     }
   }

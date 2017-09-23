@@ -20,10 +20,10 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
 
                     <?php
                     // Display for which studies job openings are available
-                    echo get_the_term_list(get_the_ID(), 'job-study', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-graduation-cap"></i> ', '</li><li>', '</li></ul>');
+                    echo get_the_term_list(get_the_ID(), 'job_study', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-graduation-cap"></i> ', '</li><li>', '</li></ul>');
 
                     // Display for which type of job openings are available
-                    echo get_the_term_list(get_the_ID(), 'job-type', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-briefcase"></i> ', '</li><li>', '</li></ul>');
+                    echo get_the_term_list(get_the_ID(), 'job_type', '<ul class="fa-ul company-details"><li><i class="fa-li fa ch-briefcase"></i> ', '</li><li>', '</li></ul>');
                     ?>
 
                 </div>

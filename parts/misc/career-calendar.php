@@ -9,7 +9,7 @@
         <?php
         $events = new WP_Query([
             'post_type' => 'event',
-            'posts_per_page' => 5,
+            'posts_per_page' => 2,
             'meta_query' => [
                 'event_selection' => [
                     'key' => '_event_end_date',
