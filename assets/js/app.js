@@ -172,7 +172,7 @@
 
     var blueprintItem = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content' data-tab-content style='display: none;'><h4>Exams</h4><table><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></div></li>";
 
-    var blueprintRow = "<tr><td>{% courseCode %}</td><td>{% name %}</td><td><span class='ch-{% answers %}'></span></td><td><a target='_blank' href='http://localhost:8080/choice/api/v1/document/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>";
+    var blueprintRow = "<tr><td>{% courseCode %}</td><td>{% name %}</td><td><span class='ch-{% answers %}'></span></td><td><a target='_blank' href='http://localhost:8080/choice/api/v1/document/exam/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>";
     var blueprintRowNoResult = "<tr><td colspan='4'>No exams available yet!</td></tr>";
 
     $("#searchQuery").on('keyup', function () {
@@ -237,7 +237,7 @@
 
                 var name = exam.name + " " + month + " " + exam.date.dayOfMonth + ", " + exam.date.year;
                 row = row.split("{% name %}").join(name);
-                row = row.split("{% documentId %}").join(exam.document.id);
+                row = row.split("{% documentId %}").join(exam.id);
                 row = row.split("{% answers %}").join(exam.includingAnswers ? 'check' : 'ban');
 
                 rows += row
