@@ -1,0 +1,80 @@
+/* **********
+8 CHoice
+********** */
+
+.choice-search {
+  display: block;
+  padding: .5rem .625rem .625rem;
+  border: 3px solid $light-gray;
+
+  select {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0;
+    background-color: #e7ebf1;
+    -webkit-box-shadow: inset 0 1px 2px rgba(137, 149, 160, 0.25);
+    box-shadow: inset 0 1px 2px rgba(137, 149, 160, 0.25);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: normal;
+    color: rgba(38, 38, 38, 0.6);
+    -webkit-transition: -webkit-box-shadow 0.15s linear;
+    transition: -webkit-box-shadow 0.15s linear;
+    transition: box-shadow 0.15s linear;
+    transition: box-shadow 0.15s linear, -webkit-box-shadow 0.15s linear;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+}
+
+.choice-accordion {
+  border-width: 3px;
+
+  .accordion-item {
+
+    .accordion-title {
+      font-size: 1em;
+      color: $alert-color;
+      border: 3px solid $light-gray;
+      border-radius: 0;
+      border-top-width: 0;
+
+      &::before {
+        content: '+';
+      }
+    }
+  }
+}
+
+.accordion-content {
+  border: 3px solid $light-gray !important;
+  border-top-width: 0 !important;
+
+  table thead th {
+    color: $white;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: $header-font-family;
+    line-height: 1;
+  }
+
+  .ch-check {
+    color: $success-color;
+  }
+
+  .ch-ban {
+    color: $alert-color;
+  }
+
+  .button .dashicons {
+    height: auto;
+    width: auto;
+    font-size: 14px;
+  }
+}
