@@ -342,11 +342,7 @@ $titlebar-height: 55px;
       bottom: 0px;
 
       background: url(../images/dotted-border.png) center top repeat-x;
-
-      @include breakpoint(retina) {
-        background-image: url(../images/dotted-border@2x.png);
-        background-size: 23px auto;
-      }
+      background-size: 23px auto;
     }
   }
 
@@ -592,11 +588,7 @@ X.2 Footer Top
       top: -6px;
 
       background: url(../images/dotted-border.png) 0 -10px repeat-x;
-
-      @include breakpoint(retina) {
-        background-image: url(../images/dotted-border@2x.png);
-        background-size: 23px auto;
-      }
+      background-size: 23px auto;
     }
   }
 
