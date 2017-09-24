@@ -4,13 +4,13 @@ $thumb_sizing = 'contain';
 ?>
 <article class="row excerpt-company">
 
-    <div class="small-12 medium-3 column">
+    <div class="small-3 column">
         <a class="thumbnail prop" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
             <?php include(locate_template('parts/misc/thumbnail-proportional.php')); ?>
         </a>
     </div>
 
-    <div class="small-12 medium-9 column">
+    <div class="small-9 column">
         <header>
             <h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
         </header>

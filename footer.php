@@ -10,18 +10,18 @@
     <div class="footer-top dotted-border">
         <div class="row">
 
-            <!-- Twitter -->
-            <section class="small-12 large-push-6 large-6 columns">
-                <h1 class="small">Follow us <a href="https://twitter.com/WISVCH/" target="new">@WISVCH</a></h1>
+            <!-- Contact information -->
+            <section class="small-12 large-6 columns">
                 <?php
-                dynamic_sidebar("footer-right");
+                dynamic_sidebar("footer-left");
                 ?>
             </section>
 
-            <!-- Contact information -->
-            <section class="small-12 large-pull-6 large-6 columns">
+            <!-- Twitter -->
+            <section class="small-12 large-6 columns">
+                <h1 class="small">Follow us <a href="https://twitter.com/WISVCH/" target="new">@WISVCH</a></h1>
                 <?php
-                dynamic_sidebar("footer-left");
+                dynamic_sidebar("footer-right");
                 ?>
             </section>
 
