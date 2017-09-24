@@ -106,33 +106,6 @@ ul.news {
 /* **********
 2. Custom Post Types
 ********** */
-.thumbnail.prop {
-  width: 100%;
-  text-align: center;
-  margin-bottom: .5rem;
-  padding: .5rem 1rem;
-
-  @include breakpoint(medium) {
-    margin-bottom: 0;
-  }
-
-  &.nopad {
-    padding: 0;
-  }
-
-  .thumb-image {
-    width: 100%;
-    padding-top: 62.5%;
-    background-position: center;
-    background-size: cover;
-
-    &.contain {
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-  }
-
-}
 
 .excerpt-blockgrid {
 
