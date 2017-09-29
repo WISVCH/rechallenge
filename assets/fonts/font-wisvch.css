@@ -247,3 +247,15 @@
 .ch-file-word-o:before {
     content: "\5a";
 }
+
+.ch-money:before {
+    content: "\30";
+}
+
+.ch-arrow-left:before {
+    content: "\31";
+}
+
+.ch-arrow-up:before {
+    content: "\32";
+}
