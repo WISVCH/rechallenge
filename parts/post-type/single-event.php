@@ -68,10 +68,8 @@ $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '')
                         $product = get_post($product_ids[$i]);
                         $product_meta = get_post_custom($product_ids[$i]);
                         ?>
-                        <li><?= ($i === 0) ? '<i class="fa-li fa ch-eur"></i>' : '' ?>
-                            &euro; <?= format_event_cost($product_meta['_product_cost'][0]) ?> <?= (count($product_ids) !=
-                                                                                                    1) ?
-                                $product->post_title : '' ?>
+                        <li><?= ($i === 0) ? '<i class="fa-li fa ch-money"></i>' : '' ?>
+                            &euro; <?= format_event_cost($product_meta['_product_cost'][0]) ?> <?= (count($product_ids) != 1) ? $product->post_title : '' ?>
                         </li>
                         <?php
                     }
