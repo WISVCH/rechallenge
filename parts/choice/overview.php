@@ -35,6 +35,7 @@
 
         <ul id="choice-accordion" class="accordion choice-accordion" data-accordion data-multi-expand="true"
             data-allow-all-closed="true">
+            <li class="accordion-item" data-accordion-item><a href="#" class="accordion-title clearfix">Loading courses.....</a></li>
         </ul>
     </div>
 </div>
