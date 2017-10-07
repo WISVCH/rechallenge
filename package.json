@@ -28,6 +28,5 @@
   "private": true,
   "dependencies": {
     "babel-core": "^6.26.0",
-    "gulp-sourcemaps": "^2.6.1"
   }
 }
