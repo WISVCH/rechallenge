@@ -2,7 +2,6 @@ var gulp = require('gulp'),
     $ = require('gulp-load-plugins')(),
     browserSync = require('browser-sync').create(),
     babel = require('gulp-babel'),
-    sourcemaps = require('gulp-sourcemaps'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename');
@@ -40,8 +39,8 @@ gulp.task('foundation-js', function () {
 
         // Pick the components you need in your project
         // './assets/components/foundation-sites/js/foundation.abide.js',
-        // './assets/components/foundation-sites/js/foundation.accordion.js',
-        // './assets/components/foundation-sites/js/foundation.accordionMenu.js',
+        './assets/components/foundation-sites/js/foundation.accordion.js',
+        './assets/components/foundation-sites/js/foundation.accordionMenu.js',
         // './assets/components/foundation-sites/js/foundation.drilldown.js',
         // './assets/components/foundation-sites/js/foundation.dropdown.js',
         // './assets/components/foundation-sites/js/foundation.dropdownMenu.js',
@@ -77,8 +76,17 @@ gulp.task('calendar-js', function () {
         .pipe(gulp.dest('./assets/js'))
 });
 
+// JSHint, concat, and minify CHoice JavaScript
+gulp.task('choice-js', function () {
+    return gulp.src([
+        './assets/js/w3cie.choice.js',
+    ])
+        .pipe(concat('w3cie.choice.min.js'))
+        .pipe(gulp.dest('./assets/js'))
+});
+
 // JSHint, concat, and minify JavaScript
-gulp.task('site-js', ['foundation-js', 'calendar-js'], function () {
+gulp.task('site-js', ['foundation-js', 'calendar-js', 'choice-js'], function () {
     return gulp.src([
 
         // Grab your custom scripts
@@ -113,10 +121,14 @@ gulp.task('browsersync', function () {
 
     gulp.watch(['assets/scss/**/*.scss'], ['sass']);
     gulp.watch(['assets/js/app.js'], ['site-js']);
+    gulp.watch(['assets/js/calendar.js'], ['calendar-js']);
+    gulp.watch(['assets/js/w3cie.choice.js'], ['choice-js']);
 
 });
 
 gulp.task('default', ['sass', 'site-js'], function () {
     gulp.watch(['assets/scss/**/*.scss'], ['sass']);
     gulp.watch(['assets/js/app.js'], ['site-js']);
+    gulp.watch(['assets/js/calendar.js'], ['calendar-js']);
+    gulp.watch(['assets/js/w3cie.choice.js'], ['choice-js']);
 });

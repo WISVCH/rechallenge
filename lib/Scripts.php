@@ -32,11 +32,18 @@ class Scripts
         // Calendar scripts
         wp_register_script('events-calendar', $stylesheet_uri.'/assets/js/calendar.min.js', ['jquery'], null, true);
 
+        // CHoice scripts
+        wp_register_script('w3cie-choice', $stylesheet_uri.'/assets/js/w3cie.choice.min.js', ['jquery', 'rechallenge'], null, true);
+
         // Load scripts
         wp_enqueue_script('rechallenge');
 
         if (is_page_template('template-event-calendar.php')) {
             wp_enqueue_script('events-calendar');
+        }
+
+        if (is_page_template('template-education-choice.php')) {
+            wp_enqueue_script('w3cie-choice');
         }
     }
 }

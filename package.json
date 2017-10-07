@@ -25,5 +25,8 @@
     "start": "gulp",
     "build": "gulp sass"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "babel-core": "^6.26.0",
+  }
 }
