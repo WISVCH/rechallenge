@@ -77,8 +77,17 @@ gulp.task('calendar-js', function () {
         .pipe(gulp.dest('./assets/js'))
 });
 
+// JSHint, concat, and minify CHoice JavaScript
+gulp.task('choice-js', function () {
+    return gulp.src([
+        './assets/js/w3cie.choice.js',
+    ])
+        .pipe(concat('w3cie.choice.min.js'))
+        .pipe(gulp.dest('./assets/js'))
+});
+
 // JSHint, concat, and minify JavaScript
-gulp.task('site-js', ['foundation-js', 'calendar-js'], function () {
+gulp.task('site-js', ['foundation-js', 'calendar-js', 'choice-js'], function () {
     return gulp.src([
 
         // Grab your custom scripts
@@ -113,10 +122,14 @@ gulp.task('browsersync', function () {
 
     gulp.watch(['assets/scss/**/*.scss'], ['sass']);
     gulp.watch(['assets/js/app.js'], ['site-js']);
+    gulp.watch(['assets/js/calendar.js'], ['calendar-js']);
+    gulp.watch(['assets/js/w3cie.choice.js'], ['choice-js']);
 
 });
 
 gulp.task('default', ['sass', 'site-js'], function () {
     gulp.watch(['assets/scss/**/*.scss'], ['sass']);
     gulp.watch(['assets/js/app.js'], ['site-js']);
+    gulp.watch(['assets/js/calendar.js'], ['calendar-js']);
+    gulp.watch(['assets/js/w3cie.choice.js'], ['choice-js']);
 });

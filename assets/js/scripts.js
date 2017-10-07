@@ -89,7 +89,7 @@ fNOP.prototype=this.prototype;}fBound.prototype=new fNOP();return fBound;};}// P
 function functionName(fn){if(Function.prototype.name===undefined){var funcNameRegex=/function\s([^(]{1,})\(/;var results=funcNameRegex.exec(fn.toString());return results&&results.length>1?results[1].trim():"";}else if(fn.prototype===undefined){return fn.constructor.name;}else{return fn.prototype.constructor.name;}}function parseValue(str){if('true'===str)return true;else if('false'===str)return false;else if(!isNaN(str*1))return parseFloat(str);return str;}// Convert PascalCase to kebab-case
 // Thank you: http://stackoverflow.com/a/8955580
 function hyphenate(str){return str.replace(/([a-z])([A-Z])/g,'$1-$2').toLowerCase();}}(jQuery);
-'use strict';!function($){Foundation.Box={ImNotTouchingYou:ImNotTouchingYou,GetDimensions:GetDimensions,GetOffsets:GetOffsets/**
+'use strict';!function($){Foundation.Box={ImNotTouchingYou:ImNotTouchingYou,GetDimensions:GetDimensions,GetOffsets:GetOffsets};/**
  * Compares the dimensions of an element to a container and determines collision events with container.
  * @function
  * @param {jQuery} element - jQuery object to test for collisions.
@@ -98,7 +98,7 @@ function hyphenate(str){return str.replace(/([a-z])([A-Z])/g,'$1-$2').toLowerCas
  * @param {Boolean} tbOnly - set to true to check top and bottom values only.
  * @default if no parent object passed, detects collisions with `window`.
  * @returns {Boolean} - true if collision free, false if a collision in any direction.
- */};function ImNotTouchingYou(element,parent,lrOnly,tbOnly){var eleDims=GetDimensions(element),top,bottom,left,right;if(parent){var parDims=GetDimensions(parent);bottom=eleDims.offset.top+eleDims.height<=parDims.height+parDims.offset.top;top=eleDims.offset.top>=parDims.offset.top;left=eleDims.offset.left>=parDims.offset.left;right=eleDims.offset.left+eleDims.width<=parDims.width+parDims.offset.left;}else{bottom=eleDims.offset.top+eleDims.height<=eleDims.windowDims.height+eleDims.windowDims.offset.top;top=eleDims.offset.top>=eleDims.windowDims.offset.top;left=eleDims.offset.left>=eleDims.windowDims.offset.left;right=eleDims.offset.left+eleDims.width<=eleDims.windowDims.width;}var allDirs=[bottom,top,left,right];if(lrOnly){return left===right===true;}if(tbOnly){return top===bottom===true;}return allDirs.indexOf(false)===-1;};/**
+ */function ImNotTouchingYou(element,parent,lrOnly,tbOnly){var eleDims=GetDimensions(element),top,bottom,left,right;if(parent){var parDims=GetDimensions(parent);bottom=eleDims.offset.top+eleDims.height<=parDims.height+parDims.offset.top;top=eleDims.offset.top>=parDims.offset.top;left=eleDims.offset.left>=parDims.offset.left;right=eleDims.offset.left+eleDims.width<=parDims.width+parDims.offset.left;}else{bottom=eleDims.offset.top+eleDims.height<=eleDims.windowDims.height+eleDims.windowDims.offset.top;top=eleDims.offset.top>=eleDims.windowDims.offset.top;left=eleDims.offset.left>=eleDims.windowDims.offset.left;right=eleDims.offset.left+eleDims.width<=eleDims.windowDims.width;}var allDirs=[bottom,top,left,right];if(lrOnly){return left===right===true;}if(tbOnly){return top===bottom===true;}return allDirs.indexOf(false)===-1;};/**
  * Uses native methods to return an object of dimension values.
  * @function
  * @param {jQuery || HTML} element - jQuery object or DOM element for which to get the dimensions. Can be any element other that document or window.
@@ -1265,7 +1265,7 @@ var MotionUI = {
   animateOut: function(element, animation, cb) {
     animate(false, element, animation, cb);
   }
-}
+};
 
 /*! Magnific Popup - v1.1.0 - 2016-02-20
 * http://dimsemenov.com/plugins/magnific-popup/
@@ -3297,112 +3297,4 @@ $.magnificPopup.registerModule(RETINA_NS, {
 
     });
 
-    /* CHOICE */
-    var choiceUrl = "https://choice.w3cie.k8s.chnet/api/v1/";
-
-    var blueprintItem = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content' data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></li>";
-    var blueprintItemNoResult = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title" +
-        " clearfix'>No course found that match your search criteria!</li>";
-
-    var blueprintRow = "<tr><td>{% courseCode %}</td><td>{% name %}</td><td><span class='ch-{% answers %}'></span></td><td><a target='_blank' href='" + choiceUrl + "document/exam/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>";
-    var blueprintRowNoResult = "<tr><td colspan='4'>No exams available yet!</td></tr>";
-
-    $("#searchQuery").on('keyup', function () {
-        searchCourses();
-    });
-
-    $("#searchStudy, #searchProgram").on('change', function () {
-        searchCourses();
-    });
-
-    function choiceInit() {
-        $.ajax({
-            url: choiceUrl + "course/active",
-            async: false,
-            dataType: "json",
-            success: function (data) {
-                $("#choice-accordion").html("").removeData('zfPlugin');
-
-                handleGetCourses(data);
-            }
-        });
-
-        $(document).foundation();
-    }
-
-    function searchCourses() {
-        $("#choice-accordion").html("").removeData('zfPlugin');
-
-        $.ajax({
-            url: choiceUrl + "course/active/search",
-            data: {
-                study: $("#searchStudy").val(),
-                program: $("#searchProgram").val(),
-                query: $("#searchQuery").val()
-            },
-            async: false,
-            dataType: "json",
-            success: function (data) {
-                handleGetCourses(data);
-            }
-        });
-
-        $(document).foundation();
-    }
-
-    function handleGetCourses(data) {
-        if (data.content.length > 0) {
-            $.each(data.content, function (i, course) {
-                var courseName = course.code + " " + course.name;
-                var courseHtml = blueprintItem.split("{% courseName %}").join(courseName);
-
-                var rows = getCourseExams(course);
-                courseHtml = courseHtml.split("{% content %}").join(rows);
-
-                $("#choice-accordion").append(courseHtml);
-            });
-        } else {
-            $("#choice-accordion").append(blueprintItemNoResult);
-        }
-    }
-
-    function getCourseExams(course) {
-        var rows = "";
-
-        $.ajax({
-            url: choiceUrl + "exam/course/" + course.code + "/including",
-            async: false,
-            dataType: "json",
-            success: function (data) {
-                rows = handleGetCourseExamResponse(data);
-            }
-        });
-
-        return rows;
-    }
-
-    function handleGetCourseExamResponse(data) {
-        var rows = "";
-        if (data.content.length > 0) {
-            $.each(data.content, function (i, exam) {
-                var row = blueprintRow.split("{% courseCode %}").join(exam.course.code);
-
-                var month = exam.date.month.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                    return letter.toUpperCase();
-                });
-
-                var name = exam.name + " " + month + " " + exam.date.dayOfMonth + ", " + exam.date.year;
-                row = row.split("{% name %}").join(name);
-                row = row.split("{% documentId %}").join(exam.id);
-                row = row.split("{% answers %}").join(exam.includingAnswers ? 'check' : 'ban');
-
-                rows += row
-            });
-        } else {
-            rows = blueprintRowNoResult;
-        }
-        return rows;
-    }
-
-    choiceInit();
 });
