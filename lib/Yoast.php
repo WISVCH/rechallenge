@@ -74,7 +74,7 @@ class Yoast
         }
 
         // Add assocation page to breadcrumbs for news
-        if (is_home() || is_single() || is_category() || is_post_type_archive('post')) {
+        if (is_home() || is_singular('post') || is_category() || is_post_type_archive('post')) {
 
             array_splice($links, 1, -3, [
                 ['id' => 18],

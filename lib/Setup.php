@@ -26,6 +26,9 @@ class Setup
 
         // Increase Twitter cache
         add_filter('latest_tweets_cache_seconds', [__CLASS__, "twitter_cache"]);
+
+        // Change excerpt length
+        add_filter('excerpt_length', [__CLASS__, 'excerpt_length'], 100);
     }
 
     /**
@@ -67,5 +70,10 @@ class Setup
     static function twitter_cache()
     {
         return 3600;
+    }
+
+    static function excerpt_length($length)
+    {
+        return 50;
     }
 }

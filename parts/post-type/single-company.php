@@ -84,7 +84,7 @@
         if ($company_openings->have_posts()) { ?>
 
             <div class="row column column-block">
-                <div class="wisv-panel">
+                <div class="wisv-panel related-job-openings">
 
                     <header class="wisv-panel-heading">
                         <h1 class="small">

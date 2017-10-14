@@ -3,11 +3,11 @@
 namespace ReCHallenge;
 
 /**
- * Loads theme stylesheets.
+ * Loads theme scripts.
  *
  * @package ReCHallenge
  */
-class Styles
+class Assets
 {
     /**
      * Hook into WordPress.
@@ -15,8 +15,31 @@ class Styles
     static function register_hooks()
     {
 
+        add_action('wp_enqueue_scripts', [__CLASS__, 'load_scripts']);
         add_action('wp_enqueue_scripts', [__CLASS__, 'load_stylesheets']);
         add_action('admin_init', [__CLASS__, 'editor_style']);
+    }
+
+    /**
+     * Enqueue scripts.
+     */
+    static function load_scripts()
+    {
+
+        $stylesheet_uri = get_stylesheet_directory_uri();
+
+        // Register scripts
+        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
+
+        // Calendar scripts
+        wp_register_script('events-calendar', $stylesheet_uri.'/assets/js/calendar.min.js', ['jquery'], null, true);
+
+        // Load scripts
+        wp_enqueue_script('rechallenge');
+
+        if (is_page_template('template-event-calendar.php')) {
+            wp_enqueue_script('events-calendar');
+        }
     }
 
     /**

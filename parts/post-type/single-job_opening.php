@@ -100,7 +100,7 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
             if ($company_openings->have_posts()) { ?>
 
                 <div class="row column column-block">
-                    <div class="wisv-panel">
+                    <div class="wisv-panel related-job-openings">
 
                         <header class="wisv-panel-heading">
                             <h1 class="small">
@@ -113,7 +113,7 @@ $website = ! isset($company_meta['_company_website'][0]) ? '' : $company_meta['_
                             <?php
                             while ($company_openings->have_posts()) {
                                 $company_openings->the_post();
-                                get_template_part('parts/post-type/excerpt', 'job-opening');
+                                get_template_part('parts/post-type/excerpt', 'job_opening');
                             }
                             wp_reset_postdata();
                             ?>

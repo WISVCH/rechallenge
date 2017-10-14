@@ -258,6 +258,14 @@ ul.news {
   }
 }
 
+.related-job-openings .excerpt-job-opening {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 /* **********
 2.5 Job Openings
 ********** */
