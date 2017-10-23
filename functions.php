@@ -13,9 +13,9 @@ require_once("lib/Foundation.php");
 require_once("lib/Menu.php");
 require_once("lib/Misc.php");
 require_once("lib/Query.php");
+require_once("lib/SEO.php");
 require_once("lib/Setup.php");
 require_once("lib/Sidebars.php");
-require_once("lib/Yoast.php");
 
 // Clean up WordPress
 Cleanup::register_hooks();
@@ -42,7 +42,7 @@ Foundation::register_hooks();
 Assets::register_hooks();
 
 // Load Yoast SEO modifications
-Yoast::register_hooks();
+SEO::register_hooks();
 
 // Miscellaneous modifications
 Misc::register_hooks();

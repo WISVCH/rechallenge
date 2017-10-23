@@ -40,10 +40,8 @@ if ($partners->have_posts()) { ?>
                             break;
                     }
                     ?>
-                    <a href="<?php echo esc_url($link_url); ?>" title="<?php the_title_attribute(); ?>" class="partner">
-                        <?php
-                        if (has_post_thumbnail()) {
-                            ?>
+                    <a href="<?=esc_url($link_url)?>" title="<?php the_title_attribute(); ?>" class="partner">
+                        <?php if (has_post_thumbnail()) { ?>
                             <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>">
                         <?php } else { ?>
                             <span class="fallback-title"><?php the_title(); ?></span>
@@ -55,7 +53,7 @@ if ($partners->have_posts()) { ?>
                             ?>
                             <span class="partner-excerpt">
                                 <?=$excerpt?><br>
-                                <span class="button alt" href="<?php echo esc_url($link_url); ?>"><?php echo $link_text; ?></span>
+                                <span class="button alt"><?=$link_text?></span>
                             </span>
                         <?php } ?>
                     </a>
@@ -65,5 +63,4 @@ if ($partners->have_posts()) { ?>
         </div>
     </div>
 
-    <?php
-}
+<?php }

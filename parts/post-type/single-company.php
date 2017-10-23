@@ -88,7 +88,7 @@
 
                     <header class="wisv-panel-heading">
                         <h1 class="small">
-                            Related Job Openings
+                            Job Openings
                             <small><a href="<?php echo get_post_type_archive_link('job_opening') ?>">View all <i class="fa ch-arrow-right"></i></a></small>
                         </h1>
                     </header>

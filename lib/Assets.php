@@ -29,16 +29,23 @@ class Assets
         $stylesheet_uri = get_stylesheet_directory_uri();
 
         // Register scripts
-        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
+        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.js', ['jquery'], null, true);
 
         // Calendar scripts
         wp_register_script('events-calendar', $stylesheet_uri.'/assets/js/calendar.min.js', ['jquery'], null, true);
+
+        // CHoice scripts
+        wp_register_script('w3cie-choice', $stylesheet_uri.'/assets/js/w3cie.choice.min.js', ['jquery', 'rechallenge'], null, true);
 
         // Load scripts
         wp_enqueue_script('rechallenge');
 
         if (is_page_template('template-event-calendar.php')) {
             wp_enqueue_script('events-calendar');
+        }
+
+        if (is_page_template('template-education-choice.php')) {
+            wp_enqueue_script('w3cie-choice');
         }
     }
 

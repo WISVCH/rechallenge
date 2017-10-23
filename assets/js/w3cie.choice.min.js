@@ -3,7 +3,9 @@ jQuery(function ($) {
     /* CHOICE */
     var choiceUrl = "https://choice.w3cie.k8s.chnet/api/v1/";
 
-    var blueprintItem = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content' data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></li>";
+    var blueprintItem = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content'" +
+        " data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table cellspacing='0'><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th" +
+        " width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></li>";
     var blueprintItemNoResult = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title" +
         " clearfix'>No course found that match your search criteria!</li>";
 
