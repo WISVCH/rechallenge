@@ -39,15 +39,17 @@ if ($partners->have_posts()) { ?>
                             $link_url = get_post_meta(get_the_ID(), "_company_website", true);
                             break;
                     }
+
+                    $thumb = get_the_post_thumbnail_url();
+                    $style = $thumb ? ' style="background-image:url('.esc_url($thumb).')"' : '';
+                    $class = 'class="'.($thumb ? 'img hidetext' : 'img').'"';
                     ?>
                     <a href="<?=esc_url($link_url)?>" title="<?php the_title_attribute(); ?>" class="partner">
-                        <?php if (has_post_thumbnail()) { ?>
-                            <img src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title_attribute(); ?>">
-                        <?php } else { ?>
-                            <span class="fallback-title"><?php the_title(); ?></span>
-                            <?php
-                        }
+                        <span <?=$class.$style?>>
+                            <?php the_title(); ?>
+                        </span>
 
+                        <?php
                         $excerpt = get_the_excerpt();
                         if (! empty($excerpt)) {
                             ?>

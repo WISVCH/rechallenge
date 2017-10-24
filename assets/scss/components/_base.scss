@@ -472,9 +472,10 @@ X. Footer
 /* **********
 X.1 Partners
 ********** */
-$partner-height: 60px;
+$partner-height: 75px;
 $partner-border-size: 4px;
-$partner-padding-vertical: 10px;
+$partner-padding-horizontal: 12px;
+$partner-padding-vertical: 6px;
 $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner-padding-vertical;
 
 .partners {
@@ -486,32 +487,38 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
     height: $partner-height;
 
     margin: 0 0 1rem;
-    padding: $partner-padding-vertical 0;
+    padding: $partner-padding-vertical $partner-padding-horizontal;
 
     text-align: center;
 
     border: $partner-border-size solid #d9dee5;
     transition: border-color .3s;
 
-    img {
-      width: auto;
-      max-height: $partner-inner-height;
-      display: block;
-      margin: 0 auto;
-    }
+    .img {
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
 
-    .fallback-title {
-      // Style text as fallback when no image is available
+      width: 100%;
+      height: $partner-inner-height;
+
+      display: block;
+
       font-family: $header-font-family;
       font-weight: $global-weight-bold;
       color: $primary-color;
       font-size: rem-calc(13);
       letter-spacing: -1px;
       line-height: $partner-inner-height;
+      overflow: hidden;
 
       @include breakpoint(medium) {
         font-size: rem-calc(18);
         letter-spacing: 0;
+      }
+
+      &.hidetext {
+        text-indent: 100%;
       }
 
     }
@@ -543,10 +550,10 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
 
     background: #d9dee5;
     font-size: rem-calc(14);
+    line-height:1.3;
     text-align: left;
     color: $black;
     padding: .5rem 1rem;
-    line-height: $global-lineheight;
 
     .button {
       font-size: $global-font-size;

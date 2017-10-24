@@ -38,6 +38,13 @@ get_template_part("parts/navigation/breadcrumb");
                                 'posts_per_page' => 3,
                                 'orderby' => 'date',
                                 'order' => 'DESC',
+                                'meta_query' => [
+                                    [
+                                        'key' => '_company_id',
+                                        'value' => '',
+                                        'compare' => '!=',
+                                    ],
+                                ],
                             ]);
 
                             // Render job openings

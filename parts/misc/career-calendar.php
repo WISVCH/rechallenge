@@ -30,6 +30,7 @@
                 ],
             ],
             'orderby' => 'event_order',
+            'order' => 'ASC',
         ]);
 
         if ($events->have_posts()) { ?>

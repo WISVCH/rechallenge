@@ -3,7 +3,8 @@
 $slides = new WP_Query(array(
 	'post_type' => 'slide',
 	'posts_per_page' => 5,
-	'orderby' => 'menu_order'
+	'orderby' => 'menu_order',
+    'order' => 'ASC'
 ));
 
 if ($slides->have_posts()) {
