@@ -3,6 +3,16 @@
 get_header();
 
 get_template_part("parts/navigation/breadcrumb");
+
+$choice_url = \ReCHallenge\Settings::get_setting('choice_url');
+
+if(!empty($choice_url)) {
+    ?>
+    <script>
+        window.choice_url = <?=wp_json_encode($choice_url)?>;
+    </script>
+    <?php
+}
 ?>
 
     <main>

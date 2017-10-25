@@ -1,7 +1,7 @@
 jQuery(function ($) {
 
     /* CHOICE */
-    var choiceUrl = "https://ch.tudelft.nl/choice2/api/v1/";
+    var choiceUrl = window.choice_url;
 
     var blueprintItem = "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content'" +
         " data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table cellspacing='0'><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th" +

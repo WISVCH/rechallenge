@@ -5,8 +5,8 @@ namespace ReCHallenge;
 define("RECHALLENGE_URI", get_stylesheet_directory_uri());
 
 // Load required classes
-require_once("lib/Assets.php");
 require_once("lib/Ajax.php");
+require_once("lib/Assets.php");
 require_once("lib/Branding.php");
 require_once("lib/Cleanup.php");
 require_once("lib/Foundation.php");
@@ -14,6 +14,7 @@ require_once("lib/Menu.php");
 require_once("lib/Misc.php");
 require_once("lib/Query.php");
 require_once("lib/SEO.php");
+require_once("lib/Settings.php");
 require_once("lib/Setup.php");
 require_once("lib/Sidebars.php");
 
@@ -49,6 +50,9 @@ Misc::register_hooks();
 
 // Load W3Cie branding
 Branding::register_hooks();
+
+// Create admin settings page
+Settings::register_hooks();
 
 // Helper functions
 require_once("lib/functions.php");
