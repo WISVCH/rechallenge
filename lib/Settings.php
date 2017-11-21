@@ -21,6 +21,11 @@ class Settings
     private static function _load_settings()
     {
         static::$_settings = get_option('rechallenge_settings');
+        
+        // Initialize empty settings array if no or invalid settings array available.
+        if(!is_array(static::$_settings)) {
+            static::$_settings = [];
+        }
     }
 
     static function get_setting($key)
