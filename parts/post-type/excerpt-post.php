@@ -16,6 +16,9 @@ $thumb = get_the_post_thumbnail_url(get_the_ID(), "medium");
 
         <?php the_excerpt(); ?>
 
+        <p class="byline">
+            Posted <time pubdate="pubdate"><?php the_date('F jS, Y H:i'); ?></time>
+        </p>
     </div>
 
 </article>
