@@ -56,6 +56,8 @@ function rechallenge_get_cover_image()
     // News
     if (is_singular('post') || is_home()) {
         $cover_image = get_the_post_thumbnail_url(get_option('page_for_posts'), 'cover');
+    } elseif (is_404()) {
+        $cover_image = RECHALLENGE_URI.'/assets/images/404-cover.jpg';
     } else {
         $cover_image = get_the_post_thumbnail_url(rechallenge_get_aux_page_id(), 'cover');
     }
