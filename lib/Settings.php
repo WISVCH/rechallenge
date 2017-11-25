@@ -15,15 +15,14 @@ class Settings
     {
         add_action('admin_menu', [__CLASS__, 'add_admin_menu']);
         add_action('admin_init', [__CLASS__, 'settings_init']);
-
     }
 
     private static function _load_settings()
     {
         static::$_settings = get_option('rechallenge_settings');
-        
+
         // Initialize empty settings array if no or invalid settings array available.
-        if(!is_array(static::$_settings)) {
+        if (! is_array(static::$_settings)) {
             static::$_settings = [];
         }
     }

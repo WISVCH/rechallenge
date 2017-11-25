@@ -31,17 +31,17 @@ $end = strtotime($meta['_event_end_date'][0]);
         $has_categories = is_array($categories);
 
         // Only display byline if category and/or start time is available
-        if ($has_categories || $start !== false) {
-            ?>
+        if ($has_categories || $start !== false) { ?>
+
             <footer class="byline">
                 <?php if ($has_categories) { ?>
                     <span class="event-location">
                     <?php
 
                     foreach ($categories as $item) {
-                        ?>
-                        <a href="<?php echo get_term_link($item->term_id); ?>"><?php echo $item->name; ?></a>
-                        <?php
+                        // TODO: restore when event categories are implemented
+                        /* <a href="<?php echo get_term_link($item->term_id); ?>"><?php echo $item->name; ?></a> */
+                        echo $item->name;
                     }
 
                     ?>
@@ -54,13 +54,14 @@ $end = strtotime($meta['_event_end_date'][0]);
                     <span class="event-time">
                     <?php echo date("G:i", $start)." - ".date("G:i", $end); ?>
                 </span>
-                    <?php
-                }
-                ?>
+                <?php } ?>
+
             </footer>
+
         <?php } ?>
 
         <?php echo isset($meta['_event_short_description']) ? wpautop($meta['_event_short_description'][0]) : ''; ?>
 
     </div>
+    
 </article>
