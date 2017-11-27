@@ -12,8 +12,18 @@ jQuery(function ($) {
     var blueprintRow = "<tr><td>{% courseCode %}</td><td>{% name %}</td><td><span class='ch-{% answers %}'></span></td><td><a target='_blank' href='" + choiceUrl + "document/exam/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>";
     var blueprintRowNoResult = "<tr><td colspan='4'>No exams available yet!</td></tr>";
 
+    var delay = (function () {
+        var timer = 0;
+        return function (callback, ms) {
+            clearTimeout(timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+
     $("#searchQuery").on('keyup', function () {
-        searchCourses();
+        delay(function () {
+            searchCourses();
+        }, 300);
     });
 
     $("#searchStudy, #searchProgram").on('change', function () {
@@ -61,7 +71,7 @@ jQuery(function ($) {
                 var courseName = course.code + " " + course.name;
                 var courseHtml = blueprintItem.split("{% courseName %}").join(courseName);
 
-                var rows = getCourseExams(course);
+                var rows = handleGetCourseExamResponse(course.exam);
                 courseHtml = courseHtml.split("{% content %}").join(rows);
 
                 $("#choice-accordion").append(courseHtml);
@@ -71,25 +81,11 @@ jQuery(function ($) {
         }
     }
 
-    function getCourseExams(course) {
-        var rows = "";
-
-        $.ajax({
-            url: choiceUrl + "exam/course/" + course.code + "/including",
-            async: false,
-            dataType: "json",
-            success: function (data) {
-                rows = handleGetCourseExamResponse(data);
-            }
-        });
-
-        return rows;
-    }
-
     function handleGetCourseExamResponse(data) {
         var rows = "";
-        if (data.content.length > 0) {
-            $.each(data.content, function (i, exam) {
+
+        if (data.length > 0) {
+            $.each(data, function (i, exam) {
                 var row = blueprintRow.split("{% courseCode %}").join(exam.course.code);
 
                 var month = exam.date.month.toLowerCase().replace(/\b[a-z]/g, function (letter) {
@@ -106,6 +102,7 @@ jQuery(function ($) {
         } else {
             rows = blueprintRowNoResult;
         }
+
         return rows;
     }
 
