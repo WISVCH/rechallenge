@@ -83,7 +83,7 @@ function rechallenge_get_aux_page_id()
     } elseif (is_post_type_archive("job_opening") || is_singular('job_opening')) {
         $id = get_page_by_path("career/job-openings");
     } elseif (is_post_type_archive("event") || is_singular('event')) {
-        $id = get_page_by_path("activities/overview");
+        $id = get_page_by_path("activities");
     } elseif (is_home() || is_archive()) {
         $id = get_post(get_option("page_for_posts"));
     }
