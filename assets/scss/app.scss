@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+// WISV CH custom icon font (made with Fontastic)
+@import 'font-wisvch';
+
 // Dependencies
 @import '../components/foundation-sites/_vendor/normalize-scss/sass/normalize';
 @import '../components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
@@ -112,9 +115,6 @@
 
 // Load Motion-UI
 @import '../components/motion-ui/motion-ui';
-
-// WISV CH custom icon font (made with Fontastic)
-@import '../fonts/font-wisvch.css';
 
 // Hamburgers
 @import '../components/css-hamburgers/_sass/hamburgers/hamburgers';
