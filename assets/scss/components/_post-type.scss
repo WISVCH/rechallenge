@@ -164,9 +164,26 @@ ul.news {
 2.1 Boards
 ********** */
 
-.single-board .roster-page.has-photo {
-  h1, p {
-    text-align: center;
+.adjacent-link {
+
+  white-space: nowrap;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  }
+
+  .button {
+    vertical-align: middle;
+  }
+}
+
+.single-board .roster-page {
+  table {
+    max-width: none;
   }
 }
 
