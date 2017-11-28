@@ -31,6 +31,12 @@ class Cleanup
         // Remove EditURI Meta Tag
         remove_action('wp_head', 'rsd_link');
 
+        // Disable oEmbed
+        remove_action('rest_api_init', 'wp_oembed_register_route');
+        remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+        remove_action('wp_head', 'wp_oembed_add_discovery_links');
+        remove_action('wp_head', 'wp_oembed_add_host_js');
+
         // Remove version number in query args
         if (! is_admin()) {
             add_filter('script_loader_src', [__CLASS__, 'remove_version_query_arg'], 15, 1);

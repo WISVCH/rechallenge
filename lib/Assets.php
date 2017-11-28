@@ -30,7 +30,7 @@ class Assets
 
         // Load latest jQuery in footer
         wp_deregister_script('jquery');
-        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], '3.2.1', true);
+        wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], '3.2.1', false);
 
         // Register theme scripts
         wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
