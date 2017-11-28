@@ -1,4 +1,4 @@
-<div class="row column">
+<div class="row column column-block">
     <?php
     the_content();
     ?>
