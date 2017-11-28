@@ -35,8 +35,8 @@ $next = get_adjacent_post(false, '', false);
 
     <div class="row">
 
-        <div class="large-5 column column-block">
-            <a href="<?=esc_url(get_the_post_thumbnail_url())?>">
+        <div class="large-5 column">
+            <a href="<?=esc_url(get_the_post_thumbnail_url(null, 'large'))?>">
                 <?php the_post_thumbnail('medium', [
                     'alt' => esc_attr(get_the_title()),
                 ]); ?>

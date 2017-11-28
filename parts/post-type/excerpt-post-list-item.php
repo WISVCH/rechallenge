@@ -1,5 +1,5 @@
 <?php
-$thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url() : RECHALLENGE_URI.'/assets/images/placeholder.png';
+$thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null, 'medium') : RECHALLENGE_URI.'/assets/images/placeholder.png';
 ?>
 <li>
     <article class="icon-row">

@@ -40,7 +40,7 @@ if ($partners->have_posts()) { ?>
                             break;
                     }
 
-                    $thumb = get_the_post_thumbnail_url();
+                    $thumb = get_the_post_thumbnail_url(null, 'medium');
                     $style = $thumb ? ' style="background-image:url('.esc_url($thumb).')"' : '';
                     $class = 'class="'.($thumb ? 'img hidetext' : 'img').'"';
                     ?>

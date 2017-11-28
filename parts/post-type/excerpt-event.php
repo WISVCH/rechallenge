@@ -37,13 +37,9 @@ $end = strtotime($meta['_event_end_date'][0]);
                 <?php if ($has_categories) { ?>
                     <span class="event-location">
                     <?php
-
-                    foreach ($categories as $item) {
-                        // TODO: restore when event categories are implemented
-                        /* <a href="<?php echo get_term_link($item->term_id); ?>"><?php echo $item->name; ?></a> */
-                        echo $item->name;
-                    }
-
+                    // TODO: restore when event categories are implemented
+                    /* <a href="<?php echo get_term_link($item->term_id); ?>"><?php echo $item->name; ?></a> */
+                    echo implode(', ', wp_list_pluck($categories, 'name'));
                     ?>
                 </span>
                     <?php
@@ -63,5 +59,5 @@ $end = strtotime($meta['_event_end_date'][0]);
         <?php echo isset($meta['_event_short_description']) ? wpautop($meta['_event_short_description'][0]) : ''; ?>
 
     </div>
-    
+
 </article>
