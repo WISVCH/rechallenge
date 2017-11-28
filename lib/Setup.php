@@ -63,7 +63,7 @@ class Setup
     static function disable_default_sizes($sizes)
     {
         return array_filter($sizes, function ($val) {
-            return 'medium_large' !== $val && 'large' !== $val;
+            return 'medium_large' !== $val;
         });
     }
 
