@@ -5,7 +5,7 @@ $thumb_url = has_post_thumbnail() ? get_the_post_thumbnail_url(null, 'thumbnail'
     <article class="icon-row">
 
         <div class="icon-cell">
-            <a class="thumbnail" href="<?php the_permalink(); ?>" style="background-image:url(<?=esc_url($thumb_url)?>)"></a>
+            <a class="thumbnail" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" style="background-image:url(<?=esc_url($thumb_url)?>)"></a>
         </div>
 
         <div class="text-cell">

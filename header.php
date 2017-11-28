@@ -37,7 +37,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                             echo '<a class="login-button button alert" href="'.site_url('portal').'" data-open="login-form">Login</a>';
                         }
                         ?>
-                        <button class="wisv-menu-icon hamburger hamburger--collapse" type="button" data-toggle>
+                        <button class="wisv-menu-icon hamburger hamburger--collapse" type="button" data-toggle aria-label="Navigation menu">
                             <span class="hamburger-box"><span class="hamburger-inner"></span></span>
                         </button>
                     </div>
