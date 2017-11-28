@@ -92,6 +92,12 @@ $topbar-height: rem-calc(90);
   position: relative;
   z-index: 10;
 
+  // Prevent FOUC
+  display: none;
+  @include breakpoint(large) {
+    display: block;
+  }
+
   .top-bar-right {
     background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
     @include breakpoint($topbar-unstack-breakpoint) {
@@ -550,7 +556,7 @@ $partner-inner-height: $partner-height - 2 * $partner-border-size - 2 * $partner
 
     background: #d9dee5;
     font-size: rem-calc(14);
-    line-height:1.3;
+    line-height: 1.3;
     text-align: left;
     color: $black;
     padding: .5rem 1rem;

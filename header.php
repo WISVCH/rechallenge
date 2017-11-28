@@ -7,7 +7,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#058cce">
-    <link rel="icon" href="<?php echo RECHALLENGE_URI; ?>/assets/images/favicon.png">
+    <link rel="icon" href="<?=RECHALLENGE_URI?>/assets/images/favicon.png">
 
     <?php wp_head(); ?>
 
@@ -20,11 +20,11 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
     <header class="page-header">
 
         <!-- Title Bar -->
-        <div class="title-bar hide-for-large" data-responsive-toggle="nav-menu" data-hide-for="large">
+        <div class="title-bar" data-responsive-toggle="nav-menu" data-hide-for="large">
             <div class="row collapse">
                 <div class="small-6 medium-5 bg-left column">
-                    <a class="logo-small hide-for-large" href="<?php echo esc_url(site_url('/')); ?>">
-                        <img src="<?php echo RECHALLENGE_URI; ?>/assets/images/ch-logo.png" alt="<?php echo esc_attr(get_bloginfo('sitename')); ?>" class="logo-small">
+                    <a class="logo-small" href="<?=esc_url(site_url('/'))?>">
+                        <img src="<?php echo RECHALLENGE_URI; ?>/assets/images/ch-logo.png" alt="<?=esc_attr(get_bloginfo('sitename'))?>" class="logo-small">
                     </a>
                 </div>
                 <div class="small-6 medium-7 bg-right column">
@@ -53,14 +53,11 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                 <div class="center row">
 
                     <nav class="top-bar" id="nav-menu">
-                        <div class="top-bar-left show-for-large">
+                        <div class="top-bar-left">
                             <div class="logo-wrapper">
-                                <div class="logo">
-                                    <a href="<?php echo esc_url(site_url('/')); ?>">
-                                        <img src="<?php echo RECHALLENGE_URI; ?>/assets/images/ch-logo.png" width="300" height="110"
-                                             alt="W.I.S.V. 'Christiaan Huygens'">
-                                    </a>
-                                </div>
+                                <a class="logo" href="<?=esc_url(site_url('/'))?>">
+                                    <img src="<?=RECHALLENGE_URI?>/assets/images/ch-logo.png" width="300" height="110" alt="<?=esc_attr(get_bloginfo('sitename'))?>">
+                                </a>
                             </div>
                         </div>
                         <div class="top-bar-right">
