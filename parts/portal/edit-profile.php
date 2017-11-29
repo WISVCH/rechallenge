@@ -29,7 +29,7 @@ use WISVCH\Portal\Shortcodes\Profile;
 
         <?php } else { ?>
 
-            <h2>Edit Profile</h2>
+            <h2>Edit Profile <a class="float-right " href="<?=site_url('/password')?>"></a></h2>
             <p>This is your personal information as currently known by the study association. Please update where necessary.</p>
 
             <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" class="edit-profile-form">

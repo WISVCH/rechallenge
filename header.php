@@ -53,7 +53,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                 <div class="center row">
 
                     <nav class="top-bar" id="nav-menu">
-                        <div class="top-bar-left">
+                        <div class="top-bar-left show-for-large">
                             <div class="logo-wrapper">
                                 <a class="logo" href="<?=esc_url(site_url('/'))?>">
                                     <img src="<?=RECHALLENGE_URI?>/assets/images/ch-logo.png" width="300" height="110" alt="<?=esc_attr(get_bloginfo('sitename'))?>">
