@@ -229,6 +229,8 @@ $titlebar-height: 55px;
 
   background: url(../images/top-bar-bg.png) 0 -115px repeat-x;
 
+  display: none;
+
   .column {
     height: $titlebar-height;
   }
