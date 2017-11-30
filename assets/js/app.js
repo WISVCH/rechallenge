@@ -92,6 +92,15 @@
 
 
     /* EVENTS */
+
+    var updateCurrentEventFilter = function (cal) {
+        var currentFilter = [];
+        $("#event-filter-dropdown input:checkbox:checked").each(function () {
+            currentFilter.push($(this).data('slug'));
+        });
+        cal.data('currentFilter', currentFilter);
+    };
+
     if ($.fullCalendar) {
 
         // Load large calendar
@@ -101,10 +110,19 @@
 
             defaultView: Foundation.MediaQuery.atLeast('large') ? 'month' : 'listMonth',
 
+            customButtons: {
+                filterButton: {
+                    text: "Filter",
+                    click: function () {
+                        // filterDropdown.foundation('toggle');
+                    }
+                }
+            },
+
             header: {
                 left: 'title',
                 center: '',
-                right: 'today prev, next'
+                right: 'filterButton today prev, next'
             },
 
             events: {
@@ -116,16 +134,39 @@
 
             handleWindowResize: false,
 
+            viewRender: function () {
+                if (typeof $('.fc-filterButton-button').attr('data-toggle') == 'undefined') {
+                    $('.fc-filterButton-button').attr('data-toggle', 'event-filter-dropdown');
+                    new Foundation.Dropdown($("#event-filter-dropdown"));
+                }
+
+                updateCurrentEventFilter($('#calendar'));
+            },
+
+            eventRender: function (event) {
+
+                // Filter events
+                if (event.categories) {
+
+                    var currentFilter = $('#calendar').data('currentFilter');
+                    if ($(event.categories).filter(currentFilter).length <= 0) {
+                        return false;
+                    }
+                }
+
+            },
 
             eventAfterRender: function (event, $el) {
 
                 // Lower opacity of events in next month
-                if (event.start.isAfter(cal.fullCalendar('getDate'))) {
+                if (event.start.isAfter(cal.fullCalendar('getView').intervalEnd)) {
                     $el.addClass('next-month');
                 }
 
                 // Add category colors
-                if (event.categories) {
+                if (event.primary_category) {
+                    $el.addClass("cat-" + event.primary_category);
+                } else if (event.categories) {
                     $el.addClass("cat-" + event.categories[0]);
                 }
 
@@ -134,10 +175,13 @@
                     $el.find('.fc-time').html(event.start.format("H:mm"));
                 }
             }
-        }).on('click tap', '.fc-button', function (e) {
+
+        }).on('click tap', '.fc-button', function () {
             // Lose focus..
             $(this).blur();
         });
+
+        updateCurrentEventFilter(cal);
 
         // Change view on media query change
         $(window).on('changed.zf.mediaquery', function () {
@@ -148,8 +192,12 @@
             }
         });
 
+        // Update events on filter change
+        $('#event-filter-dropdown input:checkbox').on('change', function () {
+            updateCurrentEventFilter(cal);
+            cal.fullCalendar('rerenderEvents');
+        });
     }
-
 
     /* PORTAL */
 

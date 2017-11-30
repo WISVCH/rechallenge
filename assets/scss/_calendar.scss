@@ -22,6 +22,9 @@
     text-align: right;
     @include button-group('.fc-button', 0);
 
+    .fc-button {
+      font-size: map-get($button-sizes, small);
+    }
   }
 
   .fc-button {
@@ -39,7 +42,7 @@
       border-left: none;
     }
 
-    &.fc-today-button {
+    &.fc-today-button, &.fc-filterButton-button {
       margin-right: 1rem;
     }
 
@@ -379,29 +382,37 @@ $event-color-social: $alert-color;
 
   &.cat-association {
     border-color: $event-color-association;
-    &:hover {
+    &:hover, &:focus {
       background: $event-color-association;
     }
   }
 
   &.cat-career {
     border-color: $event-color-career;
-    &:hover {
+    &:hover, &:focus {
       background: $event-color-career;
     }
   }
 
   &.cat-educational {
     border-color: $event-color-education;
-    &:hover {
+    &:hover, &:focus {
       background: $event-color-education;
     }
   }
 
   &.cat-social {
     border-color: $event-color-social;
-    &:hover {
+    &:hover, &:focus {
       background: $event-color-social;
     }
+  }
+}
+
+#event-filter-dropdown {
+  width: auto;
+  white-space: nowrap;
+  input {
+    margin-bottom: .75rem;
   }
 }
