@@ -113,9 +113,6 @@
             customButtons: {
                 filterButton: {
                     text: "Filter",
-                    click: function () {
-                        // filterDropdown.foundation('toggle');
-                    }
                 }
             },
 

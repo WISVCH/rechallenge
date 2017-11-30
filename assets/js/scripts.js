@@ -3361,9 +3361,6 @@ $.magnificPopup.registerModule(RETINA_NS, {
             customButtons: {
                 filterButton: {
                     text: "Filter",
-                    click: function () {
-                        // filterDropdown.foundation('toggle');
-                    }
                 }
             },
 
