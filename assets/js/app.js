@@ -116,8 +116,20 @@
 
             handleWindowResize: false,
 
-            // Fix multi-day event start and end times
+
             eventAfterRender: function (event, $el) {
+
+                // Lower opacity of events in next month
+                if (event.start.isAfter(cal.fullCalendar('getDate'))) {
+                    $el.addClass('next-month');
+                }
+
+                // Add category colors
+                if (event.categories) {
+                    $el.addClass("cat-" + event.categories[0]);
+                }
+
+                // Fix multi-day event start and end times
                 if (!event.start.isSame(event.end, 'day')) {
                     $el.find('.fc-time').html(event.start.format("H:mm"));
                 }

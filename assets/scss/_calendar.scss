@@ -203,6 +203,10 @@
     line-height: 1.2;
     padding-bottom: .2rem;
   }
+
+  &.next-month {
+    opacity: .75;
+  }
 }
 
 .fc-row {
@@ -362,4 +366,42 @@
 
 .events-backlink {
   margin-top: $paragraph-margin-bottom;
+}
+
+// Color-code categories
+$event-color-association: $secondary-color;
+$event-color-career: $warning-color;
+$event-color-education: $success-color;
+$event-color-social: $alert-color;
+
+.fc-event {
+  border-top: 3px solid transparent;
+
+  &.cat-association {
+    border-color: $event-color-association;
+    &:hover {
+      background: $event-color-association;
+    }
+  }
+
+  &.cat-career {
+    border-color: $event-color-career;
+    &:hover {
+      background: $event-color-career;
+    }
+  }
+
+  &.cat-educational {
+    border-color: $event-color-education;
+    &:hover {
+      background: $event-color-education;
+    }
+  }
+
+  &.cat-social {
+    border-color: $event-color-social;
+    &:hover {
+      background: $event-color-social;
+    }
+  }
 }
