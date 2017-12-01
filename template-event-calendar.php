@@ -19,13 +19,13 @@ get_template_part("parts/navigation/breadcrumb");
 
             if (! empty($categories) && count($categories) > 0) {
                 ?>
-                <div class="dropdown-pane" id="event-filter-dropdown" data-auto-focus="true" data-close-on-click="true">
+                <div class="dropdown-pane" id="event-filter-dropdown" data-auto-focus="true" data-close-on-click="true" data-position="bottom" data-alignment="center">
                     <fieldset class="large-6 cell">
                         <?php
                         foreach ($categories as $c) {
                             $slug = esc_attr($c->slug); ?>
                             <input type="checkbox" name="cat-<?=$slug?>" data-slug="<?=$slug?>" value="<?=esc_attr($c->name)?>" id="cat-<?=$slug?>" checked><label
-                                    for="cat-<?=$slug?>"><?=esc_html($c->name)?></label><br>
+                                    for="cat-<?=$slug?>" class="cat-<?=$slug?>"><?=esc_html($c->name)?></label><br>
                         <?php } ?>
                     </fieldset>
                 </div>
