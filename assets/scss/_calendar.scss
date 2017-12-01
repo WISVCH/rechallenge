@@ -146,6 +146,12 @@
 
 }
 
+.fc-list-view {
+  .fc-scroller {
+    height: auto !important;
+  }
+}
+
 .fc-event {
   display: block;
   background: $primary-color;
@@ -186,7 +192,6 @@
 
     tbody {
       background: none;
-
       tr:nth-child(2n) {
         background: none;
       }
@@ -254,6 +259,8 @@
   }
 
   .fc-list-item {
+    background: none;
+    
     td.fc-widget-content {
       height: auto !important;
       padding: $table-padding;
