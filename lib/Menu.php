@@ -93,7 +93,7 @@ class Menu
         $career_clause = $item->object_id === $page_ids['career'] && (is_post_type_archive($cpt['career']) || is_singular($cpt['career']));
 
         if ($association_clause || $career_clause) {
-            $atts['class'] = empty($atts['class']) ? 'active' : $atts['class'].' active';
+            $atts['class'] = empty($atts['class']) ? 'is-active' : $atts['class'].' is-active';
         }
 
         return $atts;

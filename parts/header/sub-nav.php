@@ -17,7 +17,7 @@
                 $active = false;
             }
             ?>
-            <li><a href="<?=get_page_link($subpage)?>"<?php echo $active ? ' class="active"' : ''; ?>><?=esc_html($subpage->post_title)?></a></li>
+            <li><a href="<?=get_page_link($subpage)?>"<?php echo $active ? ' class="is-active"' : ''; ?>><?=esc_html($subpage->post_title)?></a></li>
             <?php
         }
         ?>
