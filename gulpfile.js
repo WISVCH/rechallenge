@@ -42,7 +42,7 @@ gulp.task('foundation-js', function () {
         './assets/components/foundation-sites/dist/js/plugins/foundation.accordion.js',
         './assets/components/foundation-sites/dist/js/plugins/foundation.accordionMenu.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.drilldown.js',
-        // './assets/components/foundation-sites/dist/js/plugins/foundation.dropdown.js',
+        './assets/components/foundation-sites/dist/js/plugins/foundation.dropdown.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js',
         './assets/components/foundation-sites/dist/js/plugins/foundation.equalizer.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.interchange.js',
@@ -104,7 +104,7 @@ gulp.task('site-js', ['foundation-js', 'calendar-js', 'choice-js'], function () 
 });
 
 // Browser-Sync watch files and inject changes
-gulp.task('browsersync', function () {
+gulp.task('browsersync', ['sass', 'site-js'], function () {
     // Watch files
     var files = [
         'assets/css/*.css',

@@ -16,7 +16,7 @@ $product_ids = ! isset($meta['_event_product_post_array']) ? [] : unserialize($m
 // TODO: restore when event categories are implemented
 // $category_list = get_the_term_list(get_the_ID(), 'event_category', '', ', ', '');
 $categories = get_the_terms(get_the_ID(), 'event_category');
-$category_list = implode(', ', wp_list_pluck($categories, 'name'));
+$category_list = is_array($categories) ? implode(', ', wp_list_pluck($categories, 'name')) : false;
 ?>
 
 

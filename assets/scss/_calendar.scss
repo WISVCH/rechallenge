@@ -7,8 +7,14 @@
   }
 
   .fc-left {
-    float: left;
-    padding: 0 1rem 0 0;
+    text-align: center;
+    padding: 0 0 .5rem;
+
+    @include breakpoint(medium) {
+      text-align: left;
+      float: left;
+      padding: 0 1rem 0 0;
+    }
 
     h2 {
       margin: 0;
@@ -18,10 +24,17 @@
   }
 
   .fc-right {
-    float: right;
-    text-align: right;
+    text-align: center;
     @include button-group('.fc-button', 0);
 
+    .fc-button {
+      font-size: map-get($button-sizes, small);
+    }
+
+    @include breakpoint(medium) {
+      text-align: right;
+      float: right;
+    }
   }
 
   .fc-button {
@@ -39,7 +52,7 @@
       border-left: none;
     }
 
-    &.fc-today-button {
+    &.fc-today-button, &.fc-filterButton-button {
       margin-right: 1rem;
     }
 
@@ -90,41 +103,6 @@
 
     th {
       text-align: center;
-    }
-
-    thead > tr > td {
-      height: auto;
-    }
-
-    tbody {
-      & > tr > td {
-        height: 7rem;
-        border-right: 1px solid $light-gray;
-        background: $white;
-
-        &.fc-event-container {
-          height: auto;
-        }
-
-        &:first-child {
-          border-left: 1px solid $light-gray;
-        }
-
-        &.fc-past {
-          height: auto;
-        }
-
-        &.fc-widget-content {
-          border: none;
-          border-bottom: 1px solid $light-gray;
-        }
-      }
-
-      & > tr:nth-child(n+2) {
-        td {
-          height: auto;
-        }
-      }
     }
 
     td {
@@ -178,6 +156,12 @@
 
 }
 
+.fc-list-view {
+  .fc-scroller {
+    height: auto !important;
+  }
+}
+
 .fc-event {
   display: block;
   background: $primary-color;
@@ -203,19 +187,25 @@
     line-height: 1.2;
     padding-bottom: .2rem;
   }
+
+  &.next-month {
+    opacity: .75;
+  }
 }
 
 .fc-row {
   position: relative;
 
-  .fc-bg {
-    min-height: 8rem;
-  }
-
   .fc-content-skeleton {
-    min-height: 8rem;
     position: relative;
     z-index: 5;
+
+    tbody {
+      background: none;
+      tr:nth-child(2n) {
+        background: none;
+      }
+    }
   }
 }
 
@@ -234,12 +224,25 @@
   bottom: 0; /* strech bg to bottom edge */
   table {
     height: 100%;
+
+    td {
+      border-right: 1px solid $light-gray;
+      background: $white;
+
+      &:first-child {
+        border-left: 1px solid $light-gray;
+      }
+    }
   }
 }
 
 .fc-day-header {
   background: $primary-color;
   color: $white;
+}
+
+.fc-day-grid-container {
+  border-bottom: 1px solid $light-gray;
 }
 
 // List View
@@ -266,6 +269,8 @@
   }
 
   .fc-list-item {
+    background: none;
+
     td.fc-widget-content {
       height: auto !important;
       padding: $table-padding;
@@ -362,4 +367,50 @@
 
 .events-backlink {
   margin-top: $paragraph-margin-bottom;
+}
+
+// Color-code categories
+$event-color-association: $secondary-color;
+$event-color-career: $warning-color;
+$event-color-education: $success-color;
+$event-color-social: $alert-color;
+
+.fc-event {
+  border-top: 3px solid transparent;
+
+  &.cat-association {
+    border-color: $event-color-association;
+    &:hover, &:focus {
+      background: $event-color-association;
+    }
+  }
+
+  &.cat-career {
+    border-color: $event-color-career;
+    &:hover, &:focus {
+      background: $event-color-career;
+    }
+  }
+
+  &.cat-educational {
+    border-color: $event-color-education;
+    &:hover, &:focus {
+      background: $event-color-education;
+    }
+  }
+
+  &.cat-social {
+    border-color: $event-color-social;
+    &:hover, &:focus {
+      background: $event-color-social;
+    }
+  }
+}
+
+#event-filter-dropdown {
+  width: auto;
+  white-space: nowrap;
+  input {
+    margin-bottom: .75rem;
+  }
 }

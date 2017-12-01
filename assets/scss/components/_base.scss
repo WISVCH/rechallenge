@@ -119,8 +119,6 @@ $topbar-height: rem-calc(90);
 
     > li {
 
-      display: table-cell;
-
       &:first-child {
         padding-left: 0;
       }
@@ -129,6 +127,7 @@ $topbar-height: rem-calc(90);
         padding: 0 .9rem;
         vertical-align: middle;
         height: $topbar-height;
+        display: table-cell;
 
         &:last-child {
           padding-right: 0;

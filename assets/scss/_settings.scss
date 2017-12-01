@@ -369,16 +369,16 @@ $drilldown-arrow-size: 6px;
 // 17. Dropdown
 // ------------
 
-$dropdown-padding: 1rem;
-$dropdown-background: $body-background;
-$dropdown-border: 1px solid $medium-gray;
+$dropdown-padding: .8rem 1rem;
+$dropdown-background: $callout-background;
+$dropdown-border: $callout-border;
 $dropdown-font-size: 1rem;
 $dropdown-width: 300px;
-$dropdown-radius: 0;
+$dropdown-radius: $global-radius;
 $dropdown-sizes: (
         tiny: 100px,
-        small: 200px,
-        large: 400px,
+        small: 300px,
+        large: 300px,
 );
 
 // 18. Dropdown Menu
