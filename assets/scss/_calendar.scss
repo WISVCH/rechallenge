@@ -95,41 +95,6 @@
       text-align: center;
     }
 
-    thead > tr > td {
-      height: auto;
-    }
-
-    tbody {
-      & > tr > td {
-        height: 7rem;
-        border-right: 1px solid $light-gray;
-        background: $white;
-
-        &.fc-event-container {
-          height: auto;
-        }
-
-        &:first-child {
-          border-left: 1px solid $light-gray;
-        }
-
-        &.fc-past {
-          height: auto;
-        }
-
-        &.fc-widget-content {
-          border: none;
-          border-bottom: 1px solid $light-gray;
-        }
-      }
-
-      & > tr:nth-child(n+2) {
-        td {
-          height: auto;
-        }
-      }
-    }
-
     td {
       text-align: left;
 
@@ -215,14 +180,17 @@
 .fc-row {
   position: relative;
 
-  .fc-bg {
-    min-height: 8rem;
-  }
-
   .fc-content-skeleton {
-    min-height: 8rem;
     position: relative;
     z-index: 5;
+
+    tbody {
+      background: none;
+
+      tr:nth-child(2n) {
+        background: none;
+      }
+    }
   }
 }
 
@@ -241,12 +209,25 @@
   bottom: 0; /* strech bg to bottom edge */
   table {
     height: 100%;
+
+    td {
+      border-right: 1px solid $light-gray;
+      background: $white;
+
+      &:first-child {
+        border-left: 1px solid $light-gray;
+      }
+    }
   }
 }
 
 .fc-day-header {
   background: $primary-color;
   color: $white;
+}
+
+.fc-day-grid-container {
+  border-bottom: 1px solid $light-gray;
 }
 
 // List View

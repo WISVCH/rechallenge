@@ -19,11 +19,6 @@ class Menu extends \Walker_Nav_Menu {
 
 		// Remove item classes
 		$item->classes = array();
-//
-//		// Add class to active item
-//		if ($item->current === true || $item->current_item_ancestor === true) {
-//			array_push($item->classes, 'active');
-//		}
 
 		// Execute original function
 		parent::start_el($output, $item, $depth, $args, $id);
