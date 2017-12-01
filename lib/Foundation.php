@@ -30,6 +30,10 @@ class Foundation
         // Prev / Next button attributes
         add_filter('previous_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
         add_filter('next_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
+
+        // WP pagination
+        add_filter('wp_link_pages_args', [__CLASS__, 'wp_link_pages_args']);
+        add_filter('wp_link_pages_link', [__CLASS__, 'wp_link_pages_link']);
     }
 
     /**
@@ -155,5 +159,27 @@ class Foundation
     static function prev_next_attributes($atts)
     {
         return $atts.' class="button small secondary"';
+    }
+
+    /**
+     * Override wp_link_pages() arguments.
+     */
+    static function wp_link_pages_args($args)
+    {
+
+        if ($args['before'] == '<p>'.__('Pages:') && $args['after'] == '</p>') {
+            $args['before'] = '<ul class="pagination">';
+            $args['after'] = '</ul>';
+        }
+
+        return $args;
+    }
+
+    /**
+     * Put wp_link_pages() links in a list item.
+     */
+    static function wp_link_pages_link($link)
+    {
+        return '<li>'.$link.'</li>';
     }
 }
