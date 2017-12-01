@@ -9,6 +9,10 @@ body {
   &.is-reveal-open {
     overflow: visible; // Prevent scrollbar flickering
   }
+
+  .reveal-overlay {
+    overflow-y: auto;
+  }
 }
 
 .page-container {
@@ -114,6 +118,8 @@ $topbar-height: rem-calc(90);
     background: url(../images/top-bar-bg.png) 0 0 repeat-x;
 
     > li {
+
+      display: table-cell;
 
       &:first-child {
         padding-left: 0;
