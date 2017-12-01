@@ -7,8 +7,14 @@
   }
 
   .fc-left {
-    float: left;
-    padding: 0 1rem 0 0;
+    text-align: center;
+    padding: 0 0 .5rem;
+
+    @include breakpoint(medium) {
+      text-align: left;
+      float: left;
+      padding: 0 1rem 0 0;
+    }
 
     h2 {
       margin: 0;
@@ -18,12 +24,16 @@
   }
 
   .fc-right {
-    float: right;
-    text-align: right;
+    text-align: center;
     @include button-group('.fc-button', 0);
 
     .fc-button {
       font-size: map-get($button-sizes, small);
+    }
+
+    @include breakpoint(medium) {
+      text-align: right;
+      float: right;
     }
   }
 
@@ -260,7 +270,7 @@
 
   .fc-list-item {
     background: none;
-    
+
     td.fc-widget-content {
       height: auto !important;
       padding: $table-padding;
