@@ -148,7 +148,7 @@ $topbar-height: rem-calc(90);
           padding-left: .2rem;
           padding-right: .2rem;
 
-          &.active {
+          &.is-active {
             border-bottom-color: $primary-color;
           }
 
@@ -420,7 +420,7 @@ $titlebar-height: 55px;
 
         &:hover,
         &:focus,
-        &.active {
+        &.is-active {
           border-bottom: 2px solid $white;
         }
       }
