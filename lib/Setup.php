@@ -72,8 +72,8 @@ class Setup
         return 3600;
     }
 
-    static function excerpt_length()
+    static function excerpt_length($length)
     {
-        return 35;
+        return 50;
     }
 }

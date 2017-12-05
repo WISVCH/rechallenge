@@ -1,5 +1,7 @@
 <div class="column">
     <?php
+    global $post;
+
     $meta = get_post_custom(get_the_ID());
     $link_url = empty($meta["_company_website"][0]) ? false : $meta["_company_website"][0];
     $link_type = $meta["_link_to"][0] ?? false;
@@ -28,7 +30,13 @@
     <a href="<?=esc_url($link_url)?>" title="<?php the_title_attribute(); ?>" class="partner">
         <span <?=$class.$style?>><?php the_title(); ?></span>
         <?php
-        $excerpt = get_the_excerpt();
+
+        // @see wp_trim_excerpt()
+        $excerpt_content = str_replace(']]>', ']]&gt;', apply_filters('the_content', $post->post_content));
+
+        // Generate our own, shorter excerpt
+        $excerpt = wp_trim_words($excerpt_content, 35, apply_filters('excerpt_more', ' '.'[&hellip;]'));
+
         if (! empty($excerpt)) { ?>
             <span class="partner-excerpt"><?=$excerpt?><br><span class="button alt"><?=$link_text?></span></span>
         <?php } ?>
