@@ -9,11 +9,11 @@
     "url": "https://github.com/WISVCH/rechallenge.git"
   },
   "dependencies": {
-    "foundation-sites": "6.3.1",
-    "motion-ui": "~1.2.2",
-    "fullcalendar": "^3.4.0",
-    "css-hamburgers": "^0.9.1",
-    "magnific-popup": "^1.1.0"
+    "foundation-sites": "~6.4",
+    "motion-ui": "~1.2",
+    "fullcalendar": "~3.7",
+    "css-hamburgers": "~0.9",
+    "magnific-popup": "~1.1"
   },
   "ignore": [
     "**/.*",

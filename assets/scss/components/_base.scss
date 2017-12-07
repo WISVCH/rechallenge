@@ -9,6 +9,10 @@ body {
   &.is-reveal-open {
     overflow: visible; // Prevent scrollbar flickering
   }
+
+  .reveal-overlay {
+    overflow-y: auto;
+  }
 }
 
 .page-container {
@@ -123,6 +127,7 @@ $topbar-height: rem-calc(90);
         padding: 0 .9rem;
         vertical-align: middle;
         height: $topbar-height;
+        display: table-cell;
 
         &:last-child {
           padding-right: 0;
@@ -148,7 +153,7 @@ $topbar-height: rem-calc(90);
           padding-left: .2rem;
           padding-right: .2rem;
 
-          &.active {
+          &.is-active {
             border-bottom-color: $primary-color;
           }
 
@@ -420,7 +425,7 @@ $titlebar-height: 55px;
 
         &:hover,
         &:focus,
-        &.active {
+        &.is-active {
           border-bottom: 2px solid $white;
         }
       }

@@ -33,9 +33,9 @@ class Assets
         wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], '3.2.1', false);
 
         // Register theme scripts
-        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts.min.js', ['jquery'], null, true);
+        wp_register_script('rechallenge', $stylesheet_uri.'/assets/js/scripts'.(WP_DEBUG ? '' : '.min').'.js', ['jquery'], null, true);
         wp_register_script('events-calendar', $stylesheet_uri.'/assets/js/calendar.min.js', ['jquery'], null, true);
-        wp_register_script('w3cie-choice', $stylesheet_uri.'/assets/js/w3cie.choice.min.js', ['jquery', 'rechallenge'], null, true);
+        wp_register_script('w3cie-choice', $stylesheet_uri.'/assets/js/w3cie.choice'.(WP_DEBUG ? '' : '.min').'.js', ['jquery', 'rechallenge'], null, true);
 
         // Load scripts
         wp_enqueue_script('rechallenge');

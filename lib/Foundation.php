@@ -47,7 +47,7 @@ class Foundation
     {
 
         if ($item->current === true || $item->current_item_ancestor === true) {
-            $atts['class'] = 'active';
+            $atts['class'] = 'is-active';
         }
 
         return $atts;
