@@ -61,7 +61,7 @@ ul.column {
 }
 
 /* **********
-X.3 Buttons
+1.3 Buttons
 ********** */
 $button-border-width: 3px;
 
@@ -120,4 +120,27 @@ $button-border-width: 3px;
     }
   }
 
+}
+
+/* **********
+1.4 Pagination
+********** */
+.pagination {
+  margin-top: 3rem;
+  padding-top: .75rem;
+  border-top: 1px solid $light-gray;
+  li:first-child {
+    padding-left: 0;
+  }
+
+  li.disabled {
+    cursor: default;
+  }
+
+  .adjacent {
+    display: none;
+    @include breakpoint(medium) {
+      display: inline-block;
+    }
+  }
 }
