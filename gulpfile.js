@@ -71,17 +71,24 @@ gulp.task('calendar-js', function () {
     return gulp.src([
         './assets/components/moment/min/moment.min.js',
         './assets/components/fullcalendar/dist/fullcalendar.min.js',
+        './assets/js/modules/events/*.js'
     ])
-        .pipe(concat('calendar.min.js'))
+        .pipe(concat('calendar.js'))
+        .pipe(gulp.dest('./assets/js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
         .pipe(gulp.dest('./assets/js'))
 });
 
 // JSHint, concat, and minify CHoice JavaScript
 gulp.task('choice-js', function () {
     return gulp.src([
-        './assets/js/w3cie.choice.js',
+        './assets/js/modules/choice/*.js',
     ])
-        .pipe(concat('w3cie.choice.min.js'))
+        .pipe(concat('choice.js'))
+        .pipe(gulp.dest('./assets/js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
         .pipe(gulp.dest('./assets/js'))
 });
 
@@ -93,6 +100,9 @@ gulp.task('site-js', ['foundation-js', 'calendar-js', 'choice-js'], function () 
         './assets/js/foundation.js',
         './assets/components/motion-ui/motion-ui.js',
         './assets/components/magnific-popup/dist/jquery.magnific-popup.js',
+        './assets/js/modules/foundation/*.js',
+        './assets/js/modules/gallery/*.js',
+        './assets/js/modules/portal/*.js',
         './assets/js/app.js',
 
     ])
@@ -108,7 +118,7 @@ gulp.task('browsersync', ['sass', 'site-js'], function () {
     // Watch files
     var files = [
         'assets/css/*.css',
-        'assets/js/*.js',
+        'assets/js/**/*.js',
         '**/*.html',
         '**/*.php',
         'assets/images/**/*.{png,jpg,jpeg,gif,svg,webp}',
@@ -121,8 +131,8 @@ gulp.task('browsersync', ['sass', 'site-js'], function () {
 
     gulp.watch(['assets/scss/**/*.scss'], ['sass']);
     gulp.watch(['assets/js/app.js'], ['site-js']);
-    gulp.watch(['assets/js/calendar.js'], ['calendar-js']);
-    gulp.watch(['assets/js/w3cie.choice.js'], ['choice-js']);
+    gulp.watch(['assets/js/modules/events/*.js'], ['calendar-js']);
+    gulp.watch(['assets/js/modules/choice/*.js'], ['choice-js']);
 
 });
 
