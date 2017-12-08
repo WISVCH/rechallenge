@@ -530,20 +530,20 @@ $orbit-control-zindex: 10;
 // 27. Pagination
 // --------------
 
-$pagination-font-size: rem-calc(14);
+$pagination-font-size: 1rem;
 $pagination-margin-bottom: $global-margin;
-$pagination-item-color: $black;
+$pagination-item-color: $primary-color;
 $pagination-item-padding: rem-calc(3 10);
 $pagination-item-spacing: rem-calc(1);
 $pagination-radius: $global-radius;
 $pagination-item-background-hover: $light-gray;
-$pagination-item-background-current: $primary-color;
+$pagination-item-background-current: $secondary-color;
 $pagination-item-color-current: $white;
 $pagination-item-color-disabled: $medium-gray;
-$pagination-ellipsis-color: $black;
-$pagination-mobile-items: false;
-$pagination-mobile-current-item: false;
-$pagination-arrows: true;
+$pagination-ellipsis-color: $primary-color;
+$pagination-mobile-items: true;
+$pagination-mobile-current-item: true;
+$pagination-arrows: false;
 
 // 28. Progress Bar
 // ----------------

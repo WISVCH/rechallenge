@@ -30,6 +30,10 @@ class Foundation
         // Prev / Next button attributes
         add_filter('previous_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
         add_filter('next_posts_link_attributes', [__CLASS__, 'prev_next_attributes']);
+
+        // WP pagination
+        add_filter('wp_link_pages_args', [__CLASS__, 'wp_link_pages_args']);
+        add_filter('wp_link_pages_link', [__CLASS__, 'wp_link_pages_link'], 10, 2);
     }
 
     /**
@@ -155,5 +159,54 @@ class Foundation
     static function prev_next_attributes($atts)
     {
         return $atts.' class="button small secondary"';
+    }
+
+    /**
+     * Override wp_link_pages() arguments.
+     */
+    static function wp_link_pages_args($args)
+    {
+
+        if ($args['before'] == '<p>'.__('Pages:') && $args['after'] == '</p>') {
+            $args['before'] = '<ul class="pagination text-center medium-text-left" role="navigation" aria-label="Pagination">'.'<li class="disabled">Pages: </li>';
+            $args['after'] = '</ul>';
+        }
+
+        return $args;
+    }
+
+    /**
+     * Put wp_link_pages() links in a list item.
+     */
+    static function wp_link_pages_link($link, $i)
+    {
+
+        global $page, $numpages;
+
+        $class = substr($link, 0, 2) !== '<a' ? ' class="current"' : '';
+        $item = '<li'.$class.'>'.$link.'</li>';
+
+        // Add prev / next arrows
+        if ($i === 1) {
+
+            if ($i === $page) {
+                $prev = '&laquo;';
+            } else {
+                $prev = _wp_link_page($page - 1).'&laquo;</a>';
+            }
+
+            $item = '<li class="disabled adjacent"><a>'.$prev.'</a></li>'.$item;
+        } elseif ($i === $numpages) {
+
+            if ($i === $page) {
+                $next = '&raquo;';
+            } else {
+                $next = _wp_link_page($page + 1).'&raquo;</a>';
+            }
+
+            $item = $item.'<li class="disabled adjacent"><a>'.$next.'</a></li>';
+        }
+
+        return $item;
     }
 }
