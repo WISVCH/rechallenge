@@ -30,13 +30,20 @@
     <a href="<?=esc_url($link_url)?>" title="<?php the_title_attribute(); ?>" class="partner">
         <span <?=$class.$style?>><?php the_title(); ?></span>
         <?php
+        
+        if(empty($post->post_excerpt)) {
+        
+            // @see wp_trim_excerpt()
+            $excerpt_content = str_replace(']]>', ']]&gt;', apply_filters('the_content', $post->post_content));
 
-        // @see wp_trim_excerpt()
-        $excerpt_content = str_replace(']]>', ']]&gt;', apply_filters('the_content', $post->post_content));
-
-        // Generate our own, shorter excerpt
-        $excerpt = wp_trim_words($excerpt_content, 35, apply_filters('excerpt_more', ' '.'[&hellip;]'));
-
+            // Generate our own, shorter excerpt
+            $excerpt = wp_trim_words($excerpt_content, 35, apply_filters('excerpt_more', ' '.'[&hellip;]'));
+        } else {
+            
+            // Use the regular excerpt if available
+            $excerpt = get_the_excerpt();
+        }
+        
         if (! empty($excerpt)) { ?>
             <span class="partner-excerpt"><?=$excerpt?><br><span class="button alt"><?=$link_text?></span></span>
         <?php } ?>
