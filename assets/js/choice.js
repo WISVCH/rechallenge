@@ -28,15 +28,8 @@ var CHoice;
 
         binds: function () {
 
-            $("#searchQuery").on('keyup', function () {
-                setTimeout(function () {
-                    CHoice.searchCourses();
-                }, 300);
-            });
-
-            $("#searchStudy, #searchProgram").on('change', function () {
-                CHoice.searchCourses();
-            });
+            $("#searchQuery").on('keyup', CHoice._debounce(CHoice.searchCourses, 250));
+            $("#searchStudy, #searchProgram").on('change', CHoice._debounce(CHoice.searchCourses, 250));
 
         },
 
@@ -118,6 +111,22 @@ var CHoice;
             }
 
             return rows;
+        },
+
+        // Source: https://davidwalsh.name/javascript-debounce-function
+        _debounce: function (func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
         }
 
     }
