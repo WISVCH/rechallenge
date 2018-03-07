@@ -57,7 +57,7 @@ class SEO
             ];
 
             array_splice($links, 1, -2, $breadcrumb);
-        } elseif (is_singular(['board', 'committee', 'honorary_member']) || is_post_type_archive(['board', 'committee', 'honorary_member'])) {
+        } elseif (is_singular(['ambassador', 'board', 'committee', 'honorary_member']) || is_post_type_archive(['ambassador', 'board', 'committee', 'honorary_member'])) {
             $breadcrumb[] = [
                 'url' => get_permalink(get_page_by_path('association')),
                 'text' => 'Association',

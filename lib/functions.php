@@ -83,9 +83,9 @@ function rechallenge_get_aux_page_id()
     } elseif (is_post_type_archive("company") || is_singular('company')) {
         $id = get_page_by_path("career/companies");
     } elseif (is_post_type_archive("honorary_member") || is_singular('honorary_member')) {
-        $id = get_page_by_path("association/ambassadors");
-    } elseif (is_post_type_archive("ambassador") || is_singular('ambassador')) {
         $id = get_page_by_path("association/honorary-members");
+    } elseif (is_post_type_archive("ambassador") || is_singular('ambassador')) {
+        $id = get_page_by_path("association/ambassadors");
     } elseif (is_post_type_archive("job_opening") || is_singular('job_opening')) {
         $id = get_page_by_path("career/job-openings");
     } elseif (is_post_type_archive("event") || is_singular('event')) {

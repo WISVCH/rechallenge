@@ -1,16 +1,15 @@
 <article class="row column post-content">
     <?php
-    the_title('<h1>', '</h1>');
-
-    if (has_post_thumbnail()) {
+    $thumb = get_the_post_thumbnail_url(get_the_ID(), "medium");
+    if (! empty($thumb)) {
         ?>
-
-        <a href="<?=esc_url(get_the_post_thumbnail_url(null, 'large'))?>" class="thumbnail float-right">
-            <?php the_post_thumbnail('featured-image'); ?>
+        <a href="<?=esc_url(get_the_post_thumbnail_url(null, 'large'))?>" class="thumbnail nopad prop">
+            <?php include(locate_template('parts/misc/thumbnail-proportional.php')); ?>
         </a>
-
         <?php
     }
+
+    the_title('<h1>', '</h1>');
 
     the_content();
     ?>
