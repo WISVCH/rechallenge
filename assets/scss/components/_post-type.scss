@@ -187,9 +187,9 @@ ul.news {
 }
 
 /* **********
-2.2 Honorary Members
+2.2 Honorary Members / Ambassadors
 ********** */
-.excerpt-honorary-member {
+.excerpt-honorary-member, .excerpt-ambassador {
 
   .thumbnail.prop .thumb-image {
     padding-top: 120%;
@@ -205,8 +205,10 @@ ul.news {
 
 }
 
-.single-honorary_member .thumbnail {
-  margin: 0 0 1rem 1rem;
+.single-honorary_member, .single-ambassador {
+  .thumbnail {
+    margin: 0 0 1rem 1rem;
+  }
 }
 
 /* **********
