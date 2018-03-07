@@ -207,7 +207,14 @@ ul.news {
 
 .single-honorary_member, .single-ambassador {
   .thumbnail {
-    margin: 0 0 1rem 1rem;
+    margin: 0 1rem;
+    width: 100%;
+
+    @include breakpoint(medium) {
+      max-width: 30%;
+      float: right;
+      margin: 0 0 1rem 1rem;
+    }
   }
 }
 

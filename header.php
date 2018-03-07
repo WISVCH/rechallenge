@@ -106,7 +106,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                     'child_of' => $post->post_parent !== 0 ? $post->post_parent : $post->ID,
                     'sort_column' => 'menu_order,post_title',
                 ]);
-            } elseif (is_archive() || is_post_type_archive() || is_singular(['board', 'committee', 'company', 'honorary_member', 'job_opening'])) { // Custom post types
+            } elseif (is_archive() || is_post_type_archive() || is_singular(['ambassador', 'board', 'committee', 'company', 'honorary_member', 'job_opening'])) { // Custom post types
 
                 // Get aux page ID
                 $id = rechallenge_get_aux_page_id();
