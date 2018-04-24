@@ -2,27 +2,34 @@
 /* Template Name: CHoice */
 get_header();
 
-get_template_part("parts/navigation/breadcrumb");
+get_template_part( "parts/navigation/breadcrumb" );
 
-$choice_url = \ReCHallenge\Settings::get_setting('choice_url');
+$choice_url = \ReCHallenge\Settings::get_setting( 'choice_url' );
 
-if (! empty($choice_url)) {
-    ?>
+if ( ! empty( $choice_url ) ) {
+	?>
     <script>
-        window.choice_url = <?=wp_json_encode($choice_url)?>;
+        window.choice_url = <?=wp_json_encode( $choice_url )?>;
     </script>
-    <?php
+	<?php
 }
 ?>
 
     <main>
 
         <div class="row column column-block">
-            <?php the_content(); ?>
+			<?php the_content(); ?>
         </div>
 
         <div class="row">
-            <div class="column">
+            <div id="choiceLogin" class="column">
+                <div class="openid-button-left">
+                    <div class="openid-connect-login-button" style="margin: 1em 0; text-align: center;">
+                        <a class="button button-large" href="<?= $choice_url ?>api/v1/login">Login with CH Connect</a>
+                    </div>
+                </div>
+            </div>
+            <div class="column" id="choiceContainer">
                 <div class="row collapse">
                     <div class="choice-search clearfix">
                         <div class="small-6 column">
@@ -50,14 +57,17 @@ if (! empty($choice_url)) {
 
                         <div class="small-12 column">
                             <label> Search
-                                <input type="text" placeholder="Start typing to search for a course..." id="searchQuery">
+                                <input type="text" placeholder="Start typing to search for a course..."
+                                       id="searchQuery">
                             </label>
                         </div>
                     </div>
                 </div>
 
-                <ul id="choice-accordion" class="accordion choice-accordion" data-accordion data-allow-all-closed="true">
-                    <li class="accordion-item"><a href="#" class="accordion-title clearfix">Loading courses...</a></li>
+                <ul id="choice-accordion" class="accordion choice-accordion" data-accordion
+                    data-allow-all-closed="true">
+                    <li class="accordion-item"><a href="#" class="accordion-title clearfix">Loading courses...</a>
+                    </li>
                 </ul>
             </div>
         </div>
