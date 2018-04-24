@@ -5,6 +5,7 @@ var CHoice;
     CHoice = {
 
         init: function (settings) {
+            $("#choiceContainer").hide();
 
             CHoice.url = window.choice_url;
 
@@ -19,8 +20,8 @@ var CHoice;
                 blueprintRowNoResult: "<tr><td colspan='4'>No exams available yet.</td></tr>"
             };
 
-            // Initialize CHoice
-            CHoice.initChoice();
+            // Check auth
+            CHoice.checkAuth();
 
             // Add DOM binds
             CHoice.binds();
@@ -33,29 +34,39 @@ var CHoice;
 
         },
 
+        checkAuth: function () {
+            $.ajax({
+                url: CHoice.url + "api/v1/authentication",
+                success: function (data, textStatus, jqXHR) {
+                    if (jqXHR.status === 202) {
+                        CHoice.initChoice();
+                    }
+                }
+            });
+        },
+
         initChoice: function () {
+            $("#choiceContainer").show();
+            $("#choiceLogin").hide();
 
             $.ajax({
-                url: CHoice.url + "course/active",
-                async: false,
+                url: CHoice.url + "api/v1/course/active",
                 dataType: "json",
                 success: function (data) {
                     CHoice.handleGetCourses(data);
                 }
             });
-
         },
 
         searchCourses: function () {
 
             $.ajax({
-                url: CHoice.url + "course/active/search",
+                url: CHoice.url + "api/v1/course/active/search",
                 data: {
                     study: $("#searchStudy").val(),
                     program: $("#searchProgram").val(),
                     query: $("#searchQuery").val()
                 },
-                async: false,
                 dataType: "json",
                 success: function (data) {
                     CHoice.handleGetCourses(data);
