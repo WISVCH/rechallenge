@@ -54,7 +54,7 @@ gulp.task('foundation-js', function () {
         './assets/components/foundation-sites/dist/js/plugins/foundation.reveal.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.slider.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.sticky.js',
-        // './assets/components/foundation-sites/dist/js/plugins/foundation.tabs.js',
+        './assets/components/foundation-sites/dist/js/plugins/foundation.tabs.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.toggler.js',
         // './assets/components/foundation-sites/dist/js/plugins/foundation.tooltip.js',
     ])
