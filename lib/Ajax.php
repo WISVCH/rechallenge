@@ -17,7 +17,7 @@ class Ajax
     /**
      * Gallery3 Album ID to fetch
      */
-    const ALBUM_GROUP_ID = '62577';
+    const ALBUM_GROUP_ID = '65430';
 
     /**
      * Hook into WordPress.
