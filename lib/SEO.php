@@ -35,7 +35,7 @@ class SEO
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-            gtag('config', '<?=esc_attr($gID)?>');
+            gtag('config', '<?=esc_attr($gID)?>', { 'anonymize_ip': true });
         </script>
         <?php
     }
