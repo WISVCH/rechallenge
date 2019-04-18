@@ -1,4 +1,4 @@
-<div class="row small-up-2 medium-up-4 large-up-6">
+<div class="row small-up-1 medium-up-2 large-up-4">
     <?php
     while (have_posts()) {
         the_post(); ?>
