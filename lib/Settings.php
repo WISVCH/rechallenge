@@ -51,6 +51,9 @@ class Settings
 
         // CHoice API URL (choice_url)
         add_settings_field('choice_url', 'CHoice API URL', [__CLASS__, 'render_choice_url',], 'rechallenge', 'rechallenge');
+
+        // FlitCie album ID (flitcie_album_id)
+        add_settings_field('flitcie_album_id', 'FlitCie Album ID', [__CLASS__, 'render_flitcie_album_id',], 'rechallenge', 'rechallenge');
     }
 
     static function render_page()
@@ -81,6 +84,14 @@ class Settings
         $choice_url = static::get_setting('choice_url') ?? "";
         ?>
         <input type="text" name="rechallenge_settings[choice_url]" value="<?=esc_attr($choice_url)?>" class="regular-text" placeholder="https://">
+        <?php
+    }
+
+    static function render_flitcie_album_id()
+    {
+        $flitcie_album_id = static::get_setting('flitcie_album_id') ?? "55031";
+        ?>
+        <input type="number" name="rechallenge_settings[flitcie_album_id]" value="<?=esc_attr($flitcie_album_id)?>" class="regular-text">
         <?php
     }
 }

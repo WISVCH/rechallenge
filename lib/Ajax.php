@@ -15,11 +15,6 @@ class Ajax
     const FLITCIE_REFRESH_INTERVAL = 3600;
 
     /**
-     * Gallery3 Album ID to fetch
-     */
-    const ALBUM_GROUP_ID = '65430';
-
-    /**
      * Hook into WordPress.
      */
     static function register_hooks()
@@ -36,20 +31,27 @@ class Ajax
     static function flitcie()
     {
 
-        $last_call = get_option("_rechallenge_flitcie_last_api_call_".self::ALBUM_GROUP_ID);
+        $album_group_id = \ReCHallenge\Settings::get_setting('flitcie_album_id');
+        if (! is_numeric($album_group_id) || $album_group_id < 55031) { // Album 59
+            $album_group_id = 55032;
+        } else {
+            $album_group_id = intval($album_group_id);
+        }
+
+        $last_call = get_option("_rechallenge_flitcie_last_api_call_".$album_group_id);
 
         // Reload FlitCie data
         if (empty($last_call) || $last_call < time() - self::FLITCIE_REFRESH_INTERVAL) {
 
             // Get latest members from album
-            $latest = self::_flitcie_latest(self::ALBUM_GROUP_ID);
+            $latest = self::_flitcie_latest($album_group_id);
 
             // Get album meta from latest albums
-            $albums = self::_flitcie_album_meta($latest);
+            $albums = self::_flitcie_album_meta($latest, $album_group_id);
         } else {
 
             // Get from db
-            $albums = get_option("_rechallenge_flitcie_cache_".self::ALBUM_GROUP_ID);
+            $albums = get_option("_rechallenge_flitcie_cache_".$album_group_id);
         }
 
         // Output response
@@ -90,7 +92,7 @@ class Ajax
         return $latest;
     }
 
-    private static function _flitcie_album_meta($members)
+    private static function _flitcie_album_meta($members, $album_group_id)
     {
 
         // Check if argument is array
@@ -137,8 +139,8 @@ class Ajax
         $albums = array_reverse($albums);
 
         // Cache
-        update_option("_rechallenge_flitcie_last_api_call_".self::ALBUM_GROUP_ID, time());
-        update_option("_rechallenge_flitcie_cache_".self::ALBUM_GROUP_ID, $albums);
+        update_option("_rechallenge_flitcie_last_api_call_".$album_group_id, time());
+        update_option("_rechallenge_flitcie_cache_".$album_group_id, $albums);
 
         return $albums;
     }
