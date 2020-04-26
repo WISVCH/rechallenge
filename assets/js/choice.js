@@ -98,7 +98,7 @@ var CHoice;
 
                     var month = months[(parseInt(exam.date.split('-')[1]) - 1)]
 
-                    var name = exam.name + " " + month + " " + exam.date.split('-')[0] + ", " + exam.date.split('-')[2];
+                    var name = exam.name + " " + exam.date.split('-')[2] + " " + month + " " + exam.date.split('-')[0];
                     row = row.split("{% name %}").join(name);
                     row = row.split("{% documentId %}").join(exam.id);
                     row = row.split("{% answers %}").join(exam.includingAnswers ? 'check' : 'ban');
