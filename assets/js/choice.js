@@ -90,16 +90,16 @@ var CHoice;
 
         handleGetCourseExamResponse: function (data) {
             var rows = "";
+            const months = [Januari,Februari,March,April,May,June,Juli,August,September,October,November,December]
 
             if (data.length > 0) {
                 $.each(data, function (i, exam) {
                     var row = CHoice.settings.blueprintRow.split("{% courseCode %}").join(exam.course.code);
+                    exam.date = LocalDate.parse(exam.date)
 
-                    var month = exam.date.month.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
+                    var month = months[(parseInt(exam.date.split('-')[1])-1) %11]
 
-                    var name = exam.name + " " + month + " " + exam.date.dayOfMonth + ", " + exam.date.year;
+                    var name = exam.name + " " + month + " " + exam.date.split('-')[0] + ", " + exam.date.split('-')[2];
                     row = row.split("{% name %}").join(name);
                     row = row.split("{% documentId %}").join(exam.id);
                     row = row.split("{% answers %}").join(exam.includingAnswers ? 'check' : 'ban');
