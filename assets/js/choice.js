@@ -95,7 +95,6 @@ var CHoice;
             if (data.length > 0) {
                 $.each(data, function (i, exam) {
                     var row = CHoice.settings.blueprintRow.split("{% courseCode %}").join(exam.course.code);
-                    exam.date = LocalDate.parse(exam.date)
 
                     var month = months[(parseInt(exam.date.split('-')[1])-1) %11]
 
