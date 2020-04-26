@@ -96,7 +96,7 @@ var CHoice;
                 $.each(data, function (i, exam) {
                     var row = CHoice.settings.blueprintRow.split("{% courseCode %}").join(exam.course.code);
 
-                    var month = months[(parseInt(exam.date.split('-')[1]) - 1) % 11]
+                    var month = months[(parseInt(exam.date.split('-')[1]) - 1)]
 
                     var name = exam.name + " " + month + " " + exam.date.split('-')[0] + ", " + exam.date.split('-')[2];
                     row = row.split("{% name %}").join(name);
