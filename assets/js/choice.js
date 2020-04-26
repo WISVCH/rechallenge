@@ -90,7 +90,7 @@ var CHoice;
 
         handleGetCourseExamResponse: function (data) {
             var rows = "";
-            const months = [January, February, March, April, May, June, Juli, August, September, October, November, December]
+            const months = ["January", "February", "March", "April", "May", "June", "Juli", "August", "September", "October", "November", "December"]
 
             if (data.length > 0) {
                 $.each(data, function (i, exam) {
