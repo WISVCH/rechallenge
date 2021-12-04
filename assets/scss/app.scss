@@ -4,7 +4,7 @@
 @import 'font-wisvch';
 
 // Dependencies
-@import '../components/foundation-sites/_vendor/normalize-scss/sass/normalize';
+@import '../components/foundation-sites/scss/vendor/normalize';
 @import '../components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/missing-dependencies';
 @import '../components/foundation-sites/_vendor/sassy-lists/stylesheets/helpers/true';
 @import '../components/foundation-sites/_vendor/sassy-lists/stylesheets/functions/purge';
@@ -117,7 +117,7 @@
 @import '../components/motion-ui/motion-ui';
 
 // Hamburgers
-@import '../components/css-hamburgers/_sass/hamburgers/hamburgers';
+@import '../components/hamburgers/_sass/hamburgers/hamburgers';
 
 // Magnific Popup
 @import 'magnific_popup';

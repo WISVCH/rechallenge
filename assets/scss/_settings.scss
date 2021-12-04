@@ -68,11 +68,11 @@ $global-font-size: 100%;
 $global-width: rem-calc(1300);
 $global-lineheight: 1.5;
 $foundation-palette: (
-        primary: #40556a,
-        secondary: #058cce,
-        success: #8ac926,
-        warning: #ffae00,
-        alert: #ef4545,
+        primary: #1E274A,
+        secondary: #E8308A,
+        success: #97DB4F,
+        warning: #FBBB21,
+        alert: #EE7203,
 );
 $light-gray: #e7ebf1;
 $medium-gray: #8995a0;
@@ -81,7 +81,7 @@ $black: #262626;
 $white: #ffffff;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: Lato, "Helvetica Neue", sans-serif;
+$body-font-family: Nimbus Sans, "Helvetica Neue", sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -129,7 +129,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: Noto Sans, $body-font-family;
+$header-font-family: Nimbus Sans, Noto Sans, $body-font-family;
 $header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
@@ -281,7 +281,7 @@ $button-font-family: inherit;
 $button-padding: 0.6em 1.25em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
-$button-background: $alert-color;
+$button-background: $primary-color;
 $button-background-hover: rgba(255, 255, 255, .75);
 $button-color: $white;
 $button-color-alt: $white;
