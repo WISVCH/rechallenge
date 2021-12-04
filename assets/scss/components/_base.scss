@@ -48,7 +48,7 @@ body {
     @include breakpoint(xlarge) {
       margin-top: 0;
       img {
-        height: 110px;
+        height: 90px;
       }
     }
 
@@ -59,7 +59,7 @@ body {
 1.2 Top bar (large up)
 ********** */
 
-$topbar-height: rem-calc(90);
+$topbar-height: rem-calc(110);
 
 // Crazy background solution
 @include breakpoint($topbar-unstack-breakpoint) {
@@ -70,7 +70,6 @@ $topbar-height: rem-calc(90);
     &.left {
       @include clearfix;
       width: 100%;
-      background: url(../images/top-bar-bg.png) 52px -180px repeat-x;
       position: relative;
       z-index: 3; // put above page title section
     }
@@ -78,7 +77,6 @@ $topbar-height: rem-calc(90);
     &.right {
       width: 50%;
       float: right;
-      background: url(../images/top-bar-bg.png) 0 0 repeat-x;
 
       .center {
         margin-left: $grid-row-width / -2;
@@ -103,7 +101,6 @@ $topbar-height: rem-calc(90);
   }
 
   .top-bar-right {
-    background: url(../images/top-bar-bg.png) -93px -90px no-repeat;
     @include breakpoint($topbar-unstack-breakpoint) {
       padding-left: 65px;
       padding-right: map-get($grid-column-gutter, medium) / 2;
@@ -115,7 +112,6 @@ $topbar-height: rem-calc(90);
   }
 
   .menu {
-    background: url(../images/top-bar-bg.png) 0 0 repeat-x;
 
     > li {
 
@@ -225,14 +221,12 @@ $topbar-height: rem-calc(90);
 /* **********
 1.3 Title bar (medium down)
 ********** */
-$titlebar-height: 55px;
+$titlebar-height: 75px;
 
 .title-bar {
   font-family: $header-font-family;
   z-index: 2;
   position: relative;
-
-  background: url(../images/top-bar-bg.png) 0 -115px repeat-x;
 
   @include breakpoint(large) {
     display: none;
@@ -255,7 +249,7 @@ $titlebar-height: 55px;
     }
 
     img {
-      width: 150px;
+      width: 190px;
       max-width: none;
       z-index: 10;
 
@@ -282,12 +276,9 @@ $titlebar-height: 55px;
 
   .bg-left {
     z-index: 2;
-    background: url(../images/top-bar-bg.png) 0 0 no-repeat;
-    background-position: right -59px;
   }
 
   .bg-right {
-    background: url(../images/top-bar-bg.png) 0 0 repeat-x;
     z-index: 1;
   }
 
@@ -342,22 +333,6 @@ $titlebar-height: 55px;
       padding-top: 0;
       padding-bottom: 6px; // dotted border compensation (visually centered)
       height: rem-calc(192px + 35px); // 12rem + padding-top
-    }
-  }
-
-  // Add dotted border if no subpages or no background image
-  &.dotted-border {
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 6px;
-
-      position: absolute;
-      bottom: 0px;
-
-      background: url(../images/dotted-border.png) center top repeat-x;
-      background-size: 23px auto;
     }
   }
 
@@ -598,21 +573,6 @@ X.2 Footer Top
   background: $light-gray;
   margin-top: 2rem;
   padding: 3rem 0 2rem;
-
-  &.dotted-border {
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 6px;
-
-      position: absolute;
-      top: -6px;
-
-      background: url(../images/dotted-border.png) 0 -10px repeat-x;
-      background-size: 23px auto;
-    }
-  }
 
   h1 {
     margin-bottom: 1rem;

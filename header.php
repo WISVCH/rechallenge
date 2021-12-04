@@ -8,6 +8,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#058cce">
     <link rel="icon" href="<?=RECHALLENGE_URI?>/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://use.typekit.net/uet5duo.css">
 
     <?php wp_head(); ?>
 
@@ -56,7 +57,7 @@ $loginurl = is_user_logged_in() && class_exists(WISVCH\Portal\Init::class) ? WIS
                         <div class="top-bar-left show-for-large">
                             <div class="logo-wrapper">
                                 <a class="logo" href="<?=esc_url(site_url('/'))?>">
-                                    <img src="<?=RECHALLENGE_URI?>/assets/images/ch-logo.png" width="300" height="110" alt="<?=esc_attr(get_bloginfo('sitename'))?>">
+                                    <img src="<?=RECHALLENGE_URI?>/assets/images/ch-logo.png" width="440" height="90" alt="<?=esc_attr(get_bloginfo('sitename'))?>">
                                 </a>
                             </div>
                         </div>
