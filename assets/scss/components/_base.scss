@@ -47,8 +47,8 @@ body {
 
     @include breakpoint(xlarge) {
       margin-top: 0;
-      img {
-        height: 90px;
+      img{
+        padding-top: 25px;
       }
     }
 
