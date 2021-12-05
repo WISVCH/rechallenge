@@ -10,12 +10,12 @@ var CHoice;
 
             CHoice.settings = {
                 blueprintItem: "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title clearfix'>{% courseName %}</a><div class='accordion-content'" +
-                " data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table cellspacing='0'><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th" +
-                " width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></li>",
+                    " data-tab-content style='display: none;'><h4>Exams/Summaries</h4><table cellspacing='0'><thead><tr><th width='150px'>Course Code</th><th>Exam</th><th" +
+                    " width='150px'>Answers</th><th width='50px'></th></tr></thead><tbody>{% content %}</tbody></table></li>",
                 blueprintItemNoResult: "<li class='accordion-item' data-accordion-item><a href='#' class='accordion-title" +
-                " clearfix'>No courses found that match your search criteria.</li>",
+                    " clearfix'>No courses found that match your search criteria.</li>",
                 blueprintRow: "<tr><td>{% courseCode %}</td><td>{% name %}</td><td><span class='ch-{% answers %}'></span></td><td>" +
-                "<a target='_blank' href='" + CHoice.url + "document/exam/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>",
+                    "<a target='_blank' href='" + CHoice.url + "document/exam/{% documentId %}' class='button tiny'><span class='ch-file-o'></span></a></td></tr>",
                 blueprintRowNoResult: "<tr><td colspan='4'>No exams available yet.</td></tr>"
             };
 
@@ -90,16 +90,15 @@ var CHoice;
 
         handleGetCourseExamResponse: function (data) {
             var rows = "";
+            const months = ["January", "February", "March", "April", "May", "June", "Juli", "August", "September", "October", "November", "December"]
 
             if (data.length > 0) {
                 $.each(data, function (i, exam) {
                     var row = CHoice.settings.blueprintRow.split("{% courseCode %}").join(exam.course.code);
 
-                    var month = exam.date.month.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
+                    var month = months[(parseInt(exam.date.split('-')[1]) - 1)]
 
-                    var name = exam.name + " " + month + " " + exam.date.dayOfMonth + ", " + exam.date.year;
+                    var name = exam.name + " " + exam.date.split('-')[2] + " " + month + " " + exam.date.split('-')[0];
                     row = row.split("{% name %}").join(name);
                     row = row.split("{% documentId %}").join(exam.id);
                     row = row.split("{% answers %}").join(exam.includingAnswers ? 'check' : 'ban');
