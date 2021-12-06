@@ -3,6 +3,7 @@
     <?php
     include(locate_template('parts/misc/thumbnail-proportional.php'));
     the_title('<h2>', '</h2>');
+  
     the_excerpt();
     ?>
 </a>
