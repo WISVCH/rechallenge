@@ -4,6 +4,11 @@ namespace ReCHallenge;
 
 define("RECHALLENGE_URI", get_stylesheet_directory_uri());
 
+// Disable xmlrpc.php
+// Should really be in a plugin
+// https://kinsta.com/nl/blog/xmlrpc-php/#schakel-xmlrpcphp-uit-zonder-plugin
+add_filter( 'xmlrpc_enabled', '__return_false' );
+
 // Load required classes
 require_once("lib/Ajax.php");
 require_once("lib/Assets.php");
