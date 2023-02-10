@@ -18,7 +18,7 @@ class Branding
         // Alter login screen
         add_action('login_enqueue_scripts', [__CLASS__, 'login_logo']);
         add_filter('login_headerurl', [__CLASS__, 'login_logo_url']);
-        add_filter('login_headertitle', [__CLASS__, 'login_logo_title']);
+        add_filter('login_headertext', [__CLASS__, 'login_logo_title']);
 
         // Change admin footer
         add_filter('admin_footer_text', [__CLASS__, 'admin_footer']);
