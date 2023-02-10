@@ -411,8 +411,6 @@ $titlebar-height: 75px;
 ********** */
 
 main.shrink {
-  padding: 32px 16px;
-
   @include breakpoint(large) {
     & > .row {
       padding-left: rem-calc(184); // based on logo
