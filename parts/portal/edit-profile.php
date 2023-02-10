@@ -69,7 +69,7 @@ use WISVCH\Portal\Shortcodes\Profile;
                         <label for="user_pronouns" class="middle">Pronouns</label>
                     </div>
                     <div class="small-12 medium-9 columns">
-                        <input required type="text" name="user_pronouns" id="user_pronouns" value="<?php Profile::ch('pronouns', $ch_dienst2); ?>" placeholder="Pronouns">
+                        <input type="text" name="user_pronouns" id="user_pronouns" value="<?php Profile::ch('pronouns', $ch_dienst2); ?>" placeholder="Pronouns">
                     </div>
                 </div>
 
