@@ -16,7 +16,7 @@ var Portal;
         initPortalEditForm: function () {
 
             if (Portal.settings.edit_form.length > 0) {
-                Portal.settings.edit_form.find(":input:not(:submit):not(:hidden)").prop('readonly', true);
+                Portal.settings.edit_form.find(":input:not(:submit):not(:hidden):not(:checkbox)").prop('readonly', true);
 
                 Portal.editFormBinds();
             }
