@@ -16,28 +16,7 @@ class SEO
     {
 
         add_action('wpseo_breadcrumb_links', [__CLASS__, 'alter_breadcrumbs']);
-        add_action('wp_head', [__CLASS__, 'analytics']);
         add_filter('wpseo_json_ld_output', '__return_empty_array'); // TODO: re-enable when search functionality is implemented
-    }
-
-    static function analytics()
-    {
-
-        $gID = Settings::get_setting('analytics_id');
-
-        if (empty($gID)) {
-            return;
-        }
-
-        ?>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?=esc_attr($gID)?>"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', '<?=esc_attr($gID)?>', { 'anonymize_ip': true });
-        </script>
-        <?php
     }
 
     /**
