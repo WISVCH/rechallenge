@@ -167,7 +167,7 @@ class Foundation
     static function wp_link_pages_args($args)
     {
 
-        if ($args['before'] == '<p>'.__('Pages:') && $args['after'] == '</p>') {
+        if ($args['before'] == '<p class="post-nav-links">'.__('Pages:') && $args['after'] == '</p>') {
             $args['before'] = '<ul class="pagination text-center medium-text-left" role="navigation" aria-label="Pagination">'.'<li class="disabled">Pages: </li>';
             $args['after'] = '</ul>';
         }
