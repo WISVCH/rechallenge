@@ -22,7 +22,7 @@ class Settings
         static::$_settings = get_option('rechallenge_settings');
 
         // Initialize empty settings array if no or invalid settings array available.
-        if (! is_array(static::$_settings)) {
+        if (!is_array(static::$_settings)) {
             static::$_settings = [];
         }
     }
@@ -51,9 +51,6 @@ class Settings
 
         // CHoice API URL (choice_url)
         add_settings_field('choice_url', 'CHoice API URL', [__CLASS__, 'render_choice_url',], 'rechallenge', 'rechallenge');
-
-        // FlitCie album ID (flitcie_album_id)
-        add_settings_field('flitcie_album_id', 'FlitCie Album ID', [__CLASS__, 'render_flitcie_album_id',], 'rechallenge', 'rechallenge');
     }
 
     static function render_page()
@@ -74,24 +71,16 @@ class Settings
     static function render_analytics_id()
     {
         $analytics_id = static::get_setting('analytics_id') ?? "";
-        ?>
-        <input type="text" name="rechallenge_settings[analytics_id]" value="<?=esc_attr($analytics_id)?>" class="regular-text">
-        <?php
+    ?>
+        <input type="text" name="rechallenge_settings[analytics_id]" value="<?= esc_attr($analytics_id) ?>" class="regular-text">
+    <?php
     }
 
     static function render_choice_url()
     {
         $choice_url = static::get_setting('choice_url') ?? "";
-        ?>
-        <input type="text" name="rechallenge_settings[choice_url]" value="<?=esc_attr($choice_url)?>" class="regular-text" placeholder="https://">
-        <?php
-    }
-
-    static function render_flitcie_album_id()
-    {
-        $flitcie_album_id = static::get_setting('flitcie_album_id') ?? "55031";
-        ?>
-        <input type="number" name="rechallenge_settings[flitcie_album_id]" value="<?=esc_attr($flitcie_album_id)?>" class="regular-text">
-        <?php
+    ?>
+        <input type="text" name="rechallenge_settings[choice_url]" value="<?= esc_attr($choice_url) ?>" class="regular-text" placeholder="https://">
+<?php
     }
 }
