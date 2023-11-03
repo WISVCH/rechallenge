@@ -110,7 +110,7 @@ $category_list = is_array($categories) ? implode(', ', wp_list_pluck($categories
 			}
 
 			?>
-            <a class="button small" href="<?= 'https://events.wisv.ch/' . $events_key; ?>">
+            <a class="button small" href="<?= site_url( '/events/' . $events_key ); ?>">
                 <?= ($max_cost > 0) ? 'Get your ticket now' : 'Register now' ?>
             </a>
 			<?php
