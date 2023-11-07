@@ -46,7 +46,7 @@ class Cleanup
         }
         
         // Disable some endpoints for unauthenticated users
-        add_filter('rest_endpoints', [__CLASS__, 'disable_default_endpoints']);
+        // add_filter('rest_endpoints', [__CLASS__, 'disable_default_endpoints']);
     }
 
     /**
