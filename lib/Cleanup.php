@@ -46,7 +46,7 @@ class Cleanup
         }
         
         // Disable some endpoints for unauthenticated users
-        // add_filter('rest_endpoints', [__CLASS__, 'disable_default_endpoints']);
+        add_filter('rest_endpoints', [__CLASS__, 'disable_default_endpoints']);
     }
 
     /**
@@ -126,7 +126,7 @@ class Cleanup
      * @param $endpoints
      * @return mixed
      */
-    function disable_default_endpoints( $endpoints ) {
+    static function disable_default_endpoints( $endpoints ) {
         $endpoints_to_remove = array(
             '/oembed/1.0',
             '/wp/v2',
