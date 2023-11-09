@@ -129,7 +129,6 @@ class Cleanup
     static function disable_default_endpoints( $endpoints ) {
         $endpoints_to_remove = array(
             '/oembed/1.0',
-            '/wp/v2',
             '/wp/v2/media',
             '/wp/v2/types',
             '/wp/v2/statuses',
