@@ -138,13 +138,10 @@ class Cleanup
             '/wp/v2/comments',
             '/wp/v2/settings',
             '/wp/v2/themes',
-            '/wp/v2/blocks',
             '/wp/v2/oembed',
             '/wp/v2/posts',
             '/wp/v2/pages',
-            '/wp/v2/block-renderer',
             '/wp/v2/search',
-            '/wp/v2/categories'
         );
 
         if (!is_user_logged_in() ) {
