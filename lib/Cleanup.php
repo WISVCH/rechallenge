@@ -128,20 +128,7 @@ class Cleanup
      */
     static function disable_default_endpoints( $endpoints ) {
         $endpoints_to_remove = array(
-            '/oembed/1.0',
-            '/wp/v2/media',
-            '/wp/v2/types',
-            '/wp/v2/statuses',
-            '/wp/v2/taxonomies',
-            '/wp/v2/tags',
             '/wp/v2/users',
-            '/wp/v2/comments',
-            '/wp/v2/settings',
-            '/wp/v2/themes',
-            '/wp/v2/oembed',
-            '/wp/v2/posts',
-            '/wp/v2/pages',
-            '/wp/v2/search',
         );
 
         if (!is_user_logged_in() ) {
