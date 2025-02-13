@@ -81,7 +81,7 @@ $black: #262626;
 $white: #ffffff;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: Nimbus Sans, "Helvetica Neue", sans-serif;
+$body-font-family: "Helvetica Neue", sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -129,7 +129,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: Nimbus Sans, Noto Sans, $body-font-family;
+$header-font-family: Noto Sans, $body-font-family;
 $header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
