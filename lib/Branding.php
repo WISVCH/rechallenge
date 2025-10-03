@@ -36,7 +36,7 @@ class Branding
             }
 
             #login h1 a {
-                background-image: url(<?=RECHALLENGE_URI?>/assets/images/shield.png);
+                background-image: url(<?=RECHALLENGE_URI?>/assets/images/ch-logo.png);
                 width: 100%;
                 height: 150px;
                 background-size: contain;
