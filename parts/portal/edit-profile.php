@@ -20,7 +20,7 @@ use WISVCH\Portal\Shortcodes\Profile;
         if ($ch_member === false) { ?>
 
             <h2>Link Profile</h2>
-            <p>Your account has not been linked to a CH Connect profile (yet). Please link your account using the following button:</p>
+            <p>Your account has not been linked to a CH profile (yet). Please link your account using the following button:</p>
 
             <div class="openid-button-left">
                 <?php echo do_shortcode("[openid_connect_generic_login_button]"); ?>
